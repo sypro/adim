@@ -1,0 +1,41 @@
+# svn
+.svn*
+
+# phpStorm
+.idea
+
+# eclipse
+.classpath
+.project
+.settings/
+
+# netbeans
+nbproject/
+
+# sublime
+*.sublime*
+
+# other
+*~
+~*
+.~*
+
+.bash_history
+.ssh/
+backend/www/imgOriginals
+backend/www/userfiles
+backend/www/videoFrames
+backend/www/uploads
+backend/www/video
+backend/config/local.php
+frontend/www/imgOriginals
+frontend/www/userfiles
+frontend/www/videoFrames
+frontend/www/uploads
+frontend/www/video/
+frontend/config/local.php
+console/config/local.php
+common/config/local.php
+frontend/www/crossdomain.xml
+
+composer.lock

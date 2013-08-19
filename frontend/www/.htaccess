@@ -1,0 +1,13 @@
+AddDefaultCharset UTF-8
+
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^15rokiv\.novy\.tv
+RewriteRule ^(.*)$ http://www.15rokiv.novy.tv/$1 [R=permanent,L]
+
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php)
+RewriteRule . index.php
