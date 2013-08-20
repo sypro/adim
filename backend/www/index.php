@@ -1,5 +1,13 @@
 <?php
 
+require(realpath(
+		__DIR__ . DIRECTORY_SEPARATOR
+		. '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+		. 'common' . DIRECTORY_SEPARATOR . 'vendors' . DIRECTORY_SEPARATOR . 'autoload.php'));
+
+\core\MelonApp::create('..');
+
+exit();
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 if (YII_DEBUG) {
 	ini_set('display_errors', 1);
