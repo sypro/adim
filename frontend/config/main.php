@@ -9,11 +9,6 @@ $frontend = array(
 		'frontend' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'frontend'
 		),
-		'fileProcessor' => realpath(
-			__DIR__ . DIRECTORY_SEPARATOR . '..'
-			. DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
-			. 'common' . DIRECTORY_SEPARATOR . 'extensions' . DIRECTORY_SEPARATOR . 'yii-file-processor'
-		),
 		'menu' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'menu'
 		),
@@ -115,7 +110,7 @@ $frontend = array(
 			),
 		),
 		'maintenanceMode' => array(
-			'class' => 'front.extensions.maintenance-mode.MaintenanceMode',
+			'class' => '\MaintenanceMode',
 			'enabledMode' => false,
 			//'message' => 'Hello!',
 			// or

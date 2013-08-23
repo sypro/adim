@@ -1,15 +1,5 @@
 # Melon Engine
 
-# Required submodules
-```
-git submodule add git://github.com/yiisoft/yii.git common/extensions/yii
-git submodule add git://github.com/MetalGuardian/YiiBooster.git backend/extensions/bootstrap
-git submodule add git://github.com/malyshev/yii-debug-toolbar.git common/extensions/yii-debug-toolbar
-git submodule add git://github.com/MetalGuardian/yii-date-time-picker.git common/extensions/date-time-picker
-git submodule add git://github.com/MetalGuardian/yii-file-processor.git common/extensions/yii-file-processor
-git submodule add git://github.com/karagodin/MaintenanceMode.git frontend/extensions/maintenance-mode
-```
-
 # Migration commands
 ```
 ./yiic migrate
@@ -26,7 +16,8 @@ git submodule add git://github.com/karagodin/MaintenanceMode.git frontend/extens
 
 после клонирования запустить:
 ```
-git submodule update --init --recursive
+curl -sS https://getcomposer.org/installer | php
+php composer.phar install
 ```
 
 конфиги:

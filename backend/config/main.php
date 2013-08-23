@@ -16,11 +16,6 @@ $backend = array(
 		'menu' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'menu'
 		),
-		'fileProcessor' => realpath(
-			__DIR__ . DIRECTORY_SEPARATOR . '..'
-			. DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
-			. 'common' . DIRECTORY_SEPARATOR . 'extensions' . DIRECTORY_SEPARATOR . 'yii-file-processor'
-		),
 		'elfinder' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'elfinder'
 		),
@@ -39,15 +34,12 @@ $backend = array(
 		'frontUser' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'frontUser'
 		),
-		'school' => realpath(
-			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'school'
-		),
 	),
 	'preload' => array('bootstrap', ),
 	'import' => array(),
 	'modules' => array(
 		'gii' => array(
-			'class' => 'system.gii.GiiModule',
+			'class' => '\GiiModule',
 			'password' => false,
 			'ipFilters' => array('127.0.0.1','::1'),
 			'generatorPaths' => array(
@@ -115,9 +107,6 @@ $backend = array(
 		'frontUser' => array(
 			'class' => '\frontUser\FrontUserModule',
 		),
-		'school' => array(
-			'class' => '\school\SchoolModule',
-		),
 	),
 	'controllerNamespace' => '\back\controllers',
 	'controllerMap'=>array(
@@ -127,21 +116,21 @@ $backend = array(
 	),
 	'components' => array(
 		'bootstrap' => array(
-			'class' => 'ext.bootstrap.components.Bootstrap',
+			'class' => '\Bootstrap',
 			'responsiveCss' => true,
 		),
 		'format' => array(
-			'class' => 'backstage\components\Formatter',
+			'class' => '\backstage\components\Formatter',
 		),
 		'user' => array(
 			'class' => '\user\components\WebUser',
 		),
 		'authManager' => array(
 			'class' => '\user\components\PhpAuthManager',
-			'defaultRoles' => array('guest'),
+			'defaultRoles' => array('guest', ),
 		),
 		'session' => array(
-			'class' => 'CDbHttpSession',
+			'class' => '\CDbHttpSession',
 			'connectionID' => 'db',
 			'autoStart' => true,
 			'cookieMode' => 'allow',

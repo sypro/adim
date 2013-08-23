@@ -21,7 +21,7 @@ $main = array(
 			'defaultLanguage' => 'uk',
 		),
 		'cache'=>array(
-			'class'=>'system.caching.CDummyCache',
+			'class' => '\CDummyCache',
 		),
 		'assetManager' => array(
 			'excludeFiles' => array(
@@ -31,11 +31,11 @@ $main = array(
 		),
 		'db' => array(
 			'class' => '\core\components\DbConnection',
-			'connectionString' => 'mysql:host=localhost;dbname=skooltv',
+			'connectionString' => 'mysql:host=localhost;dbname=vintageua_melon',
 			'emulatePrepare' => true,
 			'tablePrefix' => 'sktv_',
-			'username' => 'skooltv',
-			'password' => 'PVBANL5u33260-v',
+			'username' => 'vintageua_melon',
+			'password' => 'CWvdBXH2RVWqGJBL',
 			'charset' => 'utf8',
 			'schemaCachingDuration' => 0,
 			'enableProfiling' => true,
@@ -45,16 +45,16 @@ $main = array(
 			'class' => '\core\components\ErrorHandler',
 		),
 		'log' => array(
-			'class' => 'CLogRouter',
+			'class' => '\CLogRouter',
 			'routes' => array(
 				array(
 					'class' => 'CFileLogRoute',
 					'levels' => 'error, warning',
 				),
 				array(
-					'class'=>'common.extensions.yii-debug-toolbar.yii-debug-toolbar.YiiDebugToolbarRoute',
+					'class' => '\YiiDebugToolbarRoute',
 					// Access is restricted by default to the localhost
-					'ipFilters'=>array('127.0.0.1'),
+					'ipFilters' => array('127.0.0.1', ),
 				),
 			),
 		),

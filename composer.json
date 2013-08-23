@@ -1,11 +1,16 @@
 {
-	"config": {
-		"vendor-dir": "common/vendors"
-	},
 	"autoload": {
 		"psr-0": {
 			"core": "common/modules"
-		}
+		},
+		"classmap": [
+			"vendor/yiisoft/yii/framework/",
+			"vendor/MetalGuardian/yii-file-processor",
+			"vendor/karagodin/MaintenanceMode",
+			"vendor/malyshev/yii-debug-toolbar",
+			"vendor/metalguardian/yii-date-time-picker",
+			"vendor/MetalGuardian/YiiBooster"
+		]
 	},
 	"repositories": [
 		{

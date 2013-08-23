@@ -14,19 +14,20 @@ class MelonApp
 {
 	/**
 	 * @param $root
-	 * @param string $configName
-	 * @param array $mergeWith
 	 *
 	 * @return \CConsoleApplication|\CWebApplication
 	 * @throws \Exception
 	 */
-	public static function create($root, $configName = 'main', $mergeWith = array())
+	public static function create($root)
 	{
 		if (($root = realpath($root)) === false) {
 			throw new \Exception('could not initialize framework.');
 		}
-exit();
-		$config = self::config($configName, $mergeWith);
+
+		$global = $root . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'common' . DIRECTORY_SEPARATOR . 'extensions' . DIRECTORY_SEPARATOR . 'global.php';
+		require_once($global);
+
+		$config = $root . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'main.php';
 
 		if (php_sapi_name() !== 'cli') {
 			$app = \Yii::createWebApplication($config);

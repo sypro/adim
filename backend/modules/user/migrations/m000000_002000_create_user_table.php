@@ -29,8 +29,8 @@ class m000000_002000_create_user_table extends CDbMigration
 		$time = time();
 		$this->insert('{{user}}', array(
 			'name' => 'admin',
-			'email' => 'admin@sktv.dev',
-			'password' => Core::genHashPassword($salt, 'admin@sktv.dev'),
+			'email' => 'admin@melon.dev',
+			'password' => Core::genHashPassword($salt, 'admin@melon.dev'),
 			'salt' => $salt,
 			'role' => 'admin',
 			'created' => $time,

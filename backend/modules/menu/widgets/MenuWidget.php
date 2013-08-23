@@ -23,12 +23,6 @@ class MenuWidget extends \TbNavbar
 
 		$items[] = array('label' => 'Админпанель', 'url' => array('/site/index'));
 		$items[] = array('label' => 'Объекты', 'items' => array(
-			array('label' => 'Школы', 'url' => array('/school/school/index'), 'items' => array(
-				array('label' => 'Страна', 'url' => array('/school/country/index'), ),
-				array('label' => 'Область', 'url' => array('/school/region/index'), ),
-				array('label' => 'Район', 'url' => array('/school/area/index'), ),
-				array('label' => 'Город', 'url' => array('/school/village/index'), ),
-			), ),
 			array('label' => 'Настройки', 'items' => array(
 				array('label' => 'Языки', 'url' => array('/language/language/index'), ),
 				array('label' => 'Переводы', 'url' => array('/translate/message/index'), 'items' => array(

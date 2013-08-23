@@ -1,11 +1,12 @@
 <?php
+$composer = realpath(
+	__DIR__ . DIRECTORY_SEPARATOR
+	. '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+	. 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php'
+);
+require($composer);
 
-require(realpath(
-		__DIR__ . DIRECTORY_SEPARATOR
-		. '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
-		. 'common' . DIRECTORY_SEPARATOR . 'vendors' . DIRECTORY_SEPARATOR . 'autoload.php'));
-
-\core\MelonApp::create('..');
+\core\MelonApp::create(__DIR__ . DIRECTORY_SEPARATOR . '..')->run();
 
 exit();
 defined('YII_DEBUG') or define('YII_DEBUG', true);
