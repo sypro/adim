@@ -27,7 +27,7 @@ class MelonApp
 		$global = $root . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'common' . DIRECTORY_SEPARATOR . 'extensions' . DIRECTORY_SEPARATOR . 'global.php';
 		require_once($global);
 
-		$config = $root . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'main.php';
+		$config = require_once($root . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'main.php');
 
 		if (php_sapi_name() !== 'cli') {
 			$app = \Yii::createWebApplication($config);
