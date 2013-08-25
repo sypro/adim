@@ -50,7 +50,7 @@ class ConfigurationComponent extends ApplicationComponent
 		parent::init();
 
 		/** @var Configuration[] $configs */
-		$configs = Configuration::model()->select(array('key', 'value', 'type', ))->preloaded()->findAll();
+		$configs = Configuration::model()->select(array('config_key', 'value', 'type', ))->preloaded()->findAll();
 		$this->_configs = $this->generateConfigArray($configs);
 	}
 
@@ -65,7 +65,7 @@ class ConfigurationComponent extends ApplicationComponent
 	{
 		$result = array();
 		foreach ($models as $model) {
-			$result[$model->key] = array(
+			$result[$model->config_key] = array(
 				'value' => $model->value,
 				'type' => $model->type,
 			);
@@ -85,12 +85,12 @@ class ConfigurationComponent extends ApplicationComponent
 	{
 		$value = null;
 		if ($force) {
-			$config = Configuration::model()->select(array('key', 'value', 'type', ))->findByPk($key);
+			$config = Configuration::model()->select(array('config_key', 'value', 'type', ))->findByAttributes(array('config_key' => $key, ));
 			$value = $config ? $this->getValue($config) : null;
 		} elseif (isset($this->_configs[$key])) {
 			$value = $this->getValue($this->_configs[$key]);
 		} elseif ($this->lazyLoad) {
-			$config = Configuration::model()->select(array('key', 'value', 'type', ))->findByPk($key);
+			$config = Configuration::model()->select(array('config_key', 'value', 'type', ))->findByAttributes(array('config_key' => $key, ));
 			$value = $config ? $this->getValue($config) : null;
 		}
 		return $value;

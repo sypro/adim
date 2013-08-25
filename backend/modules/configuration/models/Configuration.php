@@ -17,7 +17,8 @@ use language\helpers\Lang;
  * This is the model class for table "{{configuration}}".
  *
  * The followings are the available columns in table '{{configuration}}':
- * @property string $key
+ * @property integer $id
+ * @property string $config_key
  * @property string $value
  * @property string $description
  * @property integer $type
@@ -154,12 +155,13 @@ class Configuration extends ActiveRecord
 			// safe
 			array('value', 'safe', 'on' => 'safe', ),
 
-			array('key, type', 'required'),
+			array('config_key, type', 'required'),
+			array('config_key', 'unique'),
 			array('type, preload', 'numerical', 'integerOnly'=>true),
-			array('key', 'length', 'max'=>100),
+			array('config_key', 'length', 'max'=>100),
 			array('description', 'length', 'max'=>250),
 
-			array('key, value, description, type', 'safe', 'on'=>'search', ),
+			array('config_key, value, description, type', 'safe', 'on'=>'search', ),
 		);
 	}
 
@@ -171,7 +173,7 @@ class Configuration extends ActiveRecord
 		$labels = \CMap::mergeArray(
 			parent::attributeLabels(),
 			array(
-				'key' => 'Ключ',
+				'config_key' => 'Ключ',
 				'value' => 'Значение',
 				'description' => 'Описание',
 				'type' => 'Тип',
@@ -194,7 +196,7 @@ class Configuration extends ActiveRecord
 	{
 		$criteria = new \CDbCriteria();
 
-		$criteria->compare('t.key', $this->key, true);
+		$criteria->compare('t.config_key', $this->config_key, true);
 		$criteria->compare('t.value', $this->value, true);
 		$criteria->compare('t.description', $this->description, true);
 		$criteria->compare('t.type', $this->type);
@@ -207,7 +209,7 @@ class Configuration extends ActiveRecord
 			),
 			'sort' => array(
 				'defaultOrder' => array(
-					'key' => \CSort::SORT_DESC,
+					'config_key' => \CSort::SORT_DESC,
 				),
 			),
 		));
@@ -240,7 +242,7 @@ class Configuration extends ActiveRecord
 			case 'index':
 				$columns = array(
 					array(
-						'name' => 'key',
+						'name' => 'config_key',
 						'htmlOptions' => array('class' => 'span2 center', ),
 					),
 					array(
@@ -265,7 +267,7 @@ class Configuration extends ActiveRecord
 				break;
 			case 'view':
 				$columns = array(
-					'key',
+					'config_key',
 					$this->getValueView(),
 					'description',
 					array(
@@ -427,7 +429,7 @@ class Configuration extends ActiveRecord
 				'id' => 'configuration-form',
 			),
 			'elements' => array(
-				'key' => array(
+				'config_key' => array(
 					'type' => 'text',
 					'class' => 'span6',
 				),

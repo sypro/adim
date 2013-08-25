@@ -8,7 +8,7 @@
 /**
  * @var $this \frontend\components\FrontendController
  */
-cs()->registerPackage('theme.skooltv');
+cs()->registerPackage('theme.melon');
 cs()->registerPackage('front.main');
 ?>
 	<?php echo $content; ?>

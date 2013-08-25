@@ -22,15 +22,17 @@ class MenuWidget extends \TbNavbar
 		$items = array();
 
 		$items[] = array('label' => 'Админпанель', 'url' => array('/site/index'));
+		$items[] = array('label' => 'Настройки', 'items' => array(
+			array('label' => 'Языки', 'url' => array('/language/language/index'), ),
+			array('label' => 'Переводы', 'items' => array(
+				array('label' => 'Переводы', 'url' => array('/translate/message/index'), ),
+				array('label' => 'Оригиналы', 'url' => array('/translate/sourceMessage/index'), ),
+			),),
+			array('label' => 'Конфигурация', 'url' => array('/configuration/configuration/index'), ),
+			array('label' => 'Seo', 'url' => array('/seo/seo/index'), ),
+		));
 		$items[] = array('label' => 'Объекты', 'items' => array(
-			array('label' => 'Настройки', 'items' => array(
-				array('label' => 'Языки', 'url' => array('/language/language/index'), ),
-				array('label' => 'Переводы', 'url' => array('/translate/message/index'), 'items' => array(
-					array('label' => 'Оригиналы', 'url' => array('/translate/sourceMessage/index'), ),
-				),),
-				array('label' => 'Конфигурация', 'url' => array('/configuration/configuration/index'), ),
-				array('label' => 'Seo', 'url' => array('/seo/seo/index'), ),
-			)),
+
 		),);
 		$items[] = array('label' => 'Пользователи', 'items' => array(
 			array('label' => 'Админ', 'url' => array('/user/user/index'), ),

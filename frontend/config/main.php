@@ -25,7 +25,7 @@ $frontend = array(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'configuration'
 		),
 	),
-	'theme' => 'skooltv',
+	'theme' => 'melon',
 	'preload' => array('maintenanceMode', ),
 	'modules' => array(
 		'gii' => array(
@@ -154,8 +154,8 @@ $frontend = array(
 						'css/application.css' => 'screen, projection',
 					),
 				),
-				'theme.skooltv' => array(
-					'baseUrl' => '/themes/skooltv/',
+				'theme.melon' => array(
+					'baseUrl' => '/themes/melon/',
 					'js' => array(
 					),
 					'css' => array(

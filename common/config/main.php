@@ -18,7 +18,7 @@ $main = array(
 	'components' => array(
 		'urlManager' => array(
 			'class' => '\core\components\UrlManager',
-			'defaultLanguage' => 'uk',
+			'defaultLanguage' => 'ru',
 		),
 		'cache'=>array(
 			'class' => '\CDummyCache',

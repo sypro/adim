@@ -11,7 +11,8 @@ use frontend\components\ActiveRecord;
  * This is the model class for table "{{configuration}}".
  *
  * The followings are the available columns in table '{{configuration}}':
- * @property string $key
+ * @property string $id
+ * @property string $config_key
  * @property string $value
  * @property string $description
  * @property integer $type

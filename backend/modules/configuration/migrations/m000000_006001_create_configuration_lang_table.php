@@ -8,7 +8,7 @@ class m000000_006001_create_configuration_lang_table extends CDbMigration
 			'{{configuration_lang}}',
 			array(
 				'l_id' => 'INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
-				'model_id' => 'VARCHAR(100) NOT NULL',
+				'model_id' => 'INT UNSIGNED NOT NULL',
 				'lang_id' => 'VARCHAR(6) NULL DEFAULT NULL',
 
 				'l_value' => 'TEXT NULL DEFAULT NULL',
