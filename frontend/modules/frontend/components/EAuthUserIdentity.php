@@ -35,6 +35,7 @@ class EAuthUserIdentity extends \EAuthUserIdentity
 			if (!$user) {
 				$user = new User('service');
 				$user->password = 'no password';
+				$user->salt = 'no salt';
 				$user->email = $this->id;
 				$user->name = $this->name;
 				$user->service = $this->service->serviceName;

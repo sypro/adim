@@ -2,10 +2,11 @@
 
 class {ClassName} extends CDbMigration
 {
+	public $tableName = '{{}}';
 	public function safeUp()
 	{
 		$this->createTable(
-			'{{table}}',
+			$this->tableName,
 			array(
 				'id' => 'INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
 

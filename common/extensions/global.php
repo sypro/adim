@@ -77,6 +77,18 @@ function au($url, $schema = '', $ampersand = '&')
 }
 
 /**
+ * Normalize url
+ *
+ * @param $url
+ *
+ * @return string
+ */
+function nu($url)
+{
+	return CHtml::normalizeUrl($url);
+}
+
+/**
  * This is the shortcut to CHtml::encode
  *
  * @param $text

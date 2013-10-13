@@ -16,6 +16,9 @@ use core\components\Controller;
  */
 class FrontendController extends Controller
 {
+	/**
+	 * @var string
+	 */
 	public $layout = '//layouts/sub';
 
 	public function init()
@@ -31,6 +34,13 @@ class FrontendController extends Controller
 		}*/
 	}
 
+	/**
+	 * @param string $className
+	 * @param array $properties
+	 * @param bool $captureOutput
+	 *
+	 * @return bool|Widget|mixed|string
+	 */
 	public function widget($className, $properties = array(), $captureOutput = false)
 	{
 		$class = new $className();
@@ -82,40 +92,51 @@ class FrontendController extends Controller
 	}
 
 	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 *
-	 * @param      $id
-	 *
+	 * @param $id
 	 * @param bool $class
+	 * @param bool $attributes
 	 * @param bool $prepare
+	 * @param bool $seo
+	 * @param string $condition
+	 * @param array $params
 	 *
-	 * @throws \CHttpException
-	 * @internal param \the $integer ID of the model to be loaded
 	 * @return \CActiveRecord
+	 * @throws \CHttpException
 	 */
-	public function loadModel($id, $class = false, $prepare = true)
+	public function loadModel($id, $class = false, $attributes = false, $prepare = true, $seo = true, $condition = '', $params = array())
 	{
 		if ($class === false) {
 			$class = $this->getModelClass();
 		}
-		$model = \CActiveRecord::model($class)->published()->findByPk($id);
+		/** @var ActiveRecord $finder */
+		$finder = ActiveRecord::model($class)->published();
+		if (is_array($id) && $attributes) {
+			$model = $finder->findByAttributes($id, $condition, $params);
+		} else {
+			$model = $finder->findByPk($id, $condition, $params);
+		}
 		if ($model === null) {
-			throw new \CHttpException(404, 'The requested page does not exist.');
+			throw new \CHttpException(404, t('The requested page does not exist.'));
 		}
 		if ($prepare) {
 			$this->prepare($model);
 		}
-		if ($model->asa('seo')) {
+		if ($seo && $model->asa('seo') && $this->asa('seo')) {
 			$this->registerSEO($model);
 		}
 		return $model;
 	}
 
+	/**
+	 * @param $model
+	 */
 	public function prepare($model)
 	{
 	}
 
+	/**
+	 * @return array
+	 */
 	public function filters()
 	{
 		return \CMap::mergeArray(
@@ -123,6 +144,21 @@ class FrontendController extends Controller
 			array(
 				array(
 					'\frontend\components\SetReturnUrlFilter +index +view',
+				),
+			)
+		);
+	}
+
+	/**
+	 * @return array
+	 */
+	public function behaviors()
+	{
+		return \CMap::mergeArray(
+			parent::behaviors(),
+			array(
+				'seo' => array(
+					'class' => '\seo\components\SeoControllerBehavior',
 				),
 			)
 		);

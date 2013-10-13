@@ -23,6 +23,20 @@ abstract class ActiveRecord extends \CActiveRecord
 	const STATUS_YES = 1;
 
 	/**
+	 * Cached page url
+	 *
+	 * @var
+	 */
+	protected $pageUrl;
+
+	/**
+	 * Cached list page url
+	 *
+	 * @var
+	 */
+	protected static $listPageUrl;
+
+	/**
 	 * Query order
 	 *
 	 * @param $order
@@ -106,6 +120,39 @@ abstract class ActiveRecord extends \CActiveRecord
 	}
 
 	/**
+	 * @param $field
+	 *
+	 * @return $this
+	 */
+	public function groupBy($field)
+	{
+		$this->getDbCriteria()->group = $field;
+		return $this;
+	}
+
+	/**
+	 * @param $field
+	 *
+	 * @return $this
+	 */
+	public function isNotNull($field)
+	{
+		$this->getDbCriteria()->addCondition($field . ' IS NOT NULL');
+		return $this;
+	}
+
+	/**
+	 * @param $field
+	 *
+	 * @return $this
+	 */
+	public function isNull($field)
+	{
+		$this->getDbCriteria()->addCondition($field . ' IS NULL');
+		return $this;
+	}
+
+	/**
 	 * Query select
 	 *
 	 * @param string $select
@@ -115,6 +162,12 @@ abstract class ActiveRecord extends \CActiveRecord
 	public function select($select = '*')
 	{
 		$this->getDbCriteria()->select = $select;
+		return $this;
+	}
+
+	public function between($column, $valueStart, $valueEnd, $operator = 'AND')
+	{
+		$this->getDbCriteria()->addBetweenCondition($column, $valueStart, $valueEnd, $operator);
 		return $this;
 	}
 
@@ -278,5 +331,16 @@ abstract class ActiveRecord extends \CActiveRecord
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return $this
+	 */
+	public static function model($className = __CLASS__)
+	{
+		return parent::model($className);
 	}
 }

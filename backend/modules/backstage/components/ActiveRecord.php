@@ -63,26 +63,26 @@ abstract class ActiveRecord extends CoreActiveRecord
 		{
 			case 'index':
 				$menu = array(
-					array('label'=>null,'url'=>array('create'), 'icon'=>'icon-plus'),
+					'create' => array('label'=>null,'url'=>array('create'), 'icon'=>'icon-plus'),
 				);
 				break;
 			case 'create':
 				$menu = array(
-					array('label'=>null,'url'=>array('index'), 'icon'=>'icon-list'),
+					'index' => array('label'=>null,'url'=>array('index'), 'icon'=>'icon-list'),
 				);
 				break;
 			case 'update':
 				$menu = array(
-					array('label'=>null,'url'=>array('create'), 'icon'=>'icon-plus'),
-					array('label'=>null,'url'=>array('view','id'=>$this->getPrimaryKey()), 'icon'=>'icon-eye-open'),
-					array('label'=>null,'url'=>array('index'), 'icon'=>'icon-list'),
+					'create' => array('label'=>null,'url'=>array('create'), 'icon'=>'icon-plus'),
+					'update' => array('label'=>null,'url'=>array('view','id'=>$this->getPrimaryKey()), 'icon'=>'icon-eye-open'),
+					'index' => array('label'=>null,'url'=>array('index'), 'icon'=>'icon-list'),
 				);
 				break;
 			case 'view':
 				$menu = array(
-					array('label'=>null,'url'=>array('create'), 'icon'=>'icon-plus'),
-					array('label'=>null,'url'=>array('update','id'=>$this->getPrimaryKey()), 'icon'=>'icon-pencil'),
-					array('label'=>null,'url'=>array('delete', 'id'=>$this->getPrimaryKey()),
+					'create' => array('label'=>null,'url'=>array('create'), 'icon'=>'icon-plus'),
+					'update' => array('label'=>null,'url'=>array('update','id'=>$this->getPrimaryKey()), 'icon'=>'icon-pencil'),
+					'delete' => array('label'=>null,'url'=>array('delete', 'id'=>$this->getPrimaryKey()),
 						'buttonType'=>'ajaxLink',
 						'ajaxOptions'=>array(
 							'type'=>'POST',
@@ -93,10 +93,11 @@ abstract class ActiveRecord extends CoreActiveRecord
 							'error'=>'js:function(response){alert(response.responseText);}',
 						),
 						'htmlOptions'=>array('confirm'=>\Yii::t('core', 'Are you sure you want to delete this item?')), 'icon'=>'icon-trash'),
-					array('label'=>null,'url'=>array('index'), 'icon'=>'icon-list'),
+					'index' => array('label'=>null,'url'=>array('index'), 'icon'=>'icon-list'),
 				);
 				break;
-			default: break;
+			default:
+				break;
 		}
 		return $menu;
 	}

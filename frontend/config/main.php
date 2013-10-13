@@ -135,10 +135,11 @@ $frontend = array(
 			),
 		),
 		'request' => array(
+			'class' => '\core\components\HttpRequest',
 			'enableCookieValidation' => true,
 			'enableCsrfValidation' => true,
 			'csrfCookie' => array(
-				'httpOnly'=>true,
+				'httpOnly' => true,
 			),
 		),
 		'clientScript' => array(
@@ -153,6 +154,7 @@ $frontend = array(
 					'css' => array(
 						'css/application.css' => 'screen, projection',
 					),
+					'depends' => array('jquery', ),
 				),
 				'theme.melon' => array(
 					'baseUrl' => '/themes/melon/',
@@ -160,6 +162,7 @@ $frontend = array(
 					),
 					'css' => array(
 					),
+					'depends' => array('jquery', ),
 				),
 			),
 			'scriptMap' => array(),

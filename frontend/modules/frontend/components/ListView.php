@@ -23,6 +23,17 @@ class ListView extends \CListView
 	 */
 	public $enableHistory = true;
 
+	/**
+	 * @var string the URL of the CSS file used by this list view. Defaults to null, meaning using the integrated
+	 * CSS file. If this is set false, you are responsible to explicitly include the necessary CSS file in your page.
+	 */
+	public $cssFile = false;
+
+	/**
+	 * Get full class name
+	 *
+	 * @return string
+	 */
 	public static function getClassName()
 	{
 		return get_called_class();

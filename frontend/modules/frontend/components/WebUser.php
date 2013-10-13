@@ -16,24 +16,45 @@ use user\models\User;
  */
 class WebUser extends CoreWebUser
 {
-	public $socialLoginUrl = '/user/default/social';
-	public $userLogoutUrl = '/user/default/logout';
-	private $_model = null;
+	/**
+	 * Social login url
+	 *
+	 * @var string
+	 */
+	public $socialLoginUrl = array('/user/default/social');
 
-	public function getIsAdmin()
-	{
-		return $this->getRole() === User::ROLE_ADMIN;
-	}
+	/**
+	 * General user login url
+	 *
+	 * @var string
+	 */
+	public $logoutUrl = array('/user/default/logout');
 
+	public $loginUrl = array('/user/default/login');
+
+	public $ajaxLoginUrl = array('/user/default/ajaxLogin');
+
+	public $ajaxSignUpUrl = array('/user/default/ajaxSignUp');
+
+	/**
+	 * User model
+	 *
+	 * @var null
+	 */
+	protected $_model = null;
+
+	/**
+	 * Get role
+	 *
+	 * @return null|string
+	 */
 	public function getRole()
 	{
-		if ($user = $this->getModel()) {
-			if (!$user->role) {
-				$this->logout();
-			}
-			return $user->role;
+		$model = $this->getModel();
+		if (!$model) {
+			return null;
 		}
-		return null;
+		return $model->role;
 	}
 
 	public function getName()
@@ -42,18 +63,29 @@ class WebUser extends CoreWebUser
 		return \CHtml::encode($name);
 	}
 
+	/**
+	 * Get user page url
+	 *
+	 * @param array $params
+	 *
+	 * @return array
+	 */
 	public function getPageUrl($params = array())
 	{
-		return User::genPageUrl($this->id, $params);
+		$model = $this->getModel();
+		if (!$model) {
+			return null;
+		}
+		return $model->getPageUrl($params);
 	}
 
 	/**
 	 * @return User|null
 	 */
-	private function getModel()
+	public function getModel()
 	{
 		if (!$this->isGuest && $this->_model === null) {
-			$this->_model = User::model()->findByPk($this->id, array('select' => 'id, role'));
+			$this->_model = User::model()->findByPk($this->id);
 			if ($this->_model == null) {
 				$this->logout();
 			}

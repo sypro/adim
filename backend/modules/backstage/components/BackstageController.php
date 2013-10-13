@@ -102,7 +102,7 @@ class BackstageController extends Controller
 			try {
 				if ($model->save()) {
 					$transaction->commit();
-					$this->redirect(array('view', 'id'=>$model->getPrimaryKey()));
+					$this->redirect(array('view', 'id' => $model->getPrimaryKey()));
 				}
 			} catch (\Exception $exception) {
 				$model->addError($model->tableSchema->primaryKey, $exception->getMessage());
@@ -148,7 +148,7 @@ class BackstageController extends Controller
 			try {
 				if ($model->save()) {
 					$transaction->commit();
-					$this->redirect(array('view', 'id'=>$model->getPrimaryKey()));
+					$this->redirect(array('view', 'id' => $model->getPrimaryKey()));
 				}
 			} catch (\Exception $exception) {
 				$model->addError($model->tableSchema->primaryKey, $exception->getMessage());
@@ -171,7 +171,7 @@ class BackstageController extends Controller
 		$model = \CActiveRecord::model($class);
 		$modelName = \CHtml::modelName($model);
 		$model->setScenario('search');
-		$model->unsetAttributes();  // clear any default values
+		$model->unsetAttributes(); // clear any default values
 		if (isset($_GET[$modelName])) {
 			$model->attributes = $_GET[$modelName];
 		}

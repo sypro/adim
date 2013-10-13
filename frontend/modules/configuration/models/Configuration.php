@@ -143,4 +143,26 @@ class Configuration extends ActiveRecord
 			$localized
 		);
 	}
+
+	/**
+	 * Parse email list
+	 *
+	 * @param $string
+	 *
+	 * @return array
+	 */
+	public static function parseEmailsFromString($string)
+	{
+		$toEmails = array();
+		$emails = explode(',', $string);
+		foreach ($emails as $email) {
+			$timedEmail = trim($email);
+			$emValidator = new \CEmailValidator();
+			if ($emValidator->validateValue($timedEmail)) {
+				$toEmails[] = $timedEmail;
+			}
+		}
+
+		return $toEmails;
+	}
 }

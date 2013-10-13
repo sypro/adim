@@ -56,4 +56,24 @@ $(function() {
 			//$('.dependent-dropdown').attr('disabled', false);
 		}, 'url': url});
 	});
+	$(document).on('click', 'a.change-item', function (event) {
+		event.preventDefault();
+		var that = this;
+		var value;
+		if (value = prompt('Введите значение', '0')) {
+			var href = that.href;
+			console.log(href);
+
+			jQuery.ajax({'cache': false, 'type': 'POST', 'dataType': 'json', 'data': {value: value}, 'success': function (response) {
+				parseResponse(response);
+			}, 'error': function (response) {
+				alert(response.responseText);
+			}, 'beforeSend': function () {
+				$(that).attr('disabled', true);
+			}, 'complete': function () {
+				//$(that).attr('disabled', false);
+			}, 'url': href});
+		}
+		return false;
+	});
 });

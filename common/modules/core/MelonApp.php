@@ -41,7 +41,11 @@ class MelonApp
 		} else {
 			defined('STDIN') or define('STDIN', fopen('php://stdin', 'r'));
 			$app = \Yii::createConsoleApplication($config);
-			$app->commandRunner->addCommands($root . '/cli/commands');
+			$app->commandRunner->addCommands(realpath($vendors
+				. DIRECTORY_SEPARATOR
+				. 'yiisoft'
+				. DIRECTORY_SEPARATOR
+				. 'yii' . DIRECTORY_SEPARATOR . 'framework' . '/cli/commands'));
 			$env = @getenv('YII_CONSOLE_COMMANDS');
 			if (!empty($env)) {
 				$app->commandRunner->addCommands($env);
