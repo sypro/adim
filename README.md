@@ -38,6 +38,8 @@ ln -s /path/to/frontend/www/uploads/ /path/to/backend/www/
 
 запустить все миграции описанные выше (по ходу работы добавлять в этот список новые миграции и сабмодули)
 
+работа с базой ТОЛЬКО через миграции. все данные, которые попадают в базу тоже должны быть в миграциях. можно делать дампы и вызывать их, но не копаться в структуре и данных руками
+
 # Create admin module
 
 создаем через gii модуль. прописываем его в конфиге (aliases и modules)
@@ -58,3 +60,86 @@ ln -s /path/to/frontend/www/uploads/ /path/to/backend/www/
 Язык по умолчанию объявляется в компоненте `urlManager` (пока так) `/common/config/main.php`. параметр `defaultLanguage`.
 
 Поля формы и просмотра объекта автоматически геренируются для всех языков приложения.
+
+Gii генерирует как главную модель с готовыми поведениями, так и зависимую модель. Все зависит от галочек выбраных в генераторе.
+
+пример миграции зависимой языковой таблицы:
+
+```
+class m131014_102113_create_content_lang_table extends CDbMigration
+{
+	public $tableName = '{{content_lang}}';
+	public function safeUp()
+	{
+		$this->createTable(
+			$this->tableName,
+			array(
+				'l_id' => 'INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
+				'model_id' => 'INT UNSIGNED NOT NULL',
+				'lang_id' => 'VARCHAR(6) NULL DEFAULT NULL',
+
+				'l_label' => 'VARCHAR(200) NULL DEFAULT NULL',
+				'l_announce' => 'TEXT NULL DEFAULT NULL',
+				'l_content' => 'TEXT NULL DEFAULT NULL',
+
+				'INDEX key_model_id_lang_id (model_id, lang_id)',
+				'INDEX key_model_id (model_id)',
+				'INDEX key_lang_id (lang_id)',
+			),
+			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
+		);
+	}
+
+	public function safeDown()
+	{
+		$this->dropTable($this->tableName);
+	}
+}
+```
+
+# Front config
+
+конфиг для фронтеэнда
+
+```
+'theme' => 'arredo',
+'components' => array(
+	...
+	'clientScript' => array(
+		'class' => '\core\components\ClientScript',
+		'coreScriptPosition' => \CClientScript::POS_HEAD,
+		'packages' => array(
+			'front.main' => array(
+				'baseUrl' => '/',
+				'js' => array(
+					'js/application.js',
+				),
+				'css' => array(
+					'css/application.css' => 'screen, projection',
+				),
+				'depends' => array('jquery', ),
+			),
+			'theme.melon' => array(
+				'baseUrl' => '/themes/melon/',
+				'js' => array(
+					'js/plugins.js',
+					'js/functions.js',
+				),
+				'css' => array(
+					'css/style.css' => 'screen, projection',
+				),
+				'depends' => array('jquery', ),
+			),
+		),
+		'scriptMap' => array(),
+	),
+	...
+),
+```
+
+вызывать клиент скрипт так:
+
+```
+cs()->registerPackage('theme.melon');
+cs()->registerPackage('front.main');
+```
