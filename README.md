@@ -40,6 +40,12 @@ ln -s /path/to/frontend/www/uploads/ /path/to/backend/www/
 
 работа с базой ТОЛЬКО через миграции. все данные, которые попадают в базу тоже должны быть в миграциях. можно делать дампы и вызывать их, но не копаться в структуре и данных руками
 
+ОБЯЗАТЕЛЬНО использовать связи! прописывать их в создании таблицы или отдельно, но не забывать про них. пример:
+
+```
+CONSTRAINT fk_menu_menu_id_to_menu_list_id FOREIGN KEY (menu_id) REFERENCES {{menu_list}} (id) ON DELETE RESTRICT ON UPDATE RESTRICT
+```
+
 # Create admin module
 
 создаем через gii модуль. прописываем его в конфиге (aliases и modules)
@@ -143,3 +149,64 @@ class m131014_102113_create_content_lang_table extends CDbMigration
 cs()->registerPackage('theme.melon');
 cs()->registerPackage('front.main');
 ```
+
+# Statuses, Types
+
+статусы по умолчанию в моделе
+
+```
+const STATUS_NOT = 0;
+const STATUS_YES = 1;
+```
+
+как добавить свои типы:
+
+```
+const TYPE_GENERAL = 1;
+const TYPE_LIST = 2;
+
+public static function getTypes()
+{
+	return array(
+		self::TYPE_GENERAL => 'Обычная страница',
+		self::TYPE_LIST => 'Для списка страниц',
+	);
+}
+
+public function getType()
+{
+	$array = self::getTypes();
+	return isset($array[$this->type]) ? $array[$this->type] : null;
+}
+```
+
+# default model methods
+
+```
+public function attributeLabels()
+{
+	$labels = \CMap::mergeArray(
+		parent::attributeLabels(),
+		array(
+			'announce' => 'Анонс',
+			'type' => 'Тип страницы',
+		)
+	);
+	$labels = $this->generateLocalizedAttributeLabels($labels);
+	return $labels;
+}
+
+public function ordered()
+{
+	return $this->order('t.posted DESC');
+}
+
+public static function getLocalizedAttributesList()
+{
+	return array('label', 'announce', 'content', );
+}
+```
+
+в моделе есть обертки почти для всех поисковых вещей, смотреть в главной моделе в common приложении
+
+
