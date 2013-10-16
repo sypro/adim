@@ -29,11 +29,12 @@ class SeoWidget extends Widget
 			/** @var $form \CForm */
 			$form = \TbForm::createForm(
 				$data->getWidgetFormConfig(),
-				$data,
+				$this,
 				array(
 					'enableAjaxValidation' => false,
 					'type' => 'horizontal',
-				)
+				),
+				$data
 			);
 			echo $form->render();
 			echo \CHtml::tag('hr');

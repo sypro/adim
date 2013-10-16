@@ -321,11 +321,11 @@ abstract class ActiveRecord extends \CActiveRecord
 	{
 		if (parent::beforeValidate()) {
 			if ($this->isNewRecord) {
-				if (isset($this->created)) {
+				if ($this->hasAttribute('created')) {
 					$this->created = time();
 				}
 			}
-			if (isset($this->modified)) {
+			if ($this->hasAttribute('modified')) {
 				$this->modified = time();
 			}
 			return true;

@@ -90,11 +90,12 @@ class BackstageController extends Controller
 		/** @var $form \TbForm */
 		$form = \TbForm::createForm(
 			$model->prepareFormConfig($model->getFormConfig()),
-			$model,
+			$this,
 			array(
 				'enableAjaxValidation' => false,
 				'type' => 'horizontal',
-			)
+			),
+			$model
 		);
 
 		if ($form->submitted('submit') && $form->validate()) {
@@ -136,11 +137,12 @@ class BackstageController extends Controller
 		/** @var $form \CForm */
 		$form = \TbForm::createForm(
 			$model->prepareFormConfig($model->getFormConfig()),
-			$model,
+			$this,
 			array(
 				'enableAjaxValidation' => false,
 				'type' => 'horizontal',
-			)
+			),
+			$model
 		);
 
 		if ($form->submitted('submit') && $form->validate()) {

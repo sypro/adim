@@ -6,6 +6,7 @@ $main = array(
 	'name' => 'Melon Application',
 	'preload' => array('log'),
 	'aliases' => array(
+		'vendor'  => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor'),
 		'root' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..'),
 		'common' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR),
 	),
@@ -21,7 +22,7 @@ $main = array(
 			'defaultLanguage' => 'ru',
 		),
 		'cache'=>array(
-			'class' => '\CDummyCache',
+			'class'=>'system.caching.CDummyCache',
 		),
 		'assetManager' => array(
 			'excludeFiles' => array(

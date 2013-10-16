@@ -4,26 +4,12 @@
 			"core": "common/modules"
 		},
 		"classmap": [
-			"vendor/MetalGuardian/yii-file-processor",
 			"vendor/karagodin/MaintenanceMode",
 			"vendor/malyshev/yii-debug-toolbar",
-			"vendor/metalguardian/yii-date-time-picker",
-			"vendor/MetalGuardian/YiiBooster"
+			"vendor/clevertech/yii-booster/src"
 		]
 	},
 	"repositories": [
-		{
-			"type":"package",
-			"package": {
-				"name": "MetalGuardian/yii-file-processor",
-				"version":"dev",
-				"source": {
-					"url": "https://github.com/MetalGuardian/yii-file-processor.git",
-					"type": "git",
-					"reference":"dev"
-				}
-			}
-		},
 		{
 			"type":"package",
 			"package": {
@@ -35,27 +21,15 @@
 					"reference":"master"
 				}
 			}
-		},
-		{
-			"type":"package",
-			"package": {
-				"name": "MetalGuardian/YiiBooster",
-				"version":"dev",
-				"source": {
-					"url": "https://github.com/MetalGuardian/YiiBooster.git",
-					"type": "git",
-					"reference":"dev"
-				}
-			}
 		}
 	],
 	"require":{
 		"php": ">=5.3.0",
 		"yiisoft/yii": "dev-master",
-		"MetalGuardian/YiiBooster": "dev",
+		"clevertech/yii-booster": "dev-master",
 		"malyshev/yii-debug-toolbar": "dev-master",
-		"MetalGuardian/yii-file-processor": "dev",
+		"metalguardian/yii-file-processor": "dev-master",
 		"karagodin/MaintenanceMode": "dev-master",
-		"MetalGuardian/yii-date-time-picker": "dev-master"
+		"metalguardian/yii-date-time-picker": "dev-master"
 	}
 }

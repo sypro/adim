@@ -29,7 +29,11 @@ class ClientScript extends \CClientScript
 			}
 			if (!empty($package['css'])) {
 				foreach ($package['css'] as $css => $media) {
-					$cssFiles[$baseUrl . '/' . $css] = $media;
+					if (is_integer($css)) {
+						$cssFiles[$baseUrl . '/' . $media ] = '';
+					} else {
+						$cssFiles[$baseUrl . '/' . $css] = $media;
+					}
 				}
 			}
 		}

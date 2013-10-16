@@ -158,7 +158,7 @@ class GiiHelper
 			case ($column->type === 'integer'):
 				if ($column->name == 'image_id') {
 					$row = "'image_id' => array(
-					'type' => 'backstage\\components\\ImageFormInputElement',
+					'type' => '\\backstage\\components\\ImageFormInputElement',
 				),";
 				} else {
 					$row = "'{$name}' => array(
@@ -169,7 +169,7 @@ class GiiHelper
 				break;
 			case ($column->type === 'string' && $column->dbType === 'date'):
 				$row = "'{$name}' => array(
-					'type' => 'common.extensions.date-time-picker.CJuiDateTimePicker',
+					'type' => '\\yiiDateTimePicker\\CJuiDateTimePicker',
 					'mode' => 'date',
 					'options' => array(
 						'dateFormat' => 'yy-mm-dd',
@@ -178,7 +178,7 @@ class GiiHelper
 				break;
 			case ($column->type === 'string' && $column->dbType === 'time'):
 				$row = "'{$name}' => array(
-					'type' => 'common.extensions.date-time-picker.CJuiDateTimePicker',
+					'type' => '\\yiiDateTimePicker\\CJuiDateTimePicker',
 					'mode' => 'time',
 					'options' => array(
 						'showSecond' => true,
@@ -188,7 +188,7 @@ class GiiHelper
 				break;
 			case ($column->type === 'string' && $column->dbType === 'datetime'):
 				$row = "'{$name}' => array(
-					'type' => 'common.extensions.date-time-picker.CJuiDateTimePicker',
+					'type' => '\\yiiDateTimePicker\\CJuiDateTimePicker',
 					'mode' => 'datetime',
 					'options' => array(
 						'dateFormat' => 'yy-mm-dd',
