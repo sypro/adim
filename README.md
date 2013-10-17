@@ -9,7 +9,7 @@
 ./yiic migrate --migrationPath=back.modules.translate.migrations
 ./yiic migrate --migrationPath=back.modules.configuration.migrations
 ./yiic migrate --migrationPath=back.modules.menu.migrations
-./yiic migrate --migrationPath=common.extensions.yii-file-processor.migrations
+./yiic migrate --migrationPath=webroot.vendor.metalguardian.yii-file-processor.fileProcessor.migrations
 ```
 
 # Installation
