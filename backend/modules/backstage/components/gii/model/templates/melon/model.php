@@ -307,13 +307,6 @@ foreach($searchColumns as $name => $column)
 						'fileTypes' => 'png, gif, jpeg, jpg, doc, pdf, ppt, zip, rar',
 					),
 <?php endif; ?>
-<?php if (in_array('video_id', array_keys($columns))) :?>
-					'video_id' => array(
-						'class' => '\fileProcessor\components\FileUploadBehavior',
-						'attributeName' => 'video_id',
-						'fileTypes' => 'wmv, mp4, avi, flv',
-					),
-<?php endif; ?>
 <?php if ($this->seoModel) : ?>
 					'seo' => array(
 						'class' => '\seo\components\SeoModelBehavior',

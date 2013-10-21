@@ -55,6 +55,7 @@ class GiiHelper
 			'created',
 			'modified',
 			'image_id',
+			'file_id',
 		);
 	}
 

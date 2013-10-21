@@ -282,7 +282,7 @@ class ModelCode extends \CCodeModel
 				case $column->name == 'image_id':
 					$row = "'image_id:fpmImage',";
 					break;
-				case $column->name == 'file_id' || $column->name == 'video_id':
+				case $column->name == 'file_id':
 					$row = "'{$name}:fpmLink',";
 					break;
 				case true:
