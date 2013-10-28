@@ -92,10 +92,10 @@ class ConfigurationComponent extends ApplicationComponent
 		} elseif ($this->lazyLoad) {
 			$config = Configuration::model()->select(array('config_key', 'value', 'type', ))->findByAttributes(array('config_key' => $key, ));
 			if ($config) {
-				/*$this->_configs[$config->config_key] = array(
+				$this->_configs[$config->config_key] = array(
 					'value' => $config->value,
 					'type' => $config->type,
-				);*/
+				);
 				$value = $this->getValue($config);
 			}
 		}

@@ -40,7 +40,7 @@ class ConfigurationController extends BackstageController
 
 	public function registerAssets()
 	{
-		app()->bootstrap->registerAssetJs('ckeditor/ckeditor.js');
+		app()->bootstrap->assetsRegistry->registerPackage('ckeditor');
 	}
 
 	public function getModelClass()
@@ -60,11 +60,12 @@ class ConfigurationController extends BackstageController
 		/** @var $form \CForm */
 		$form = \TbForm::createForm(
 			$model->prepareFormConfig($model->getFormConfig()),
-			$model,
+			$this,
 			array(
 				'enableAjaxValidation' => false,
 				'type' => 'horizontal',
-			)
+			),
+			$model
 		);
 		$form->loadData();
 
