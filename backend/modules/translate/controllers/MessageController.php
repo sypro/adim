@@ -57,11 +57,12 @@ class MessageController extends BackstageController
 		/** @var $form \TbForm */
 		$form = \TbForm::createForm(
 			$model->getFormConfig(),
-			$model,
+			$this,
 			array(
 				'enableAjaxValidation' => false,
 				'type' => 'horizontal',
-			)
+			),
+			$model
 		);
 
 		if ($form->submitted('submit') && $form->validate()) {
@@ -105,11 +106,12 @@ class MessageController extends BackstageController
 		/** @var $form \TbForm */
 		$form = \TbForm::createForm(
 			$model->getFormConfig(),
-			$model,
+			$this,
 			array(
 				'enableAjaxValidation' => false,
 				'type' => 'horizontal',
-			)
+			),
+			$model
 		);
 
 		if ($form->submitted('submit') && $form->validate()) {
