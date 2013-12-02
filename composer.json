@@ -26,7 +26,7 @@
 	"require":{
 		"php": ">=5.3.0",
 		"yiisoft/yii": "dev-master",
-		"clevertech/yii-booster": "dev-master",
+		"clevertech/yii-booster": "1.1.0.*@dev",
 		"malyshev/yii-debug-toolbar": "dev-master",
 		"metalguardian/yii-file-processor": "dev-master",
 		"karagodin/MaintenanceMode": "dev-master",
