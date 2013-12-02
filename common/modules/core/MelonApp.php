@@ -18,7 +18,7 @@ class MelonApp
 	 * @return \CConsoleApplication|\CWebApplication
 	 * @throws \Exception
 	 */
-	public static function create($root, $vendors)
+	public static function create($root, $vendors, $console = false)
 	{
 		if (($root = realpath($root)) === false) {
 			throw new \Exception('could not initialize framework.');
@@ -36,7 +36,7 @@ class MelonApp
 
 		$config = require_once($root . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'main.php');
 
-		if (php_sapi_name() !== 'cli') {
+		if (php_sapi_name() === 'cli' || $console) {
 			$app = \Yii::createWebApplication($config);
 		} else {
 			defined('STDIN') or define('STDIN', fopen('php://stdin', 'r'));
