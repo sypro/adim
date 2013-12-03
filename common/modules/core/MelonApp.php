@@ -37,19 +37,19 @@ class MelonApp
 		$config = require_once($root . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'main.php');
 
 		if (php_sapi_name() === 'cli' || $console) {
-			$app = \Yii::createWebApplication($config);
-		} else {
 			defined('STDIN') or define('STDIN', fopen('php://stdin', 'r'));
 			$app = \Yii::createConsoleApplication($config);
 			$app->commandRunner->addCommands(realpath($vendors
-				. DIRECTORY_SEPARATOR
-				. 'yiisoft'
-				. DIRECTORY_SEPARATOR
-				. 'yii' . DIRECTORY_SEPARATOR . 'framework' . '/cli/commands'));
+					. DIRECTORY_SEPARATOR
+					. 'yiisoft'
+					. DIRECTORY_SEPARATOR
+					. 'yii' . DIRECTORY_SEPARATOR . 'framework' . '/cli/commands'));
 			$env = @getenv('YII_CONSOLE_COMMANDS');
 			if (!empty($env)) {
 				$app->commandRunner->addCommands($env);
 			}
+		} else {
+			$app = \Yii::createWebApplication($config);
 		}
 
 		return $app;
