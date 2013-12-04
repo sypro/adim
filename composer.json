@@ -6,7 +6,8 @@
 		"classmap": [
 			"vendor/karagodin/MaintenanceMode",
 			"vendor/malyshev/yii-debug-toolbar",
-			"vendor/clevertech/yii-booster/src"
+			"vendor/clevertech/yii-booster/src",
+			"vendor/notgosu/migrate-command/"
 		]
 	},
 	"repositories": [
@@ -21,6 +22,18 @@
 					"reference":"master"
 				}
 			}
+		},
+		{
+			"type":"package",
+			"package": {
+				"name": "notgosu/migrate-command",
+				"version":"master",
+				"source": {
+					"url": "https://github.com/yiiext/migrate-command",
+					"type": "git",
+					"reference":"master"
+				}
+			}
 		}
 	],
 	"require":{
@@ -30,6 +43,7 @@
 		"malyshev/yii-debug-toolbar": "dev-master",
 		"metalguardian/yii-file-processor": "dev-master",
 		"karagodin/MaintenanceMode": "dev-master",
-		"metalguardian/yii-date-time-picker": "dev-master"
-	}
+		"metalguardian/yii-date-time-picker": "dev-master",
+		"notgosu/migrate-command": "dev-master"
+ 	}
 }
