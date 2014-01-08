@@ -1,3 +1,8 @@
+# cache directories
+Thumbs.db
+*.DS_Store
+*.empty
+
 # svn
 .svn*
 
@@ -5,6 +10,7 @@
 .idea
 
 # eclipse
+.buildpath
 .classpath
 .project
 .settings/
@@ -14,6 +20,13 @@ nbproject/
 
 # sublime
 *.sublime*
+
+# sass cache files
+*.sass-cache
+
+# mac deployment helpers
+switch
+index
 
 # other
 *~
@@ -40,3 +53,4 @@ frontend/www/crossdomain.xml
 
 composer.lock
 composer.phar
+atlassian-ide-plugin.xml
