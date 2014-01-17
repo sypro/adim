@@ -190,6 +190,15 @@ $frontend = array(
 		'messages' => array(
 			'class' => '\frontend\components\DbMessageSource',
 		),
+		'log' => array(
+			'routes' => array(
+				array(
+					'class' => '\YiiDebugToolbarRoute',
+					// Access is restricted by default to the localhost
+					'ipFilters' => array('127.0.0.1', ),
+				),
+			),
+		),
 	),
 );
 

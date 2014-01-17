@@ -52,11 +52,6 @@ $main = array(
 					'class' => 'CFileLogRoute',
 					'levels' => 'error, warning',
 				),
-				array(
-					'class' => '\YiiDebugToolbarRoute',
-					// Access is restricted by default to the localhost
-					'ipFilters' => array('127.0.0.1', ),
-				),
 			),
 		),
 	),

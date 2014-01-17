@@ -197,6 +197,15 @@ $backend = array(
 			),
 			'scriptMap' => array(),
 		),
+		'log' => array(
+			'routes' => array(
+				array(
+					'class' => '\YiiDebugToolbarRoute',
+					// Access is restricted by default to the localhost
+					'ipFilters' => array('127.0.0.1', ),
+				),
+			),
+		),
 	),
 );
 $localFile = __DIR__ . '/local.php';
