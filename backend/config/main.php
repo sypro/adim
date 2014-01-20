@@ -44,7 +44,7 @@ $backend = array(
 			'ipFilters' => array('127.0.0.1','::1'),
 			'generatorPaths' => array(
 				'backstage.components.gii',
-				'bootstrap.gii',
+				'bootstrap.src.gii',
 			),
 		),
 		'backstage' => array(
@@ -116,7 +116,7 @@ $backend = array(
 	),
 	'components' => array(
 		'bootstrap' => array(
-			'class' => '\Bootstrap',
+			'class' => '\backstage\components\Bootstrap',
 			'responsiveCss' => true,
 		),
 		'format' => array(
