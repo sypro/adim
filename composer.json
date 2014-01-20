@@ -6,8 +6,7 @@
 		"classmap": [
 			"vendor/karagodin/MaintenanceMode",
 			"vendor/malyshev/yii-debug-toolbar",
-			"vendor/clevertech/yii-booster/src",
-			"vendor/notgosu/migrate-command/"
+			"vendor/clevertech/yii-booster/src"
 		]
 	},
 	"repositories": [
@@ -18,18 +17,6 @@
 				"version":"master",
 				"source": {
 					"url": "https://github.com/karagodin/MaintenanceMode.git",
-					"type": "git",
-					"reference":"master"
-				}
-			}
-		},
-		{
-			"type":"package",
-			"package": {
-				"name": "notgosu/migrate-command",
-				"version":"master",
-				"source": {
-					"url": "https://github.com/yiiext/migrate-command",
 					"type": "git",
 					"reference":"master"
 				}
