@@ -3,14 +3,56 @@
 # Migration commands
 ```
 ./yiic migrate
-./yiic migrate --migrationPath=back.modules.user.migrations
-./yiic migrate --migrationPath=back.modules.seo.migrations
-./yiic migrate --migrationPath=back.modules.language.migrations
-./yiic migrate --migrationPath=back.modules.translate.migrations
-./yiic migrate --migrationPath=back.modules.configuration.migrations
-./yiic migrate --migrationPath=back.modules.menu.migrations
-./yiic migrate --migrationPath=webroot.vendor.metalguardian.yii-file-processor.fileProcessor.migrations
 ```
+Для создания новой миграции
+```
+./yiic migrate create modulename create_user_table
+```
+Команда, приведённая выше создаёт миграцию 'create_user_table' в модуле 'modulename'.
+Обычное использование
+```
+./yiic migrate create create_user_table
+```
+создаёт общую миграцию 'create_user_table' (в псевдомодуле core - используеться для миграций не относящихся к какому-либо модулю).
+
+###Параметр --module
+
+Во всех остальных командах (`up`, `down`, `history`, `new`, `to` и `mark`) можно использовать
+параметр `--module=<modulenames>`, где `<modulenames>` — разделённый запятыми список
+имён модулей, либо просто имя модуля. Данный параметр позволяет ограничить действие команды
+определёнными модулями.
+Примеры:
+
+```
+./yiic migrate new --module=core
+```
+
+Покажет все общие миграции (для модуля `core`).
+
+```
+./yiic migrate up 5 --module=core,user
+```
+
+Применит пять миграций в модулях `core` и `user`. Миграции остальных модулей будут
+проигнорированы.
+
+```
+./yiic migrate history --module=core,user
+```
+
+Покажет, какие миграции применены к модулям `core` и `user`.
+Если не указать модуль, команда ведёт себя как та, что включена в Yii за тем исключением,
+что применяется ещё и ко всем модулям.
+
+###Добавление модуля
+
+Просто подключите модуль в файле конфигурации console/config/main.php и запустите `./yiic migrate up --module=yourModule`.
+
+###Удаление модуля
+
+Запустите `./yiic migrate to m000000_000000 --module=yourModule`. Для этого все миграции
+должны реализовывать метод `down()`.
+
 
 # Installation
 
