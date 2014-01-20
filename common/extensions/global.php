@@ -254,7 +254,7 @@ function je($json, $opts = null)
  */
 function jd($json, $assoc = null, $depth = 512, $opts = 0)
 {
-	return json_decode($json, $assoc, $depth, $opts);
+	return json_decode($json, $assoc, $depth);
 }
 
 /**
