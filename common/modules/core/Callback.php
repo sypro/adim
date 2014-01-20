@@ -79,7 +79,7 @@ class Callback
 		if (Console::confirm("Start Installation?")) {
 			self::runHook('pre-install');
 		} else {
-			exit("\n%RInstallation aborted%n.\n");
+			Console::output("\nRInstallation aborted.\n");
 		}
 	}
 

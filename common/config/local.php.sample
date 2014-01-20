@@ -1,0 +1,21 @@
+<?php
+
+return array(
+	'components' => array(
+		'db' => array(
+			'class' => '\core\components\DbConnection',
+			'connectionString' => 'mysql:host=localhost;dbname=melon',
+			'emulatePrepare' => true,
+			'username' => 'melon',
+			'password' => 'melon',
+			'charset' => 'utf8',
+			'tablePrefix' => 'mln_',
+			'schemaCachingDuration' => 0,
+			'enableProfiling' => true,
+			'enableParamLogging' => true,
+		),
+	),
+	'params' => array(
+		'debug' => true,
+	),
+);

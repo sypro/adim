@@ -182,7 +182,6 @@ $backend = array(
 		),
 		'clientScript' => array(
 			'class' => '\core\components\ClientScript',
-			'coreScriptPosition' => \CClientScript::POS_HEAD,
 			'packages' => array(
 				'back.main' => array(
 					'baseUrl' => '/',
@@ -210,8 +209,8 @@ $backend = array(
 );
 $localFile = __DIR__ . '/local.php';
 $local = file_exists($localFile) ? require($localFile) : array();
-return \CMap::mergeArray(
-	\CMap::mergeArray(
+return \mergeArray(
+	\mergeArray(
 		$main,
 		$backend
 	),

@@ -144,7 +144,6 @@ $frontend = array(
 		),
 		'clientScript' => array(
 			'class' => '\core\components\ClientScript',
-			'coreScriptPosition' => \CClientScript::POS_HEAD,
 			'packages' => array(
 				'front.main' => array(
 					'baseUrl' => '/',
@@ -204,8 +203,8 @@ $frontend = array(
 
 $localFile = __DIR__ . '/local.php';
 $local = file_exists($localFile) ? require($localFile) : array();
-return \CMap::mergeArray(
-	\CMap::mergeArray(
+return \mergeArray(
+	\mergeArray(
 		$main,
 		$frontend
 	),

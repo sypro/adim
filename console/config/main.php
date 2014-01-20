@@ -42,8 +42,8 @@ $console = array(
 
 $localFile = __DIR__ . '/local.php';
 $local = file_exists($localFile) ? require($localFile) : array();
-return \CMap::mergeArray(
-	\CMap::mergeArray(
+return \mergeArray(
+	\mergeArray(
 		$main,
 		$console
 	),

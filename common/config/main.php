@@ -63,7 +63,7 @@ $main = array(
 
 $localFile = __DIR__ . '/local.php';
 $local = file_exists($localFile) ? require($localFile) : array();
-return \CMap::mergeArray(
+return \mergeArray(
 	$main,
 	$local
 );

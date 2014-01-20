@@ -34,7 +34,7 @@ function user()
  * This is the shortcut to Yii::app()->createUrl()
  *
  * @param        $route
- * @param array  $params
+ * @param array $params
  * @param string $ampersand
  *
  * @return string
@@ -48,7 +48,7 @@ function url($route, $params = array(), $ampersand = '&')
  * This is the shortcut to Yii::app()->createAbsoluteUrl()
  *
  * @param        $route
- * @param array  $params
+ * @param array $params
  * @param string $schema
  * @param string $ampersand
  *
@@ -105,7 +105,7 @@ function h($text)
  *
  * @param        $text
  * @param string $url
- * @param array  $htmlOptions
+ * @param array $htmlOptions
  *
  * @return string
  */
@@ -119,9 +119,9 @@ function l($text, $url = '#', $htmlOptions = array())
  *
  * @param        $message
  * @param string $category
- * @param array  $params
- * @param null   $source
- * @param null   $language
+ * @param array $params
+ * @param null $source
+ * @param null $language
  *
  * @return string
  */
@@ -174,8 +174,10 @@ function r()
 function bu($url = '')
 {
 	static $baseUrl;
-	if ($baseUrl === null)
+	if ($baseUrl === null) {
 		$baseUrl = Yii::app()->request->baseUrl;
+	}
+
 	return $baseUrl . '/' . ltrim($url, '/');
 }
 
@@ -184,16 +186,15 @@ function bu($url = '')
  * This method achieves the similar functionality as var_dump and print_r
  * but is more robust when handling complex objects such as Yii controllers.
  *
- * @param mixed   $target    variable to be dumped
- * @param bool    $exit
- * @param integer $depth     maximum depth that the dumper should go into the variable. Defaults to 10.
+ * @param mixed $target variable to be dumped
+ * @param bool $exit
+ * @param integer $depth maximum depth that the dumper should go into the variable. Defaults to 10.
  * @param boolean $highlight whether the result should be syntax-highlighted
  */
 function dump($target, $exit = true, $depth = 10, $highlight = true)
 {
 	echo \CVarDumper::dumpAsString($target, $depth, $highlight);
-	if($exit)
-	{
+	if ($exit) {
 		exit();
 	}
 }
@@ -208,8 +209,7 @@ function dump($target, $exit = true, $depth = 10, $highlight = true)
 function ph($text)
 {
 	static $purifier;
-	if($purifier === null)
-	{
+	if ($purifier === null) {
 		$purifier = new \CHtmlPurifier;
 	}
 
@@ -230,7 +230,7 @@ function format()
  * Shortcut for json_encode
  *
  * @param array $json the PHP array to be encoded into json array
- * @param int   $opts Bitmask consisting of JSON_HEX_QUOT, JSON_HEX_TAG, JSON_HEX_AMP, JSON_HEX_APOS, JSON_FORCE_OBJECT.
+ * @param int $opts Bitmask consisting of JSON_HEX_QUOT, JSON_HEX_TAG, JSON_HEX_AMP, JSON_HEX_APOS, JSON_FORCE_OBJECT.
  *
  * @return string
  */
@@ -243,10 +243,10 @@ function je($json, $opts = null)
  * Shortcut for json_decode
  * NOTE: json_encode exists in PHP > 5.2, so it's safe to use it directly without checking
  *
- * @param string $json  the PHP array to be decoded into json array
- * @param bool   $assoc when true, returned objects will be converted into associative arrays.
- * @param int    $depth User specified recursion depth.
- * @param int    $opts  Bitmask of JSON decode options.
+ * @param string $json the PHP array to be decoded into json array
+ * @param bool $assoc when true, returned objects will be converted into associative arrays.
+ * @param int $depth User specified recursion depth.
+ * @param int $opts Bitmask of JSON decode options.
  *                      Currently only JSON_BIGINT_AS_STRING is supported
  *    (default is to cast large integers as floats)
  *
@@ -254,30 +254,36 @@ function je($json, $opts = null)
  */
 function jd($json, $assoc = null, $depth = 512, $opts = 0)
 {
-	return json_decode($json, $assoc, $depth);
+	return json_decode($json, $assoc, $depth, $opts);
 }
 
 /**
  * Generates an image tag.
+ *
  * @param string $url the image URL
  * @param string $alt the alt text for the image. Images should have the alt attribute, so at least an empty one is rendered.
  * @param integer $width the width of the image. If null, the width attribute will not be rendered.
  * @param integer $height the height of the image. If null, the height attribute will not be rendered.
  * @param array $htmlOptions additional HTML attributes (see {@link tag}).
+ *
  * @return string the generated image tag
  */
 function img($url, $alt = '', $width = null, $height = null, $htmlOptions = array())
 {
 	$htmlOptions['src'] = $url;
-	if ($alt !== null)
+	if ($alt !== null) {
 		$htmlOptions['alt'] = $alt;
-	else
+	} else {
 		$htmlOptions['alt'] = '';
-	if ($width !== null)
+	}
+	if ($width !== null) {
 		$htmlOptions['width'] = $width;
-	if ($height !== null)
+	}
+	if ($height !== null) {
 		$htmlOptions['height'] = $height;
-	return CHtml::tag('img', $htmlOptions);
+	}
+
+	return \CHtml::tag('img', $htmlOptions);
 }
 
 /**
@@ -289,5 +295,46 @@ function img($url, $alt = '', $width = null, $height = null, $htmlOptions = arra
  */
 function class2id($className)
 {
-	return trim(strtolower(str_replace(array('_', '\\'), array('-', '_'), preg_replace('/(?<![A-Z])[A-Z]/', '-\0', $className))), '-');
+	return trim(
+		strtolower(
+			str_replace(array('_', '\\'), array('-', '_'), preg_replace('/(?<![A-Z])[A-Z]/', '-\0', $className))
+		),
+		'-'
+	);
+}
+
+/**
+ * Merges two or more arrays into one recursively.
+ * If each array has an element with the same string key value, the latter
+ * will overwrite the former (different from array_merge_recursive).
+ * Recursive merging will be conducted if both arrays have an element of array
+ * type and are having the same key.
+ * For integer-keyed elements, the elements from the latter array will
+ * be appended to the former array.
+ *
+ * @param array $a array to be merged to
+ * @param array $b array to be merged from. You can specify additional
+ * arrays via third argument, fourth argument etc.
+ *
+ * @return array the merged array (the original arrays are not changed.)
+ * @see mergeWith
+ */
+function mergeArray()
+{
+	$args = func_get_args();
+	$res = array_shift($args);
+	while (!empty($args)) {
+		$next = array_shift($args);
+		foreach ($next as $k => $v) {
+			if (is_integer($k)) {
+				isset($res[$k]) ? $res[] = $v : $res[$k] = $v;
+			} elseif (is_array($v) && isset($res[$k]) && is_array($res[$k])) {
+				$res[$k] = mergeArray($res[$k], $v);
+			} else {
+				$res[$k] = $v;
+			}
+		}
+	}
+
+	return $res;
 }
