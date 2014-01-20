@@ -22,6 +22,22 @@ $console = array(
 			'templateFile' => 'application.components.migrationTemplate',
 		),
 	),
+	'params' => array(
+		'composer.callbacks' => array(
+			'post-update' => array(
+				array(
+					'yiic',
+					'migrate',
+				),
+			),
+			'post-install' => array(
+				array(
+					'yiic',
+					'migrate',
+				),
+			),
+		),
+	),
 );
 
 $localFile = __DIR__ . '/local.php';

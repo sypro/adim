@@ -23,6 +23,28 @@
 			}
 		}
 	],
+	"scripts": {
+		"pre-install-cmd": [
+			"git pull",
+			"core\\Callback::preInstall"
+		],
+		"post-install-cmd": [
+			"core\\Callback::postInstall"
+		],
+		"pre-update-cmd": [
+			"git pull",
+			"core\\Callback::preUpdate"
+		],
+		"post-update-cmd": [
+			"core\\Callback::postUpdate"
+		],
+		"post-package-install": [
+			"core\\Callback::postPackageInstall"
+		],
+		"post-package-update": [
+			"core\\Callback::postPackageUpdate"
+		]
+	},
 	"require":{
 		"php": ">=5.3.0",
 		"yiisoft/yii": "dev-master",
