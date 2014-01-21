@@ -23,6 +23,9 @@ use <?php echo $baseClassNamespace; ?>;
  */
 class <?php echo $this->controllerClass; ?> extends <?php echo $this->getBaseControllerClassWithoutNamespace(), "\n"; ?>
 {
+	/**
+	 * @return string
+	 */
 	public function getModelClass()
 	{
 		return '<?php echo $this->getModelClass(); ?>';

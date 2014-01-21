@@ -35,6 +35,24 @@ $console = array(
 				//'admin',
 			),
 		),
+		'emailsend' => array(
+			'class' => '\console\commands\EmailSendCommand',
+		),
+	),
+	'components' => array(
+		'mail' => array(
+			'class' => '\console\components\YiiMailer',
+			'CharSet' => 'UTF-8',
+			'From' => 'noreply@domain.com',
+			'FromName' => 'noreply',
+			//'Mailer' => 'smtp',
+			//'SMTPAuth' => true,
+			//'SMTPSecure' => 'tls',
+			//'Port' => 587,
+			//'Username' => 'smtp.name',
+			//'Password' => 'password',
+			//'Host' => 'smtp.host',
+		),
 	),
 	'params' => array(
 		'composer.callbacks' => array(

@@ -24,6 +24,9 @@ $frontend = array(
 		'configuration' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'configuration'
 		),
+		'emailQueue' => realpath(
+			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'emailQueue'
+		),
 	),
 	'theme' => 'melon',
 	'preload' => array('maintenanceMode', ),

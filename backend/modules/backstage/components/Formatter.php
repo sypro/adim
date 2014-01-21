@@ -7,12 +7,12 @@
 namespace backstage\components;
 
 use fileProcessor\helpers\FPM;
-
+use \core\components\Formatter as CoreFormatter;
 /**
  * Class Formatter
  * @package backstage\components
  */
-class Formatter extends \CFormatter
+class Formatter extends CoreFormatter
 {
 	/**
 	 * @var array the text to be displayed when formatting a boolean value. The first element corresponds

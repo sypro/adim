@@ -14,7 +14,14 @@ namespace menu\widgets;
  */
 class MenuWidget extends \TbNavbar
 {
+	/**
+	 * @var bool
+	 */
 	public $fixed = false;
+
+	/**
+	 * @var bool
+	 */
 	public $collapse = true;
 
 	public function init()
@@ -30,6 +37,7 @@ class MenuWidget extends \TbNavbar
 			),),
 			array('label' => 'Конфигурация', 'url' => array('/configuration/configuration/index'), ),
 			array('label' => 'Seo', 'url' => array('/seo/seo/index'), ),
+			array('label' => 'Почта', 'url' => array('/emailQueue/emailQueue/index'), ),
 		));
 		$items[] = array('label' => 'Объекты', 'items' => array(
 

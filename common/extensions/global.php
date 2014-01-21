@@ -219,7 +219,7 @@ function ph($text)
 /**
  * Shortcut to Yii::app()->format (utilities for formatting structured text)
  *
- * @return \CFormatter|mixed
+ * @return \core\components\Formatter|mixed
  */
 function format()
 {

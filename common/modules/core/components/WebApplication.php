@@ -16,6 +16,7 @@ namespace core\components;
  * @property \CFormatter $format
  * @property \language\components\LanguageUrlManager $urlManager
  * @property \configuration\components\ConfigurationComponent $config
+ * @property \console\components\YiiMail $mail
  *
  * @method \core\components\ClientScript getClientScript()
  * @method \CHttpRequest getRequest()

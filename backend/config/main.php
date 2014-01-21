@@ -31,6 +31,9 @@ $backend = array(
 		'configuration' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'configuration'
 		),
+		'emailQueue' => realpath(
+			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'emailQueue'
+		),
 		'frontUser' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'frontUser'
 		),
@@ -103,6 +106,9 @@ $backend = array(
 		),
 		'configuration' => array(
 			'class' => '\configuration\ConfigurationModule',
+		),
+		'emailQueue' => array(
+			'class' => '\emailQueue\EmailQueueModule',
 		),
 		'frontUser' => array(
 			'class' => '\frontUser\FrontUserModule',

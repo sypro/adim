@@ -52,6 +52,7 @@
 		"malyshev/yii-debug-toolbar": "dev-master",
 		"metalguardian/yii-file-processor": "dev-master",
 		"karagodin/MaintenanceMode": "dev-master",
-		"metalguardian/yii-date-time-picker": "dev-master"
+		"metalguardian/yii-date-time-picker": "dev-master",
+		"phpmailer/phpmailer": "v5.2.7"
  	}
 }

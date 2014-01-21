@@ -54,6 +54,12 @@ $main = array(
 				),
 			),
 		),
+		'format' => array(
+			'class' => '\core\components\Formatter',
+			'dateFormat' => 'd.m.Y',
+			'timeFormat' => 'H:i:s',
+			'datetimeFormat' => 'd.m.Y H:i:s',
+		),
 	),
 	'sourceLanguage' => 'no',
 	'language' => 'ru',
