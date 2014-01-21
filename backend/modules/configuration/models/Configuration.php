@@ -670,44 +670,4 @@ class Configuration extends ActiveRecord
 	{
 		return $this;
 	}
-
-	/**
-	 *
-	 */
-	protected function afterFind()
-	{
-		parent::afterFind();
-		if ($this->type == self::TYPE_FILE || $this->type == self::TYPE_IMAGE) {
-			foreach (Lang::getLanguageKeys() as $language) {
-				if (Lang::getDefault() == $language) {
-					$this->_values[Lang::getDefault()] = $this->value;
-					continue;
-				}
-				$this->_values[$language] = isset($this->{'value_' . $language}) ? $this->{'value_' . $language} : null;
-			}
-		}
-	}
-
-	/**
-	 * @return bool
-	 */
-	protected function beforeSave()
-	{
-		if (parent::beforeSave()) {
-
-			if ($this->type == self::TYPE_FILE || $this->type == self::TYPE_IMAGE) {
-				foreach (Lang::getLanguageKeys() as $language) {
-					if (Lang::getDefault() == $language && !$this->value) {
-						$this->value = $this->_values[Lang::getDefault()];
-						continue;
-					}
-					if (!$this->{'value_' . $language}) {
-						$this->{'value_' . $language} = $this->_values[$language];
-					}
-				}
-			}
-			return true;
-		}
-		return false;
-	}
 }
