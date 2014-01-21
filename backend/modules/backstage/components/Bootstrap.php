@@ -17,11 +17,33 @@ class Bootstrap extends \Bootstrap
 {
 	public function init()
 	{
+		parent::init();
+
 		$this->packages = \CMap::mergeArray(
-			require(\Yii::getPathOfAlias('backstage.components') . '/packages.php'),
+			$this->getAdditionalPackages(),
 			$this->packages
 		);
+		foreach ($this->packages as $name => $definition) {
+			$this->assetsRegistry->addPackage($name, $definition);
+		}
+	}
 
-		parent::init();
+	/**
+	 * @return array
+	 */
+	public function getAdditionalPackages()
+	{
+		return array(
+			'redactor' => array(
+				'baseUrl' => $this->getAssetsUrl() . '/js/redactor',
+				'js' => array($this->minifyCss ? 'redactor.min.js' : 'redactor.js'),
+				'css' => array('redactor.css'),
+				'depends' => array('jquery')
+			),
+			'ckeditor' => array(
+				'baseUrl' => $this->getAssetsUrl() . '/js/ckeditor',
+				'js' => array('ckeditor.js')
+			),
+		);
 	}
 }
