@@ -1,4 +1,4 @@
-<?php /** @var $model \user\models\User */ ?>
+<?php /** @var $model \admin\models\User */ ?>
 <?php /** @var $form \TbActiveForm */ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id' => 'user-form',
 	'enableAjaxValidation' => false,
@@ -14,4 +14,4 @@
 			'label' => 'Логин',
 		)); ?>
 	</div>
-<?php $this->endWidget(); ?>
+<?php $this->endWidget();

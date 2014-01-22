@@ -10,8 +10,8 @@ $backend = array(
 		'backstage' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'backstage'
 		),
-		'user' => realpath(
-			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'user'
+		'admin' => realpath(
+			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'admin'
 		),
 		'menu' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'menu'
@@ -34,17 +34,14 @@ $backend = array(
 		'emailQueue' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'emailQueue'
 		),
-		'frontUser' => realpath(
-			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'frontUser'
-		),
 	),
-	'preload' => array('bootstrap', ),
+	'preload' => array('bootstrap',),
 	'import' => array(),
 	'modules' => array(
 		'gii' => array(
 			'class' => 'system.gii.GiiModule',
 			'password' => false,
-			'ipFilters' => array('127.0.0.1','::1'),
+			'ipFilters' => array('127.0.0.1', '::1'),
 			'generatorPaths' => array(
 				'backstage.components.gii',
 				'bootstrap.src.gii',
@@ -53,15 +50,17 @@ $backend = array(
 		'backstage' => array(
 			'class' => '\backstage\BackstageModule',
 		),
-		'user' => array(
-			'class' => '\user\UserModule',
+		'admin' => array(
+			'class' => '\admin\AdminModule',
 		),
 		'menu' => array(
 			'class' => '\menu\MenuModule',
 		),
 		'file-processor' => array(
 			'class' => '\fileProcessor\FileProcessorModule',
-			'baseDir' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'www') . DIRECTORY_SEPARATOR,
+			'baseDir' => realpath(
+					__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'www'
+				) . DIRECTORY_SEPARATOR,
 			'originalBaseDir' => 'uploads',
 			'cachedImagesBaseDir' => 'uploads/thumb',
 			// set path without first and last slashes
@@ -110,14 +109,11 @@ $backend = array(
 		'emailQueue' => array(
 			'class' => '\emailQueue\EmailQueueModule',
 		),
-		'frontUser' => array(
-			'class' => '\frontUser\FrontUserModule',
-		),
 	),
 	'controllerNamespace' => '\back\controllers',
-	'controllerMap'=>array(
+	'controllerMap' => array(
 		'image' => array(
-			'class'=>'\fileProcessor\controllers\ImageController',
+			'class' => '\fileProcessor\controllers\ImageController',
 		),
 	),
 	'components' => array(
@@ -129,18 +125,18 @@ $backend = array(
 			'class' => '\backstage\components\Formatter',
 		),
 		'user' => array(
-			'class' => '\user\components\WebUser',
+			'class' => '\admin\components\WebUser',
 		),
 		'authManager' => array(
-			'class' => '\user\components\PhpAuthManager',
-			'defaultRoles' => array('guest', ),
+			'class' => '\admin\components\PhpAuthManager',
+			'defaultRoles' => array('guest',),
 		),
 		'session' => array(
 			'class' => '\CDbHttpSession',
 			'connectionID' => 'db',
 			'autoStart' => true,
 			'cookieMode' => 'allow',
-			'timeout' => 60*60*24*30,
+			'timeout' => 60 * 60 * 24 * 30,
 			'cookieParams' => array(
 				'path' => '/',
 				//'example' => '.example.com',
@@ -169,14 +165,12 @@ $backend = array(
 				'<controller:\w+>/<id:\d+>' => '<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
 				'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-
 				array(
 					'class' => '\fileProcessor\components\YiiFileProcessorUrlRule',
 					'connectionId' => 'db',
 					'cacheId' => 'cache',
 					'controllerId' => 'image',
 				),
-
 				// gii
 				array('gii', 'pattern' => 'gii'),
 				array('gii/<controller>', 'pattern' => 'gii/<controller:\w+>'),
@@ -197,7 +191,7 @@ $backend = array(
 					'css' => array(
 						'css/application.css' => 'screen, projection',
 					),
-					'depends' => array('jquery', ),
+					'depends' => array('jquery',),
 				),
 			),
 			'scriptMap' => array(),
@@ -207,7 +201,7 @@ $backend = array(
 				array(
 					'class' => '\YiiDebugToolbarRoute',
 					// Access is restricted by default to the localhost
-					'ipFilters' => array('127.0.0.1', ),
+					'ipFilters' => array('127.0.0.1',),
 				),
 			),
 		),

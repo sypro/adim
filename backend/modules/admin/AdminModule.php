@@ -3,18 +3,31 @@
  *
  */
 
-namespace user;
+namespace admin;
 
 use core\components\WebModule;
 
 /**
- * Class UserModule
+ * Class AdminModule
  */
-class UserModule extends WebModule
+class AdminModule extends WebModule
 {
-	public $controllerNamespace = '\user\controllers';
-	public $defaultController = 'user';
+	/**
+	 * @var string
+	 */
+	public $controllerNamespace = '\admin\controllers';
 
+	/**
+	 * @var string
+	 */
+	public $defaultController = 'admin';
+
+	/**
+	 * @param \CController $controller
+	 * @param \CAction $action
+	 *
+	 * @return bool
+	 */
 	public function beforeControllerAction($controller, $action)
 	{
 		if (parent::beforeControllerAction($controller, $action)) {

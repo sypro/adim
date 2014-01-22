@@ -3,15 +3,16 @@
  *
  */
 
-namespace user\models;
+namespace admin\models;
 
 use backstage\components\ActiveRecord;
 use core\helpers\Core;
 
 /**
- * This is the model class for table "{{user}}".
+ * This is the model class for table "{{admin_user}}".
  *
- * The followings are the available columns in table '{{user}}':
+ * The followings are the available columns in table '{{admin_user}}':
+ *
  * @property integer $id
  * @property string $name
  * @property string $email
@@ -24,10 +25,19 @@ use core\helpers\Core;
  */
 class User extends ActiveRecord
 {
+	/**
+	 * admin role
+	 */
 	const ROLE_ADMIN = 'admin';
 
+	/**
+	 * @var
+	 */
 	public $new_password;
 
+	/**
+	 * @return array
+	 */
 	public static function getRoles()
 	{
 		return array(
@@ -35,12 +45,21 @@ class User extends ActiveRecord
 		);
 	}
 
+	/**
+	 * @param $id
+	 *
+	 * @return null
+	 */
 	public static function genRoleText($id)
 	{
 		$array = self::getRoles();
+
 		return isset($array[$id]) ? $array[$id] : null;
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getRoleText()
 	{
 		return self::genRoleText($this->role);
@@ -49,10 +68,12 @@ class User extends ActiveRecord
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 *
 	 * @param string $className active record class name.
+	 *
 	 * @return User the static model class
 	 */
-	public static function model($className=__CLASS__)
+	public static function model($className = __CLASS__)
 	{
 		return parent::model($className);
 	}
@@ -62,7 +83,7 @@ class User extends ActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{user}}';
+		return '{{admin_user}}';
 	}
 
 	/**
@@ -72,8 +93,7 @@ class User extends ActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
-		);
+		return array();
 	}
 
 	/**
@@ -85,16 +105,14 @@ class User extends ActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, email, role', 'required'),
-			array('name', 'length', 'max'=>75),
-			array('email', 'length', 'max'=>45),
-			array('role', 'length', 'max'=>20),
-			array('email', 'email', ),
-			array('new_password', 'length', 'min' => 6, ),
-
-			array('new_password', 'required', 'on'=>'insert',),
-			array('email', 'unique', 'on'=>'insert'),
-
-			array('id, name, email, role', 'safe', 'on'=>'search', ),
+			array('name', 'length', 'max' => 75),
+			array('email', 'length', 'max' => 45),
+			array('role', 'length', 'max' => 20),
+			array('email', 'email',),
+			array('new_password', 'length', 'min' => 6,),
+			array('new_password', 'required', 'on' => 'insert',),
+			array('email', 'unique', 'on' => 'insert'),
+			array('id, name, email, role', 'safe', 'on' => 'search',),
 		);
 	}
 
@@ -116,11 +134,6 @@ class User extends ActiveRecord
 		);
 	}
 
-	public function getPageUrl($params = array())
-	{
-		return self::createUrl(array(), $params);
-	}
-
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 *
@@ -131,8 +144,6 @@ class User extends ActiveRecord
 	 */
 	public function search($pageSize = false)
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
 		$criteria = new \CDbCriteria();
 
 		$criteria->compare('id', $this->id);
@@ -153,11 +164,22 @@ class User extends ActiveRecord
 		));
 	}
 
+	/**
+	 * @param string $page
+	 * @param null $title
+	 *
+	 * @return array
+	 */
 	public function genAdminBreadcrumbs($page, $title = null)
 	{
 		return parent::genAdminBreadcrumbs($page, 'Пользователи');
 	}
 
+	/**
+	 * @param $page
+	 *
+	 * @return array
+	 */
 	public function genColumns($page)
 	{
 		$columns = array();
@@ -166,7 +188,7 @@ class User extends ActiveRecord
 				$columns = array(
 					array(
 						'name' => 'id',
-						'htmlOptions' => array('class' => 'span1 center', ),
+						'htmlOptions' => array('class' => 'span1 center',),
 					),
 					'name',
 					'email',
@@ -184,11 +206,16 @@ class User extends ActiveRecord
 					'role',
 				);
 				break;
-			default: break;
+			default:
+				break;
 		}
+
 		return $columns;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getFormConfig()
 	{
 		return array(
@@ -216,7 +243,6 @@ class User extends ActiveRecord
 					'class' => 'span6',
 				),
 			),
-
 			'buttons' => array(
 				'submit' => array(
 					'type' => 'submit',
@@ -243,12 +269,13 @@ class User extends ActiveRecord
 		return Core::genHashPassword($this->salt, $password) === $this->password;
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function beforeSave()
 	{
-		if(parent::beforeSave())
-		{
-			if(!empty($this->new_password))
-			{
+		if (parent::beforeSave()) {
+			if (!empty($this->new_password)) {
 				$this->salt = Core::genSalt();
 				$this->password = Core::genHashPassword($this->salt, $this->new_password);
 			}

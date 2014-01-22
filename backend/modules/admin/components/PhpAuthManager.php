@@ -4,7 +4,7 @@
  * Email: metal@vintage.com.ua
  */
 
-namespace user\components;
+namespace admin\components;
 
 /**
  * Class PhpAuthManager
@@ -16,7 +16,7 @@ class PhpAuthManager extends \CPhpAuthManager
 	public function init()
 	{
 		if ($this->authFile === null) {
-			$this->authFile = \Yii::getPathOfAlias('application.config.auth').'.php';
+			$this->authFile = \Yii::getPathOfAlias('application.config.auth') . '.php';
 		}
 
 		parent::init();

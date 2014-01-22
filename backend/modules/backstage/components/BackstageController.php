@@ -7,7 +7,7 @@
 namespace backstage\components;
 
 use core\components\Controller;
-use user\models\User;
+use admin\models\User;
 
 /**
  * Class BackstageController

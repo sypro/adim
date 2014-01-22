@@ -8,5 +8,6 @@ require($composer);
 $vendor = realpath(
 	__DIR__ . DIRECTORY_SEPARATOR
 	. '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
-	. 'vendor');
+	. 'vendor'
+);
 \core\MelonApp::create(__DIR__ . DIRECTORY_SEPARATOR . '..', $vendor)->run();

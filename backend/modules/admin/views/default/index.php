@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $this \user\controllers\DefaultController;
+ * @var $this \admin\controllers\DefaultController;
  */
 
 $this->breadcrumbs = array(

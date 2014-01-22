@@ -23,7 +23,7 @@ function cs()
 /**
  * This is the shortcut to Yii::app()->user.
  *
- * @return CWebUser
+ * @return \core\components\WebUser
  */
 function user()
 {

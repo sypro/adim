@@ -3,9 +3,9 @@
  *
  */
 
-namespace user\models;
+namespace admin\models;
 
-use user\components\UserIdentity;
+use admin\components\UserIdentity;
 
 /**
  * LoginForm class.
@@ -14,7 +14,14 @@ use user\components\UserIdentity;
  */
 class LoginForm extends \CFormModel
 {
+	/**
+	 * @var
+	 */
 	public $username;
+
+	/**
+	 * @var
+	 */
 	public $password;
 
 	/**
@@ -49,15 +56,14 @@ class LoginForm extends \CFormModel
 	 * @param $attribute
 	 * @param $params
 	 */
-	public function authenticate($attribute,$params)
+	public function authenticate($attribute, $params)
 	{
-		if(!$this->hasErrors())
-		{
-			$identity = new UserIdentity($this->username,$this->password);
+		if (!$this->hasErrors()) {
+			$identity = new UserIdentity($this->username, $this->password);
 			$identity->authenticate();
 			switch ($identity->errorCode) {
 				case UserIdentity::ERROR_NONE:
-					$duration = 60*60*24*30;
+					$duration = 60 * 60 * 24 * 30;
 					user()->login($identity, $duration);
 					break;
 				case UserIdentity::ERROR_USERNAME_INVALID:

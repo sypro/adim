@@ -43,10 +43,10 @@ class MenuWidget extends \TbNavbar
 
 		),);
 		$items[] = array('label' => 'Пользователи', 'items' => array(
-			array('label' => 'Админ', 'url' => array('/user/user/index'), ),
+			array('label' => 'Админ', 'url' => array('/admin/user/index'), ),
 		), );
 
-		$items[] = array('label' => 'Выход' .' (' . user()->name . ')', 'url' => array('/user/user/logout'));
+		$items[] = array('label' => 'Выход' .' (' . user()->name . ')', 'url' => array('/admin/user/logout'));
 
 		$this->items = array(
 			array(

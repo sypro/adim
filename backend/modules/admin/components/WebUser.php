@@ -4,36 +4,62 @@
  * Email: metal@vintage.com.ua
  */
 
-namespace user\components;
+namespace admin\components;
 
 use core\components\WebUser as CoreWebUser;
-use user\models\User;
+use admin\models\User;
 
 /**
  * Class WebUser
  *
- * @package user\components
+ * @package admin\components
  */
 class WebUser extends CoreWebUser
 {
+	/**
+	 * Cached user model
+	 *
+	 * @var null
+	 */
 	private $_model = null;
-	public $loginUrl = array('/user/user/login');
+
+	/**
+	 * Login url
+	 *
+	 * @var array
+	 */
+	public $loginUrl = array('/admin/user/login');
+
+	/**
+	 * @var bool
+	 */
 	public $allowAutoLogin = true;
+
+	/**
+	 * @var array
+	 */
 	public $identityCookie = array(
 		'path' => '/',
 		//'example' => '.example.com'
 	);
 
+	/**
+	 * @return bool
+	 */
 	public function getIsAdmin()
 	{
 		return $this->getRole() === User::ROLE_ADMIN;
 	}
 
+	/**
+	 * @return null|string
+	 */
 	public function getRole()
 	{
 		if ($user = $this->getModel()) {
 			return $user->role;
 		}
+
 		return null;
 	}
 
@@ -43,11 +69,12 @@ class WebUser extends CoreWebUser
 	private function getModel()
 	{
 		if (!$this->isGuest && $this->_model === null) {
-			$this->_model = User::model()->findByPk($this->id, array('select' => 'id, role', ));
+			$this->_model = User::model()->findByPk($this->id, array('select' => 'id, role',));
 			if ($this->_model == null) {
 				$this->logout();
 			}
 		}
+
 		return $this->_model;
 	}
 }

@@ -3,24 +3,28 @@
  *
  */
 
-namespace user\controllers;
+namespace admin\controllers;
 
 use backstage\components\BackstageController;
-use user\models\LoginForm;
+use admin\models\LoginForm;
 
 /**
  * Class UserController
  */
 class UserController extends BackstageController
 {
+	/**
+	 * @return string
+	 */
 	public function getModelClass()
 	{
-		return '\user\models\User';
+		return '\admin\models\User';
 	}
 
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
+	 *
 	 * @return array access control rules
 	 */
 	public function accessRules()
@@ -28,16 +32,16 @@ class UserController extends BackstageController
 		return array(
 			array(
 				'allow',
-				'roles' => array('admin', ),
+				'roles' => array('admin',),
 			),
 			array(
 				'allow',
 				'actions' => array('login', 'logout'),
-				'users' => array('*', ),
+				'users' => array('*',),
 			),
 			array(
 				'deny',
-				'users' => array('*', ),
+				'users' => array('*',),
 			),
 		);
 	}
