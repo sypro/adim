@@ -58,6 +58,9 @@ class MelonApp
 			. DIRECTORY_SEPARATOR
 			. 'yii' . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'yii.php'
 		);
+		if ($yii === false) {
+			return null;
+		}
 		require_once($yii);
 
 		if (php_sapi_name() === 'cli' || $console) {

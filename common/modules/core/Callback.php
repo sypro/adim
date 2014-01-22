@@ -71,16 +71,7 @@ class Callback
 	 */
 	public static function preInstall(Event $event)
 	{
-		Console::output("\n%BYiinitialzr 1.0.1%n\n");
-		Console::output("* download packages specified in composer.json");
-		Console::output("* configures your runtime folders");
-		Console::output("* triggers composer callbacks (yiic commands)\n");
-
-		if (Console::confirm("Start Installation?")) {
-			self::runHook('pre-install');
-		} else {
-			Console::output("\nRInstallation aborted.\n");
-		}
+		self::runHook('pre-install');
 	}
 
 	/**

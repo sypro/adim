@@ -22,7 +22,7 @@ $console = array(
 			'templateFile' => 'application.components.migrationTemplate',
 			'applicationModuleName' => 'core',
 			'modulePaths' => array(
-				'backUser' => 'back.modules.user.migrations',
+				'backAdmin' => 'back.modules.admin.migrations',
 				'backSeo' => 'back.modules.seo.migrations',
 				'backLanguage' => 'back.modules.language.migrations',
 				'backTranslate' => 'back.modules.translate.migrations',
@@ -31,9 +31,7 @@ $console = array(
 				'fileProcessor' => 'root.vendor.metalguardian.yii-file-processor.fileProcessor.migrations'
 			),
 			'migrationSubPath' => 'migrations',
-			'disabledModules' => array(
-				//'admin',
-			),
+			'disabledModules' => array(),
 		),
 		'emailsend' => array(
 			'class' => '\console\commands\EmailSendCommand',
