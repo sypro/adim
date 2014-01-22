@@ -14,6 +14,9 @@ use frontend\components\FrontendController;
  */
 class SiteController extends FrontendController
 {
+	/**
+	 * @var string
+	 */
 	public $layout = '//layouts/main';
 
 	/**

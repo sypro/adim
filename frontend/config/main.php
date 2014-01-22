@@ -138,12 +138,13 @@ $frontend = array(
 			),
 		),
 		'request' => array(
-			'class' => '\core\components\HttpRequest',
+			'class' => '\frontend\components\HttpRequest',
 			'enableCookieValidation' => true,
 			'enableCsrfValidation' => true,
 			'csrfCookie' => array(
 				'httpOnly' => true,
 			),
+			'noCsrfValidationUrls' => array(),
 		),
 		'clientScript' => array(
 			'class' => '\core\components\ClientScript',

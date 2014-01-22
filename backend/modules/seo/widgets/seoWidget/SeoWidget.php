@@ -7,6 +7,7 @@ namespace seo\widgets\seoWidget;
 
 use backstage\components\ActiveRecord;
 use backstage\components\Widget;
+use seo\models\Seo;
 
 /**
  * Class SeoWidget
@@ -18,6 +19,9 @@ class SeoWidget extends Widget
 	 */
 	public $model;
 
+	/**
+	 * @return null|void
+	 */
 	public function run()
 	{
 		if (!$this->model->asa('seo')) {
@@ -26,6 +30,7 @@ class SeoWidget extends Widget
 
 		\Yii::import('bootstrap.widgets.TbForm');
 		foreach ($this->model->getSeoData() as $key => $data) {
+			/** @var $data Seo */
 			/** @var $form \CForm */
 			$form = \TbForm::createForm(
 				$data->getWidgetFormConfig(),

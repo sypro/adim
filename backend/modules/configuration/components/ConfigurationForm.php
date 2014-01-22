@@ -10,6 +10,7 @@ use core\components\FormModel;
 
 /**
  * Class ConfigurationForm
+ *
  * @package configuration\components
  */
 class ConfigurationForm extends FormModel
