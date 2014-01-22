@@ -12,7 +12,7 @@ class m000000_002000_create_user_table extends CDbMigration
 	 *
 	 * @var string
 	 */
-	public $tableName = '{{user_name}}';
+	public $tableName = '{{admin_user}}';
 	public function up()
 	{
 		$this->createTable(
