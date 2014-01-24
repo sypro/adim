@@ -23,7 +23,7 @@
 <div class="container">
 	<hr>
 	<footer>
-		<p class="pull-left">Copyright &copy; <?php echo date('Y'); ?> by </p>
+		<p class="pull-left">Copyright &copy; <?php echo date('Y'); ?> by <a href="http://vintage.com.ua/" target="_blank">VintageUA</a></p>
 		<p class="pull-right"><?php echo Yii::powered(); ?></p>
 		<div class="clearfix"></div>
 		<p>Отработало за <?php echo sprintf('%0.5f', \Yii::getLogger()->getExecutionTime()); ?> с. Память: <?php echo round(memory_get_peak_usage() / (1024 * 1024), 2) . "MB"; ?></p>
