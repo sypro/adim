@@ -3,14 +3,14 @@
 ------------
 ## Установка
 
-1. Клонировать репозиторий (git clone git@bitbucket.org:vintageua/melon.git)
-2. Удалить ветку origin, которая ссылается на репозиторий каркаса (git remote rm origin)
-3. Добавить ветку origin, которая будет ссылаться на новый репозиторий (git remote add origin git@bitbucket.org:user/repo.git)
+1. Клонировать репозиторий (`git clone git@bitbucket.org:vintageua/melon.git`)
+2. Удалить ветку `origin`, которая ссылается на репозиторий каркаса (`git remote rm origin`)
+3. Добавить ветку `origin`, которая будет ссылаться на новый репозиторий (`git remote add origin git@bitbucket.org:user/repo.git`)
 4. Скопировать файл `common/config/local.php.sample` в `common/config/local.php` и настроить в нем подключение к базе данных (и другие настройки при необходимости)
 5. Скопировать файл `console/config/local.php.sample` в `console/config/local.php`. Это добавит дополнительный функционал: уберёт запрос на выполнение миграций (`'interactive' => false,`), дополнительные команды, и т.д.
 6. Запустить команду `composer install` (если composer установлен как бинарник, если нет [смотри тут](#markdown-header-composer-install))
 
-Получение новых комитов (`git pull`), все миграции будут выполняться автоматически при обновлении `composer` (`composer update`)
+Получение новых комитов (`git pull`), все миграции будут выполняться автоматически при `composer update`, то есть для развертнывания проекта нужно выполнять только одну команду `composer update`
 
 ---------------------
 ## Migration commands
