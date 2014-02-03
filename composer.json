@@ -25,14 +25,12 @@
 	],
 	"scripts": {
 		"pre-install-cmd": [
-			"git pull",
 			"core\\Callback::preInstall"
 		],
 		"post-install-cmd": [
 			"core\\Callback::postInstall"
 		],
 		"pre-update-cmd": [
-			"git pull",
 			"core\\Callback::preUpdate"
 		],
 		"post-update-cmd": [

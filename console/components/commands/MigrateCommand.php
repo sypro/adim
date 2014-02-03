@@ -19,7 +19,7 @@
  * @version 0.8.0-dev
  */
 
-namespace console\commands;
+namespace console\components\commands;
 
 \Yii::import('system.cli.commands.MigrateCommand');
 
@@ -212,7 +212,6 @@ class MigrateCommand extends \MigrateCommand
 		if (parent::beforeAction($action, $params)) {
 			$this->migrationPath = $tmpMigrationPath;
 
-			echo "extended with EMigrateCommand by cebe <mail@cebe.cc>\n\n";
 			echo "Active database component (connectionString):\n    " . \Yii::app(
 				)->{$this->connectionID}->connectionString . "\n\n";
 

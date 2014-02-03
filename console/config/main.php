@@ -14,11 +14,10 @@ $console = array(
 	'basePath' => realpath(__DIR__ . DIRECTORY_SEPARATOR .  '..'),
 	'commandMap' => array(
 		'migrate' => array(
-			'class' => '\console\commands\MigrateCommand',
+			'class' => '\console\components\commands\MigrateCommand',
 			'migrationPath' => 'application.migrations',
 			'migrationTable' => '{{yii_migration}}',
 			'connectionID' => 'db',
-			'interactive' => false,
 			'templateFile' => 'application.components.migrationTemplate',
 			'applicationModuleName' => 'core',
 			'modulePaths' => array(
@@ -33,8 +32,11 @@ $console = array(
 			'migrationSubPath' => 'migrations',
 			'disabledModules' => array(),
 		),
-		'emailsend' => array(
-			'class' => '\console\commands\EmailSendCommand',
+		'emailSend' => array(
+			'class' => '\console\components\commands\EmailSendCommand',
+		),
+		'message' => array(
+			'class' => '\console\components\commands\CoreMessageCommand',
 		),
 	),
 	'components' => array(

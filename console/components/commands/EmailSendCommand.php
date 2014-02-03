@@ -4,7 +4,7 @@
  * Email: metalguardian
  */
 
-namespace console\commands;
+namespace console\components\commands;
 
 use console\components\EmailQueue;
 use console\components\YiiMailer;

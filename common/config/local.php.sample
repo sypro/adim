@@ -4,12 +4,12 @@ return array(
 	'components' => array(
 		'db' => array(
 			'class' => '\core\components\DbConnection',
-			'connectionString' => 'mysql:host=localhost;dbname=melon',
+			'connectionString' => 'mysql:host=localhost;dbname=database',
 			'emulatePrepare' => true,
-			'username' => 'melon',
-			'password' => 'melon',
+			'username' => 'db_user',
+			'password' => 'db_user_password',
 			'charset' => 'utf8',
-			'tablePrefix' => 'mln_',
+			'tablePrefix' => 'tbl_',
 			'schemaCachingDuration' => 0,
 			'enableProfiling' => true,
 			'enableParamLogging' => true,

@@ -1,26 +1,43 @@
 # Melon Engine
 
-# Migration commands
+------------
+## Установка
+
+1. Клонировать репозиторий (git clone git@bitbucket.org:vintageua/melon.git)
+2. Удалить ветку origin, которая ссылается на репозиторий каркаса (git remote rm origin)
+3. Добавить ветку origin, которая будет ссылаться на новый репозиторий (git remote add origin git@bitbucket.org:user/repo.git)
+4. Скопировать файл `common/config/local.php.sample` в `common/config/local.php` и настроить в нем подключение к базе данных (и другие настройки при необходимости)
+5. Скопировать файл `console/config/local.php.sample` в `console/config/local.php`. Это добавит дополнительный функционал: уберёт запрос на выполнение миграций (`'interactive' => false,`), дополнительные команды, и т.д.
+6. Запустить команду `composer install` (если composer установлен как бинарник, если нет [смотри тут](#markdown-header-composer-install))
+
+Получение новых комитов (`git pull`), все миграции будут выполняться автоматически при обновлении `composer` (`composer update`)
+
+---------------------
+## Migration commands
+
+Выполнить все миграции:
+
 ```
 ./yiic migrate
 ```
-Для создания новой миграции
+
+Создания новой миграции:
+
 ```
-./yiic migrate create modulename create_user_table
+./yiic migrate create moduleName create_user_table
 ```
-Команда, приведённая выше создаёт миграцию 'create_user_table' в модуле 'modulename'.
+
 Обычное использование
 ```
 ./yiic migrate create create_user_table
 ```
-создаёт общую миграцию 'create_user_table' (в псевдомодуле core - используеться для миграций не относящихся к какому-либо модулю).
+создаёт общую миграцию (в псевдомодуле core - используеться для миграций не относящихся к какому-либо модулю)
 
-###Параметр --module
+### Параметр --module
 
 Во всех остальных командах (`up`, `down`, `history`, `new`, `to` и `mark`) можно использовать
-параметр `--module=<modulenames>`, где `<modulenames>` — разделённый запятыми список
-имён модулей, либо просто имя модуля. Данный параметр позволяет ограничить действие команды
-определёнными модулями.
+параметр `--module=<moduleNames>`, где `<moduleNames>` — разделённый запятыми список имён модулей,
+либо просто имя модуля. Данный параметр позволяет ограничить действие команды определёнными модулями.
 Примеры:
 
 ```
@@ -44,23 +61,28 @@
 Если не указать модуль, команда ведёт себя как та, что включена в Yii за тем исключением,
 что применяется ещё и ко всем модулям.
 
-###Добавление модуля
+### Добавление модуля
 
-Просто подключите модуль в файле конфигурации console/config/main.php и запустите `./yiic migrate up --module=yourModule`.
+Просто подключите модуль в файле конфигурации `console/config/main.php` и запустите `./yiic migrate up --module=yourModule`.
 
-###Удаление модуля
+### Удаление модуля
 
-Запустите `./yiic migrate to m000000_000000 --module=yourModule`. Для этого все миграции
-должны реализовывать метод `down()`.
+Запустите `./yiic migrate to m000000_000000 --module=yourModule`. Для этого все миграции должны реализовывать метод `down()`.
 
+--------------------
+### Composer install
 
-# Installation
-
-после клонирования запустить:
+что бы установить `composer` в текущий проект:
 ```
 curl -sS https://getcomposer.org/installer | php
 php composer.phar install
 ```
+что бы установить `composer` как бинарник - один для всей системы:
+```
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+```
+[подробнее о composer](https://getcomposer.org)
 
 конфиги:
 сейчас в репозитории настройки для дев сервера.

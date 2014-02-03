@@ -30,18 +30,6 @@ $main = array(
 				'.git',
 			),
 		),
-		'db' => array(
-			'class' => '\core\components\DbConnection',
-			'connectionString' => 'mysql:host=localhost;dbname=vintageua_melon',
-			'emulatePrepare' => true,
-			'tablePrefix' => 'sktv_',
-			'username' => 'vintageua_melon',
-			'password' => 'CWvdBXH2RVWqGJBL',
-			'charset' => 'utf8',
-			'schemaCachingDuration' => 0,
-			'enableProfiling' => true,
-			'enableParamLogging' => true,
-		),
 		'errorHandler' => array(
 			'class' => '\core\components\ErrorHandler',
 		),

@@ -1,0 +1,22 @@
+<?php
+return array(
+	'commandMap' => array(
+		'migrate' => array(
+			'interactive' => false,
+		),
+	),
+	'params' => array(
+		'composer.callbacks' => array(
+			'pre-update' => array(
+				array(
+					'git pull',
+				),
+			),
+			'pre-install' => array(
+				array(
+					'git pull',
+				),
+			),
+		),
+	),
+);
