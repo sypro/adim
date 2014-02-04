@@ -314,7 +314,8 @@ class MigrateCommand extends \MigrateCommand
 
 		$tableName = self::prompt('Migration table name (without prefix)', '');
 
-		$className = 'm' . gmdate('ymd_His') . '_' . $name;
+		$time = time();
+		$className = 'm' . gmdate('ymd_His', $time) . '_' . $name;
 		$content = strtr($this->getTemplate($tableName), array('{ClassName}' => $className));
 		$file = $this->migrationPath . DIRECTORY_SEPARATOR . $className . '.php';
 
@@ -322,7 +323,7 @@ class MigrateCommand extends \MigrateCommand
 			file_put_contents($file, $content);
 			echo "New migration created successfully.\n";
 			if ($this->lang === true) {
-				$className = 'm' . gmdate('ymd_His') . '_' . $name . '_lang';
+				$className = 'm' . gmdate('ymd_His', $time + 1) . '_' . $name . '_lang';
 				$content = strtr($this->getTemplate($tableName, true), array('{ClassName}' => $className));
 				$file = $this->migrationPath . DIRECTORY_SEPARATOR . $className . '.php';
 				file_put_contents($file, $content);
@@ -674,7 +675,7 @@ class {ClassName} extends \\CDbMigration
 			array(
 				'l_id' => 'INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
 				'model_id' => 'INT UNSIGNED NOT NULL',
-				'lang_id' => 'VARCHAR(3) NULL DEFAULT NULL',
+				'lang_id' => 'VARCHAR(5) NULL DEFAULT NULL',
 
 				// examples:
 				//'l_label' => 'VARCHAR(200) NULL DEFAULT NULL',
@@ -686,6 +687,7 @@ class {ClassName} extends \\CDbMigration
 				'INDEX key_lang_id (lang_id)',
 
 				'CONSTRAINT fk_language_model_model_id_to_main_model_id FOREIGN KEY (model_id) REFERENCES ' . \$this->relatedTableName . ' (id) ON DELETE CASCADE ON UPDATE CASCADE',
+				'CONSTRAINT fk_language_model_lang_id_to_language_id FOREIGN KEY (lang_id) REFERENCES {{language}} (code) ON DELETE RESTRICT ON UPDATE RESTRICT',
 			),
 			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
 		);
