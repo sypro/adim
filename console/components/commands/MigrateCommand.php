@@ -45,6 +45,13 @@ class MigrateCommand extends \MigrateCommand
 	public $module;
 
 	/**
+	 * create a language model
+	 *
+	 * @var bool
+	 */
+	public $lang = false;
+
+	/**
 	 * @var string the application core is handled as a module named 'core' by default
 	 */
 	public $applicationModuleName = 'core';
@@ -292,7 +299,38 @@ class MigrateCommand extends \MigrateCommand
 			return 1;
 		}
 
-		return parent::actionCreate($args);
+		if (isset($args[0])) {
+			$name = $args[0];
+		} else {
+			$this->usageError('Please provide the name of the new migration.');
+			return 1;
+		}
+
+		if (!preg_match('/^\w+$/', $name)) {
+			echo "Error: The name of the migration must contain letters, digits and/or underscore characters only.\n";
+
+			return 1;
+		}
+
+		$tableName = self::prompt('Migration table name (without prefix)', '');
+
+		$className = 'm' . gmdate('ymd_His') . '_' . $name;
+		$content = strtr($this->getTemplate($tableName), array('{ClassName}' => $className));
+		$file = $this->migrationPath . DIRECTORY_SEPARATOR . $className . '.php';
+
+		if ($this->confirm("Create new migration '{$file}'?")) {
+			file_put_contents($file, $content);
+			echo "New migration created successfully.\n";
+			if ($this->lang === true) {
+				$className = 'm' . gmdate('ymd_His') . '_' . $name . '_lang';
+				$content = strtr($this->getTemplate($tableName, true), array('{ClassName}' => $className));
+				$file = $this->migrationPath . DIRECTORY_SEPARATOR . $className . '.php';
+				file_put_contents($file, $content);
+				echo "New migration for language model created successfully.\n";
+			}
+		}
+
+		return true;
 	}
 
 	/**
@@ -582,14 +620,136 @@ class MigrateCommand extends \MigrateCommand
 
 EXTENDED USAGE EXAMPLES (with modules)
   for every action except create you can specify the modules to use
-  with the parameter --module=<modulenames>
-  where <modulenames> is a comma seperated list of module names (or a single name)
+  with the parameter --module=<moduleNames>
+  where <moduleNames> is a comma separated list of module names (or a single name)
 
- * yiic migrate create modulename create_user_table
-   Creates a new migration named 'create_user_table' in module 'modulename'.
+ * yiic migrate create moduleName create_user_table
+   Creates a new migration named 'create_user_table' in module 'moduleName'.
 
   all other commands work exactly as described above.
 
 EOD;
+	}
+
+	/**
+	 * @param string $tableName
+	 * @param bool $lang
+	 *
+	 * @return string
+	 */
+	protected function getTemplate($tableName = '', $lang = false)
+	{
+		if ($this->templateFile !== null) {
+			return file_get_contents(\Yii::getPathOfAlias($this->templateFile) . '.php');
+		} elseif ($lang) {
+			$relatedTableName = $tableName;
+			if ($tableName) {
+				$tableName .= '_lang';
+			}
+			return <<<EOD
+<?php
+
+/**
+ * Class {ClassName}
+ */
+class {ClassName} extends \\CDbMigration
+{
+	/**
+	 * migration related table name
+	 */
+	public \$tableName = '{{{$tableName}}}';
+
+	/**
+	 * main table name, to make constraints
+	 */
+	public \$relatedTableName = '{{{$relatedTableName}}}';
+
+	/**
+	 * commands will be executed in transaction
+	 */
+	public function safeUp()
+	{
+		\$this->createTable(
+			\$this->tableName,
+			array(
+				'l_id' => 'INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
+				'model_id' => 'INT UNSIGNED NOT NULL',
+				'lang_id' => 'VARCHAR(3) NULL DEFAULT NULL',
+
+				// examples:
+				//'l_label' => 'VARCHAR(200) NULL DEFAULT NULL',
+				//'l_announce' => 'TEXT NULL DEFAULT NULL',
+				//'l_content' => 'TEXT NULL DEFAULT NULL',
+
+				'INDEX key_model_id_lang_id (model_id, lang_id)',
+				'INDEX key_model_id (model_id)',
+				'INDEX key_lang_id (lang_id)',
+
+				'CONSTRAINT fk_language_model_model_id_to_main_model_id FOREIGN KEY (model_id) REFERENCES ' . \$this->relatedTableName . ' (id) ON DELETE CASCADE ON UPDATE CASCADE',
+			),
+			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
+		);
+	}
+
+	/**
+	 * commands will be executed in transaction
+	 */
+	public function safeDown()
+	{
+		\$this->dropTable(\$this->tableName);
+	}
+}
+
+EOD;
+		} else {
+			return <<<EOD
+<?php
+
+/**
+ * Class {ClassName}
+ */
+class {ClassName} extends \\CDbMigration
+{
+	/**
+	 * migration related table name
+	 */
+	public \$tableName = '{{{$tableName}}}';
+
+	/**
+	 * commands will be executed in transaction
+	 */
+	public function safeUp()
+	{
+		\$this->createTable(
+			\$this->tableName,
+			array(
+				'id' => 'INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
+
+				'label' => 'VARCHAR(200) NULL DEFAULT NULL COMMENT "Заголовок"',
+
+				'visible' => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1',
+				'published' => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1',
+				'position' => 'INT UNSIGNED NOT NULL DEFAULT 0',
+				'created' => 'INT UNSIGNED NOT NULL',
+				'modified' => 'INT UNSIGNED NOT NULL',
+			),
+			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
+		);
+	}
+
+	/**
+	 * commands will be executed in transaction
+	 */
+	public function safeDown()
+	{
+		/*
+		uncomment if you need to drop table or delete this lines
+		\$this->dropTable(\$this->tableName);
+		*/
+	}
+}
+
+EOD;
+		}
 	}
 }
