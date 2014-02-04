@@ -1,8 +1,17 @@
 <?php
-
+/**
+ * Class {ClassName}
+ */
 class {ClassName} extends CDbMigration
 {
+	/**
+	 * migration related table name
+	 */
 	public $tableName = '{{}}';
+
+	/**
+	 * commands will be executed in transaction
+	 */
 	public function safeUp()
 	{
 		$this->createTable(
@@ -22,8 +31,14 @@ class {ClassName} extends CDbMigration
 		);
 	}
 
+	/**
+	 * commands will be executed in transaction
+	 */
 	public function safeDown()
 	{
-
+		/*
+		uncomment if you need to drop table or delete this lines
+		$this->dropTable($this->tableName);
+		*/
 	}
 }
