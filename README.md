@@ -136,9 +136,44 @@ CONSTRAINT fk_menu_menu_id_to_menu_list_id FOREIGN KEY (menu_id) REFERENCES {{me
 
 создаем через gii модуль. прописываем его в конфиге (aliases и modules)
 
-создаем из консоли миграцию с `migrationPath` в новый модуль, выполняем миграцию
+```
+'aliases' => array(
+	...
+	'moduleName' => realpath(
+		__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'moduleName'
+	),
+	...
+),
+'modules' => array(
+	...
+	'moduleName' => array(
+		'class' => '\moduleName\ModuleNameModule',
+	),
+	...
+),
 
-создаем через gii модель. располагаем ее в модуле. меняем правила валидации, настройки формы, настрофки вывода.
+```
+
+добавляем модуль в список модулей для команды миграции:
+
+```
+'commandMap' => array(
+	...
+	'migrate' => array(
+		...
+		'modulePaths' => array(
+			...
+			'backModuleName' => 'back.modules.moduleName.migrations',
+			...
+		),
+	),
+),
+```
+
+создаем из консоли миграцию с `./yiic migrate create backModuleName create_table_name`,
+задаем структуру таблицы, выполняем миграции `./yiic migrate`
+
+создаем через gii модель. располагаем ее в модуле. меняем правила валидации, настройки формы, настройки вывода.
 
 создаем через gii crud (в текущей реализации это один контроллер). располагаем его в модуле.
 
