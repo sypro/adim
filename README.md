@@ -264,51 +264,21 @@ Gii генерирует как главную модель с готовыми 
 
 Языковые поля, которые будут переводиться должны быть именованы по принципу - префикс `l_`, например, `l_content`
 
+В gii необходимо сгенерировать главнуб модель (выбрав параметр: Multi language model) и зависимую (выбрав параметр: Language model)
+
+В основной моделе заполнить массив локализированых параметров:
+
+```
+public static function getLocalizedAttributesList()
+{
+	return array('localized_value1', 'localized_value2', );
+}
+```
+
+Этого достаточно для использования мультиязычности на сайте. Главное правильно генерировать модели. Все остальное работает по умолчанию.
+
 # Front config
 
-конфиг для фронтеэнда
-
-```
-'theme' => 'projectName',
-'components' => array(
-	...
-	'clientScript' => array(
-		'class' => '\core\components\ClientScript',
-		'packages' => array(
-			'front.main' => array(
-				'baseUrl' => '/',
-				'js' => array(
-					'js/application.js',
-				),
-				'css' => array(
-					'css/application.css' => 'screen, projection',
-				),
-				'depends' => array('jquery', ),
-			),
-			'theme.projectName' => array(
-				'baseUrl' => '/themes/projectName/',
-				'js' => array(
-					'js/plugins.js',
-					'js/functions.js',
-				),
-				'css' => array(
-					'css/style.css' => 'screen, projection',
-				),
-				'depends' => array('jquery', ),
-			),
-		),
-		'scriptMap' => array(),
-	),
-	...
-),
-```
-
-вызывать клиент скрипт так:
-
-```
-cs()->registerPackage('theme.projectName');
-cs()->registerPackage('front.main');
-```
 
 # Statuses, Types
 

@@ -1,5 +1,6 @@
 <?php
 
+use console\components\commands\ConsoleCommand;
 use core\helpers\Core;
 
 /**
@@ -34,12 +35,19 @@ class m000000_002000_create_user_table extends CDbMigration
 		);
 		$salt = Core::genSalt(20);
 		$time = time();
+		$command = new ConsoleCommand();
+
+		echo "\r\n\r\n";
+		$name = $command->prompt('Admin name', 'admin');
+		$email = $command->prompt('Admin email (used as login)', 'admin@melon.dev');
+		$password = $command->prompt('Admin password', 'admin@melon.dev');
+
 		$this->insert(
 			$this->tableName,
 			array(
-				'name' => 'admin',
-				'email' => 'admin@melon.dev',
-				'password' => Core::genHashPassword($salt, 'admin@melon.dev'),
+				'name' => $name,
+				'email' => $email,
+				'password' => Core::genHashPassword($salt, $password),
 				'salt' => $salt,
 				'role' => 'admin',
 				'created' => $time,
