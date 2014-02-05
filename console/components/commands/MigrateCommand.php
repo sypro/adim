@@ -312,7 +312,7 @@ class MigrateCommand extends \MigrateCommand
 			return 1;
 		}
 
-		$tableName = self::prompt('Migration table name (without prefix)', '');
+		$tableName = self::prompt('Migration table name (without prefix):');
 
 		$time = time();
 		$className = 'm' . gmdate('ymd_His', $time) . '_' . $name;

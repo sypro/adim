@@ -27,6 +27,7 @@ mv composer.phar /usr/local/bin/composer
 ```
 [подробнее о composer](https://getcomposer.org)
 
+-------------------
 # Настрофка проекта
 
 ## Конфиги
@@ -68,6 +69,44 @@ ln -s /path/to/frontend/www/uploads/ /path/to/backend/www/
 Работа с базой ТОЛЬКО через миграции. все данные, которые попадают в базу тоже должны быть в миграциях.
 Можно делать дампы и вызывать их, но не копаться в структуре и данных руками.
 
+ОБЯЗАТЕЛЬНО использовать связи! прописывать их в создании таблицы или отдельно, но не забывать про них. пример:
+
+```
+CONSTRAINT fk_menu_menu_id_to_menu_list_id FOREIGN KEY (menu_id) REFERENCES {{menu_list}} (id) ON DELETE RESTRICT ON UPDATE RESTRICT
+```
+
+--------------------------------------
+# Требования к оформлению и именованию
+
+* весь sql код писать КАПСОМ
+
+* для числовых полей, которые не могут быть отрицательными (индексы, каунтеры) должны быть UNSIGNED
+
+* indexes in the last rows
+
+* устанавливать движок и кодировку: `ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci`
+
+* поля по умолчанию (могут отсутствовать некоторые поля в зависимости от потребностей таблицы):
+
+	1. `published` - опубликованность записи, если не опубликована, то ее нельзя увидеть нигде
+
+	2. `visible` - видимость записи, то есть она может быть опубликована и не видна в списках, но доступна по ссылке
+
+	3. `position` - сортировка записей
+
+	4. `created` - `time()` создания записи
+
+	5. `modified` - `time()` изменения записи
+
+* именование полей по умолчанию:
+
+	1. `label` для заголовка объекта
+
+	2. `alias` для ссылки объекта
+
+	3. `content` для контентной части объекта
+
+	4. `announce` для короткого описания объекта
 
 ---------------------
 # Migration commands
@@ -89,6 +128,21 @@ ln -s /path/to/frontend/www/uploads/ /path/to/backend/www/
 ./yiic migrate create create_user_table
 ```
 создаёт общую миграцию (в псевдомодуле core - используеться для миграций не относящихся к какому-либо модулю)
+
+Команда запрашивает ввод названия таблицы, с которой будут происходить изменения в миграции
+
+```
+./yiic migrate create create_table_name
+
+Yii Migration Tool v1.0 (based on Yii v1.1.15-dev)
+
+Active database component (connectionString):
+    mysql:host=localhost;dbname=database
+
+
+Migration table name (without prefix): table_name
+New migration created successfully.
+```
 
 ### Параметр --module
 
@@ -125,12 +179,6 @@ ln -s /path/to/frontend/www/uploads/ /path/to/backend/www/
 ### Удаление модуля
 
 Запустите `./yiic migrate to m000000_000000 --module=yourModule`. Для этого все миграции должны реализовывать метод `down()`.
-
-ОБЯЗАТЕЛЬНО использовать связи! прописывать их в создании таблицы или отдельно, но не забывать про них. пример:
-
-```
-CONSTRAINT fk_menu_menu_id_to_menu_list_id FOREIGN KEY (menu_id) REFERENCES {{menu_list}} (id) ON DELETE RESTRICT ON UPDATE RESTRICT
-```
 
 # Create admin module
 
@@ -179,62 +227,53 @@ CONSTRAINT fk_menu_menu_id_to_menu_list_id FOREIGN KEY (menu_id) REFERENCES {{me
 
 меню админпанели задается просто в виджете `/backend/modules/menu/widgets/MenuWidget.php`
 
+# Multi language
 
-# Multilangual model
+В модуле Языки добавляем необходимые языки. Код должен соответствовать стандартным кодам языка
+(алисы сейчас не предусмотрены) для нормальной поддержки языка фреймворком
 
-В модуле Языки добавляем необходимые языки. Код должен соответствовать стандартным кодам языка (алисы сейчас не предусмотрены) для нормальной поддержки языка фреймворком
-
-Язык по умолчанию объявляется в компоненте `urlManager` (пока так) `/common/config/main.php`. параметр `defaultLanguage`.
+Язык по умолчанию объявляется в компоненте `urlManager` `/common/config/main.php`. параметр `defaultLanguage`.
 
 Поля формы и просмотра объекта автоматически геренируются для всех языков приложения.
 
 Gii генерирует как главную модель с готовыми поведениями, так и зависимую модель. Все зависит от галочек выбраных в генераторе.
 
-пример миграции зависимой языковой таблицы:
+Для создания миграции для мультиязычной модели необходимо добавить параметр `--lang` при создании миграции.
+Этот параметр создаст сразу две миграции: основная модель и зависимая, языковая.
 
 ```
-class m131014_102113_create_content_lang_table extends CDbMigration
-{
-	public $tableName = '{{content_lang}}';
-	public function safeUp()
-	{
-		$this->createTable(
-			$this->tableName,
-			array(
-				'l_id' => 'INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
-				'model_id' => 'INT UNSIGNED NOT NULL',
-				'lang_id' => 'VARCHAR(6) NULL DEFAULT NULL',
-
-				'l_label' => 'VARCHAR(200) NULL DEFAULT NULL',
-				'l_announce' => 'TEXT NULL DEFAULT NULL',
-				'l_content' => 'TEXT NULL DEFAULT NULL',
-
-				'INDEX key_model_id_lang_id (model_id, lang_id)',
-				'INDEX key_model_id (model_id)',
-				'INDEX key_lang_id (lang_id)',
-			),
-			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
-		);
-	}
-
-	public function safeDown()
-	{
-		$this->dropTable($this->tableName);
-	}
-}
+./yiic migrate create migration_name --lang
 ```
+
+Название зависимой таблицы строго определено - добавлением суфикса `_lang` к имени основной таблицы: main_table_lang.
+
+В миграции представлены стандартные поля языковой таблицы, которые нельзя менять:
+
+```
+'l_id' => 'INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
+'model_id' => 'INT UNSIGNED NOT NULL',
+'lang_id' => 'VARCHAR(5) NULL DEFAULT NULL',
+
+'INDEX key_model_id_lang_id (model_id, lang_id)',
+'INDEX key_model_id (model_id)',
+'INDEX key_lang_id (lang_id)',
+
+'CONSTRAINT fk_language_model_model_id_to_main_model_id FOREIGN KEY (model_id) REFERENCES ' . $this->relatedTableName . ' (id) ON DELETE CASCADE ON UPDATE CASCADE',
+'CONSTRAINT fk_language_model_lang_id_to_language_id FOREIGN KEY (lang_id) REFERENCES {{language}} (code) ON DELETE RESTRICT ON UPDATE RESTRICT',
+```
+
+Языковые поля, которые будут переводиться должны быть именованы по принципу - префикс `l_`, например, `l_content`
 
 # Front config
 
 конфиг для фронтеэнда
 
 ```
-'theme' => 'arredo',
+'theme' => 'projectName',
 'components' => array(
 	...
 	'clientScript' => array(
 		'class' => '\core\components\ClientScript',
-		'coreScriptPosition' => \CClientScript::POS_HEAD,
 		'packages' => array(
 			'front.main' => array(
 				'baseUrl' => '/',
@@ -246,8 +285,8 @@ class m131014_102113_create_content_lang_table extends CDbMigration
 				),
 				'depends' => array('jquery', ),
 			),
-			'theme.melon' => array(
-				'baseUrl' => '/themes/melon/',
+			'theme.projectName' => array(
+				'baseUrl' => '/themes/projectName/',
 				'js' => array(
 					'js/plugins.js',
 					'js/functions.js',
@@ -267,7 +306,7 @@ class m131014_102113_create_content_lang_table extends CDbMigration
 вызывать клиент скрипт так:
 
 ```
-cs()->registerPackage('theme.melon');
+cs()->registerPackage('theme.projectName');
 cs()->registerPackage('front.main');
 ```
 
