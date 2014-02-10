@@ -4,6 +4,13 @@ RewriteEngine On
 
 RewriteBase /
 
+# remove trailing slash
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+# or
+# add trailing slash
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^.*[^/]$ /$0/ [L,R=301]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond $1 !^(index\.php)
