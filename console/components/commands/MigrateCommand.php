@@ -686,8 +686,8 @@ class {ClassName} extends \\CDbMigration
 				'INDEX key_model_id (model_id)',
 				'INDEX key_lang_id (lang_id)',
 
-				'CONSTRAINT fk_language_model_model_id_to_main_model_id FOREIGN KEY (model_id) REFERENCES ' . \$this->relatedTableName . ' (id) ON DELETE CASCADE ON UPDATE CASCADE',
-				'CONSTRAINT fk_language_model_lang_id_to_language_id FOREIGN KEY (lang_id) REFERENCES {{language}} (code) ON DELETE RESTRICT ON UPDATE RESTRICT',
+				'CONSTRAINT fk_{$tableName}_model_id_to_main_model_id FOREIGN KEY (model_id) REFERENCES ' . \$this->relatedTableName . ' (id) ON DELETE CASCADE ON UPDATE CASCADE',
+				'CONSTRAINT fk_{$tableName}_lang_id_to_language_id FOREIGN KEY (lang_id) REFERENCES {{language}} (code) ON DELETE RESTRICT ON UPDATE RESTRICT',
 			),
 			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
 		);

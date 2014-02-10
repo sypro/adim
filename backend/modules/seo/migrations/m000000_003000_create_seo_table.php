@@ -9,7 +9,7 @@ class m000000_003000_create_seo_table extends CDbMigration
 			array(
 				'model_name' => 'VARCHAR(100) NOT NULL',
 				'model_id' => 'INT UNSIGNED NOT NULL',
-				'lang_id' => 'VARCHAR(6) NOT NULL',
+				'lang_id' => 'VARCHAR(5) NOT NULL',
 
 				'title' => 'TEXT NULL DEFAULT NULL',
 				'keywords' => 'TEXT NULL DEFAULT NULL',

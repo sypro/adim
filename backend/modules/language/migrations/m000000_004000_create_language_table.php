@@ -21,7 +21,7 @@ class m000000_004000_create_language_table extends CDbMigration
 				'id' => 'INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
 
 				'label' => 'VARCHAR(20) NULL DEFAULT NULL COMMENT "language label"',
-				'code' => 'VARCHAR(5) NULL DEFAULT NULL COMMENT "language code"',
+				'code' => 'VARCHAR(5) NOT NULL COMMENT "language code"',
 
 				'visible' => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT "0 - not visible; 1 - visible"',
 				'published' => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT "0 - not published; 1 - published"',
