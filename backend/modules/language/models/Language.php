@@ -137,6 +137,11 @@ class Language extends ActiveRecord
 						'name' => 'published',
 					),
 					array(
+						'class' => '\backstage\components\CheckColumn',
+						'header' => 'Отображается',
+						'name' => 'visible',
+					),
+					array(
 						'name' => 'position',
 						'htmlOptions' => array('class' => 'span1 center', ),
 					),
@@ -150,10 +155,8 @@ class Language extends ActiveRecord
 					'id',
 					'label',
 					'code',
-					array(
-						'name' => 'published',
-						'value' => self::getBooleanText($this->published),
-					),
+					'published:boolean',
+					'visible:boolean',
 					'position',
 				);
 				break;

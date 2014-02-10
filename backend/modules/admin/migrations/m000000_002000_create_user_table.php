@@ -31,7 +31,7 @@ class m000000_002000_create_user_table extends CDbMigration
 				'created' => 'INT UNSIGNED NOT NULL COMMENT "unix timestamp - creation time"',
 				'modified' => 'INT UNSIGNED NOT NULL COMMENT "unix timestamp - last entity modified time"',
 			),
-			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci'
+			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
 		);
 		$salt = Core::genSalt(20);
 		$time = time();

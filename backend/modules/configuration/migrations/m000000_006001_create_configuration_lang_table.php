@@ -17,7 +17,7 @@ class m000000_006001_create_configuration_lang_table extends CDbMigration
 				'INDEX key_model_id (model_id)',
 				'INDEX key_lang_id (lang_id)',
 			),
-			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci'
+			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
 		);
 	}
 

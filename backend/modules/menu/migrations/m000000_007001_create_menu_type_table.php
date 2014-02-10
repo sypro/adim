@@ -12,7 +12,7 @@ class m000000_007001_create_menu_type_table extends CDbMigration
 				'label' => 'VARCHAR(200) NULL DEFAULT NULL COMMENT "entity label"',
 				'model_name' => 'VARCHAR(200) NULL DEFAULT NULL',
 			),
-			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci'
+			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
 		);
 		$this->insert('{{menu_type}}', array(
 			'id' => 1,

@@ -29,7 +29,7 @@ class m000000_007002_create_menu_table extends CDbMigration
 				'CONSTRAINT fk_menu_parent_id_to_menu_id FOREIGN KEY (parent_id) REFERENCES {{menu}} (id) ON DELETE RESTRICT ON UPDATE RESTRICT',
 				'CONSTRAINT fk_menu_type_to_menu_type_id FOREIGN KEY (type_id) REFERENCES {{menu_type}} (id) ON DELETE RESTRICT ON UPDATE RESTRICT',
 			),
-			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci'
+			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
 		);
 	}
 

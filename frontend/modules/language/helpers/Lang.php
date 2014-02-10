@@ -30,7 +30,7 @@ class Lang
 	public static function getLanguages()
 	{
 		if (self::$models === null) {
-			$models = Language::model()->published()->ordered()->findAll();
+			$models = Language::model()->published()->visible()->ordered()->findAll();
 			self::$models = \CHtml::listData($models, 'code', 'label');
 		}
 		return self::$models;

@@ -23,7 +23,7 @@ class m000000_003000_create_seo_table extends CDbMigration
 
 				'PRIMARY KEY (model_name,model_id,lang_id)',
 			),
-			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci'
+			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
 		);
 	}
 

@@ -24,7 +24,7 @@ class m000000_007003_create_menu_lang_table extends CDbMigration
 				'INDEX key_lang_id (lang_id)',
 				//'CONSTRAINT fk_menu_lang_model_id_to_menu_id FOREIGN KEY (model_id) REFERENCES {{menu}} (id) ON DELETE RESTRICT ON UPDATE RESTRICT',
 			),
-			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci'
+			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
 		);
 	}
 

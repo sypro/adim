@@ -25,7 +25,7 @@ class m000000_006000_create_configuration_table extends CDbMigration
 
 				'UNIQUE KEY (config_key)',
 			),
-			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci'
+			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
 		);
 	}
 

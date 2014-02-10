@@ -11,7 +11,7 @@ class m000000_005000_create_source_message_table extends CDbMigration
 				'category' => 'VARCHAR(32)',
 				'message' => 'TEXT',
 			),
-			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci'
+			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
 		);
 	}
 
