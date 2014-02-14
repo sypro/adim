@@ -16,12 +16,14 @@ namespace core\components;
  * @property \CFormatter $format
  * @property \language\components\LanguageUrlManager $urlManager
  * @property \configuration\components\ConfigurationComponent $config
- * @property \console\components\YiiMail $mail
+ * @property \console\components\YiiMailer $mail
+ * @property \CTheme $theme
  *
  * @method \core\components\ClientScript getClientScript()
  * @method \CHttpRequest getRequest()
  * @method \CWebUser getUser()
  * @method \language\components\LanguageUrlManager getUrlManager()
+ * @method \CTheme getTheme()
  */
 class WebApplication extends \CWebApplication
 {
