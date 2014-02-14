@@ -23,9 +23,6 @@ use language\helpers\Lang;
  * @property string $description
  * @property integer $type
  * @property integer $preload
- * @property integer $visible
- * @property integer $published
- * @property integer $position
  */
 class Configuration extends ActiveRecord
 {
@@ -658,7 +655,7 @@ class Configuration extends ActiveRecord
 	 */
 	public static function getLocalizedAttributesList()
 	{
-		return array('value');
+		return array('value', );
 	}
 
 	/**
@@ -668,6 +665,6 @@ class Configuration extends ActiveRecord
 	 */
 	public function ordered()
 	{
-		return $this;
+		return $this->order('t.config_key ASC');
 	}
 }

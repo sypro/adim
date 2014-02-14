@@ -11,25 +11,25 @@ use backstage\components\ActiveRecord;
  * This is the model class for table "{{seo}}".
  *
  * The followings are the available columns in table '{{seo}}':
+ *
  * @property string $model_name
  * @property integer $model_id
  * @property string $lang_id
  * @property string $title
  * @property string $keywords
  * @property string $description
- * @property integer $visible
- * @property integer $published
- * @property integer $position
  */
 class Seo extends ActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 *
 	 * @param string $className active record class name.
+	 *
 	 * @return Seo the static model class
 	 */
-	public static function model($className=__CLASS__)
+	public static function model($className = __CLASS__)
 	{
 		return parent::model($className);
 	}
@@ -49,8 +49,7 @@ class Seo extends ActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
-		);
+		return array();
 	}
 
 	/**
@@ -62,13 +61,13 @@ class Seo extends ActiveRecord
 		// will receive user inputs.
 		return array(
 			array('model_name, model_id, lang_id', 'required'),
-			array('model_id', 'numerical', 'integerOnly'=>true),
-			array('model_name', 'length', 'max'=>100),
-			array('lang_id', 'length', 'max'=>6),
+			array('model_id', 'numerical', 'integerOnly' => true),
+			array('model_name', 'length', 'max' => 100),
+			array('lang_id', 'length', 'max' => 6),
 			array('title, keywords, description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('model_name, model_id, lang_id, title, keywords, description', 'safe', 'on'=>'search', ),
+			array('model_name, model_id, lang_id, title, keywords, description', 'safe', 'on' => 'search',),
 		);
 	}
 
@@ -124,68 +123,102 @@ class Seo extends ActiveRecord
 		));
 	}
 
+	/**
+	 * @param string $page
+	 * @param null $title
+	 *
+	 * @return array
+	 */
 	public function genAdminBreadcrumbs($page, $title = null)
 	{
 		return parent::genAdminBreadcrumbs($page, 'SEO');
 	}
 
+	/**
+	 * @return mixed|null|string
+	 */
 	public function getAdminPrimaryKey()
 	{
-		$table=$this->getMetaData()->tableSchema;
-		if(is_string($table->primaryKey))
+		$table = $this->getMetaData()->tableSchema;
+		if (is_string($table->primaryKey))
 			return $this->{$table->primaryKey};
-		elseif(is_array($table->primaryKey))
-		{
-			$values=array();
-			foreach($table->primaryKey as $name)
-				$values[$name]=$this->$name;
+		elseif (is_array($table->primaryKey)) {
+			$values = array();
+			foreach ($table->primaryKey as $name) {
+				$values[$name] = $this->$name;
+			}
+
 			return je($values);
-		}
-		else
+		} else
 			return null;
 	}
 
+	/**
+	 * @param string $page
+	 *
+	 * @return array
+	 */
 	public function genAdminMenu($page)
 	{
 		$menu = array();
-		switch ($page)
-		{
+		switch ($page) {
 			case 'index':
-				$menu = array(
-				);
+				$menu = array();
 				break;
 			case 'create':
 				$menu = array(
-					array('label'=>null,'url'=>array('index'), 'icon'=>'icon-list'),
+					array('label' => null, 'url' => array('index'), 'icon' => 'icon-list'),
 				);
 				break;
 			case 'update':
 				$menu = array(
-					array('label'=>null,'url'=>array('index'), 'icon'=>'icon-list'),
+					array('label' => null, 'url' => array('index'), 'icon' => 'icon-list'),
 				);
 				break;
 			case 'view':
 				$menu = array(
-					array('label'=>null,'url'=>array('update','id'=>$this->getAdminPrimaryKey()), 'icon'=>'icon-pencil'),
-					array('label'=>null,'url'=>array('delete', 'id'=>$this->getAdminPrimaryKey()),
-						'buttonType'=>'ajaxLink',
-						'ajaxOptions'=>array(
-							'type'=>'POST',
-							'data'=>array(
+					array(
+						'label' => null,
+						'url' => array('update', 'id' => $this->getAdminPrimaryKey()),
+						'icon' => 'icon-pencil'
+					),
+					array(
+						'label' => null,
+						'url' => array('delete', 'id' => $this->getAdminPrimaryKey()),
+						'buttonType' => 'ajaxLink',
+						'ajaxOptions' => array(
+							'type' => 'POST',
+							'data' => array(
 								app()->request->csrfTokenName => app()->request->getCsrfToken()
 							),
-							'success'=>'js:function(){window.location.href="'.\CHtml::normalizeUrl(array('index')).'"}',
-							'error'=>'js:function(response){alert(response.responseText);}',
+							'success' => 'js:function(){window.location.href="' . \CHtml::normalizeUrl(
+									array('index')
+								) . '"}',
+							'error' => 'js:function(response){alert(response.responseText);}',
 						),
-						'htmlOptions'=>array('confirm'=>\Yii::t('core', 'Are you sure you want to delete this item?')), 'icon'=>'icon-trash'),
-					array('label'=>null,'url'=>array('index'), 'icon'=>'icon-list'),
+						'htmlOptions' => array(
+							'confirm' => \Yii::t(
+									'core',
+									'Are you sure you want to delete this item?'
+								)
+						),
+						'icon' => 'icon-trash'
+					),
+					array('label' => null, 'url' => array('index'), 'icon' => 'icon-list'),
 				);
 				break;
-			default: break;
+			default:
+				break;
 		}
+
 		return $menu;
 	}
 
+	/**
+	 * @param $page
+	 *
+	 * @return array
+	 */
 	public function genColumns($page)
 	{
 		$columns = array();
@@ -200,15 +233,15 @@ class Seo extends ActiveRecord
 					'description',
 					array(
 						'class' => 'bootstrap.widgets.TbButtonColumn',
-						'updateButtonUrl' => function ($data) {
-							return \CHtml::normalizeUrl(array('update', 'id' => $data->getAdminPrimaryKey()));
-						},
-						'viewButtonUrl' => function ($data) {
-							return \CHtml::normalizeUrl(array('view', 'id' => $data->getAdminPrimaryKey()));
-						},
-						'deleteButtonUrl' => function ($data) {
-							return \CHtml::normalizeUrl(array('delete', 'id' => $data->getAdminPrimaryKey()));
-						},
+						'updateButtonUrl' => function (Seo $data) {
+								return \CHtml::normalizeUrl(array('update', 'id' => $data->getAdminPrimaryKey()));
+							},
+						'viewButtonUrl' => function (Seo $data) {
+								return \CHtml::normalizeUrl(array('view', 'id' => $data->getAdminPrimaryKey()));
+							},
+						'deleteButtonUrl' => function (Seo $data) {
+								return \CHtml::normalizeUrl(array('delete', 'id' => $data->getAdminPrimaryKey()));
+							},
 					),
 				);
 				break;
@@ -222,11 +255,16 @@ class Seo extends ActiveRecord
 					'description',
 				);
 				break;
-			default: break;
+			default:
+				break;
 		}
+
 		return $columns;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getFormConfig()
 	{
 		return array(
@@ -260,7 +298,6 @@ class Seo extends ActiveRecord
 					'class' => 'span6',
 				),
 			),
-
 			'buttons' => array(
 				'submit' => array(
 					'type' => 'submit',
@@ -275,6 +312,9 @@ class Seo extends ActiveRecord
 		);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getWidgetFormConfig()
 	{
 		return array(
@@ -309,7 +349,6 @@ class Seo extends ActiveRecord
 					'class' => 'span6',
 				),
 			),
-
 			'buttons' => array(
 				'submit' => array(
 					'type' => 'ajaxSubmit',

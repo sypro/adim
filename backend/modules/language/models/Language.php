@@ -12,9 +12,11 @@ use language\helpers\Lang;
  * This is the model class for table "{{language}}".
  *
  * The followings are the available columns in table '{{language}}':
+ *
  * @property integer $id
  * @property string $label
  * @property string $code
+ * @property string $locale
  * @property integer $visible
  * @property integer $published
  * @property integer $position
@@ -24,10 +26,12 @@ class Language extends ActiveRecord
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 *
 	 * @param string $className active record class name.
+	 *
 	 * @return Language the static model class
 	 */
-	public static function model($className=__CLASS__)
+	public static function model($className = __CLASS__)
 	{
 		return parent::model($className);
 	}
@@ -47,8 +51,7 @@ class Language extends ActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
-		);
+		return array();
 	}
 
 	/**
@@ -59,12 +62,12 @@ class Language extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('label, code', 'required'),
-			array('visible, published, position', 'numerical', 'integerOnly'=>true),
-			array('label', 'length', 'max'=>20),
-			array('code', 'length', 'max'=>5),
+			array('label, code, locale', 'required'),
+			array('visible, published, position', 'numerical', 'integerOnly' => true),
+			array('label', 'length', 'max' => 20),
+			array('code, locale', 'length', 'max' => 5),
 			// The following rule is used by search().
-			array('id, label, code, visible, published, position', 'safe', 'on'=>'search', ),
+			array('id, label, code, visible, published, position, locale', 'safe', 'on' => 'search',),
 		);
 	}
 
@@ -73,13 +76,17 @@ class Language extends ActiveRecord
 	 */
 	public function attributeLabels()
 	{
-		return \CMap::mergeArray(
+		$labels = \CMap::mergeArray(
 			parent::attributeLabels(),
 			array(
 				'label' => 'Название (будет на фронте)',
 				'code' => 'Код (будет в ссылке)',
+				'locale' => 'Локаль',
 			)
 		);
+		$labels = $this->generateLocalizedAttributeLabels($labels);
+
+		return $labels;
 	}
 
 	/**
@@ -94,12 +101,13 @@ class Language extends ActiveRecord
 	{
 		$criteria = new \CDbCriteria();
 
-		$criteria->compare('id', $this->id);
-		$criteria->compare('label', $this->label, true);
-		$criteria->compare('code', $this->code, true);
-		$criteria->compare('visible', $this->visible);
-		$criteria->compare('published', $this->published);
-		$criteria->compare('position', $this->position);
+		$criteria->compare('t.id', $this->id);
+		$criteria->compare('t.label', $this->label, true);
+		$criteria->compare('t.code', $this->code, true);
+		$criteria->compare('t.visible', $this->visible);
+		$criteria->compare('t.published', $this->published);
+		$criteria->compare('t.position', $this->position);
+		$criteria->compare('t.locale', $this->locale, true);
 
 		return new \CActiveDataProvider($this, array(
 			'criteria' => $criteria,
@@ -114,11 +122,26 @@ class Language extends ActiveRecord
 		));
 	}
 
+	/**
+	 * Generate breadcrumbs
+	 *
+	 * @param string $page
+	 * @param null|string $title
+	 *
+	 * @return array
+	 */
 	public function genAdminBreadcrumbs($page, $title = null)
 	{
-		return parent::genAdminBreadcrumbs($page, 'Языки');
+		return parent::genAdminBreadcrumbs($page, $title ? $title : 'Языки');
 	}
 
+	/**
+	 * Get columns configs to specified page for grid or detail view
+	 *
+	 * @param $page
+	 *
+	 * @return array
+	 */
 	public function genColumns($page)
 	{
 		$columns = array();
@@ -127,23 +150,24 @@ class Language extends ActiveRecord
 				$columns = array(
 					array(
 						'name' => 'id',
-						'htmlOptions' => array('class' => 'span1 center', ),
+						'htmlOptions' => array('class' => 'span1 center',),
 					),
 					'label',
 					'code',
+					'locale',
 					array(
-						'class' => '\backstage\components\CheckColumn',
+						'class' => 'backstage\components\CheckColumn',
+						'header' => 'Видим',
+						'name' => 'visible',
+					),
+					array(
+						'class' => 'backstage\components\CheckColumn',
 						'header' => 'Опубликовано',
 						'name' => 'published',
 					),
 					array(
-						'class' => '\backstage\components\CheckColumn',
-						'header' => 'Отображается',
-						'name' => 'visible',
-					),
-					array(
 						'name' => 'position',
-						'htmlOptions' => array('class' => 'span1 center', ),
+						'htmlOptions' => array('class' => 'span1 center',),
 					),
 					array(
 						'class' => 'bootstrap.widgets.TbButtonColumn',
@@ -155,17 +179,24 @@ class Language extends ActiveRecord
 					'id',
 					'label',
 					'code',
-					'published:boolean',
+					'locale',
 					'visible:boolean',
+					'published:boolean',
 					'position',
 				);
 				break;
 			default:
 				break;
 		}
+
 		return $columns;
 	}
 
+	/**
+	 * Get form config
+	 *
+	 * @return array
+	 */
 	public function getFormConfig()
 	{
 		return array(
@@ -181,6 +212,12 @@ class Language extends ActiveRecord
 				'code' => array(
 					'type' => 'text',
 					'class' => 'span6',
+				),
+				'locale' => array(
+					'type' => 'dropdownlist',
+					'items' => Lang::getLocales(),
+					'class' => 'span6',
+					'empty' => '',
 				),
 				'visible' => array(
 					'type' => 'checkbox',

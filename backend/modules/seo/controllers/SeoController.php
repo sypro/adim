@@ -14,6 +14,9 @@ use seo\models\Seo;
  */
 class SeoController extends BackstageController
 {
+	/**
+	 * @return array
+	 */
 	public function filters()
 	{
 		return \CMap::mergeArray(
@@ -60,7 +63,8 @@ class SeoController extends BackstageController
 						. \CJavaScript::encode(
 							t(
 								'Seo for language "{language}" saved.',
-								array('{language}' => $model->lang_id,
+								array(
+									'{language}' => $model->lang_id,
 								)
 							)
 						)
@@ -79,11 +83,22 @@ class SeoController extends BackstageController
 		$this->renderJson($response);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getModelClass()
 	{
 		return Seo::getClassName();
 	}
 
+	/**
+	 * @param $id
+	 * @param bool $class
+	 * @param bool $prepare
+	 *
+	 * @return \CActiveRecord|static
+	 * @throws \CHttpException
+	 */
 	public function loadModel($id, $class = false, $prepare = true)
 	{
 		$id = jd($id);
@@ -101,6 +116,7 @@ class SeoController extends BackstageController
 		if ($prepare) {
 			$this->prepare($model);
 		}
+
 		return $model;
 	}
 
@@ -109,7 +125,7 @@ class SeoController extends BackstageController
 	 */
 	public function actionCreate()
 	{
-		$this->redirect(array('index', ));
+		$this->redirect(array('index',));
 	}
 
 	/**
@@ -123,6 +139,7 @@ class SeoController extends BackstageController
 	 */
 	public function actionUpdate($id)
 	{
+		/** @var ActiveRecord $model */
 		$model = $this->loadModel($id);
 		$model->setScenario('update');
 
@@ -143,7 +160,7 @@ class SeoController extends BackstageController
 			try {
 				if ($model->save()) {
 					$transaction->commit();
-					$this->redirect(array('view', 'id'=>$model->getAdminPrimaryKey()));
+					$this->redirect(array('view', 'id' => $model->getAdminPrimaryKey()));
 				}
 			} catch (\Exception $exception) {
 				$key = $model->tableSchema->primaryKey;
@@ -155,9 +172,12 @@ class SeoController extends BackstageController
 			}
 		}
 
-		$this->render('backstage.components.adminTemplates.update', array(
+		$this->render(
+			'backstage.components.adminTemplates.update',
+			array(
 				'model' => $model,
 				'form' => $form,
-			));
+			)
+		);
 	}
 }

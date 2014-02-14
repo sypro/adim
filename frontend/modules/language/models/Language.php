@@ -17,6 +17,9 @@ use frontend\components\ActiveRecord;
  * @property integer $visible
  * @property integer $published
  * @property integer $position
+ * @property integer $created
+ * @property integer $modified
+ * @property string $locale
  */
 class Language extends ActiveRecord
 {
@@ -26,7 +29,7 @@ class Language extends ActiveRecord
 	 * @param string $className active record class name.
 	 * @return Language the static model class
 	 */
-	public static function model($className=__CLASS__)
+	public static function model($className = __CLASS__)
 	{
 		return parent::model($className);
 	}

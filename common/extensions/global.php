@@ -338,3 +338,33 @@ function mergeArray()
 
 	return $res;
 }
+
+/**
+ * Array column implementation
+ *
+ * @param $array
+ * @param $column
+ * @param null $index
+ *
+ * @return array
+ */
+function arrayColumn($array, $column, $index = null)
+{
+	$results = array();
+	if (!is_array($array)) {
+		return $results;
+	}
+	foreach ($array as $child) {
+		if (!is_array($child)) {
+			continue;
+		}
+		if (array_key_exists($column, $child)) {
+			if ($index && array_key_exists($index, $child)) {
+				$results[$child[$index]] = $child[$column];
+			} else {
+				$results[] = $child[$column];
+			}
+		}
+	}
+	return $results;
+}

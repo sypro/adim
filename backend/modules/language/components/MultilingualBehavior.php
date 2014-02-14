@@ -247,7 +247,7 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 	 * Not needed if using foreign key with 'on delete cascade'.
 	 * Default to true.
 	 *
-	 * @var boolean wether to force deletion of the associated translations when a base model is deleted.
+	 * @var boolean to force deletion of the associated translations when a base model is deleted.
 	 */
 	public $forceDelete = true;
 
@@ -263,9 +263,14 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 	 */
 	private $_notDefaultLanguage = false;
 
+	/**
+	 * @param $owner
+	 * @param $lang
+	 */
 	private function createLocalizedRelation($owner, $lang)
 	{
 		$class = \CActiveRecord::HAS_MANY;
+		/** @var \CActiveRecord $owner */
 		$owner->getMetaData()->relations[$this->localizedRelation] =
 			new $class($this->localizedRelation, $this->langClassName, $this->langForeignKey, array(
 				'on' => $this->localizedRelation . '.' . $this->langField . ' = :lang',
@@ -276,9 +281,13 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 			));
 	}
 
+	/**
+	 * @param $owner
+	 */
 	private function createMultiLangRelation($owner)
 	{
 		$class = \CActiveRecord::HAS_MANY;
+		/** @var \CActiveRecord $owner */
 		$owner->getMetaData()->relations[$this->multiLangRelation] = new $class(
 			$this->multiLangRelation,
 			$this->langClassName,
@@ -327,13 +336,23 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 					if (in_array($attr, $ruleAttributes)) {
 						if ($rule[1] !== 'required' || $this->forceOverwrite) {
 							$validators->add(
-								\CValidator::createValidator($rule[1], $owner, $attr . '_' . $language, array_slice($rule, 2))
+								\CValidator::createValidator(
+									$rule[1],
+									$owner,
+									$attr . '_' . $language,
+									array_slice($rule, 2)
+								)
 							);
 						} elseif ($rule[1] === 'required') {
 							//We add a safe rule in case the attribute has only a 'required' validation rule assigned
 							//and forceOverWrite == false
 							$validators->add(
-								\CValidator::createValidator('safe', $owner, $attr . '_' . $language, array_slice($rule, 2))
+								\CValidator::createValidator(
+									'safe',
+									$owner,
+									$attr . '_' . $language,
+									array_slice($rule, 2)
+								)
 							);
 						}
 					}
@@ -351,6 +370,7 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 	 */
 	public function localized($lang = null)
 	{
+		/** @var \CActiveRecord $owner */
 		$owner = $this->getOwner();
 		if ($lang != null && $lang != \Yii::app()->language && in_array($lang, $this->languages)) {
 			$this->createLocalizedRelation($owner, $lang);
@@ -370,6 +390,7 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 	 */
 	public function multiLang()
 	{
+		/** @var \CActiveRecord $owner */
 		$owner = $this->getOwner();
 		$owner->getDbCriteria()->mergeWith(
 			$this->multiLangCriteria()
@@ -442,6 +463,7 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 	 */
 	public function afterConstruct($event)
 	{
+		/** @var \CActiveRecord $owner */
 		$owner = $this->getOwner();
 		if ($owner->scenario == $this->createScenario) {
 			$owner = new $this->langClassName;
@@ -458,7 +480,11 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 	 * Modify passed criteria by replacing conditions on base attributes with conditions on translations.
 	 * Allow to make search on model translated values.
 	 *
-	 * @param \CDbCriteria $event
+	 * @param \CDbCriteria $criteria
+	 *
+	 * @internal param \CDbCriteria $event
+	 *
+	 * @return \CDbCriteria
 	 */
 	public function modifySearchCriteria(\CDbCriteria $criteria)
 	{
@@ -467,7 +493,9 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 		foreach ($this->localizedAttributes as $attribute) {
 			if (!empty($owner->$attribute)) {
 				$criteriaArray['condition'] = str_replace(
-					$attribute . ' ', $this->localizedPrefix . $attribute . ' ', $criteriaArray['condition']
+					$attribute . ' ',
+					$this->localizedPrefix . $attribute . ' ',
+					$criteriaArray['condition']
 				);
 			}
 		}
@@ -482,14 +510,16 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 	 */
 	public function afterFind($event)
 	{
+		/** @var \CActiveRecord $owner */
 		$owner = $this->getOwner();
 		if ($owner->hasRelated($this->multiLangRelation)) {
 			$related = $owner->getRelated($this->multiLangRelation);
 			foreach ($this->languages as $lang) {
 				foreach ($this->localizedAttributes as $field) {
 					$this->setLangAttribute(
-						$field . '_' . $lang, isset($related[$lang][$this->localizedPrefix . $field]) ? $related[$lang][
-						$this->localizedPrefix . $field] : null
+						$field . '_' . $lang,
+						isset($related[$lang][$this->localizedPrefix . $field])
+							? $related[$lang][$this->localizedPrefix . $field] : null
 					);
 				}
 			}
@@ -514,6 +544,7 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 	 */
 	public function afterSave($event)
 	{
+		/** @var \CActiveRecord $owner */
 		$owner = $this->getOwner();
 		$ownerPk = $owner->getPrimaryKey();
 
@@ -554,12 +585,21 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 	public function afterDelete($event)
 	{
 		if ($this->forceDelete) {
-			$ownerPk = $this->getOwner()->getPrimaryKey();
+			/** @var \CActiveRecord $owner */
+			$owner = $this->getOwner();
+			$ownerPk = $owner->getPrimaryKey();
 			$model = ActiveRecord::model($this->langClassName);
 			$model->deleteAll("{$this->langForeignKey}=:id", array('id' => $ownerPk));
 		}
 	}
 
+	/**
+	 * @param string $name
+	 *
+	 * @return mixed|string
+	 * @throws \CException
+	 * @throws \Exception
+	 */
 	public function __get($name)
 	{
 		try {
@@ -573,6 +613,14 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 		}
 	}
 
+	/**
+	 * @param string $name
+	 * @param mixed $value
+	 *
+	 * @return mixed|void
+	 * @throws \CException
+	 * @throws \Exception
+	 */
 	public function __set($name, $value)
 	{
 		try {
@@ -586,6 +634,11 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 		}
 	}
 
+	/**
+	 * @param string $name
+	 *
+	 * @return bool
+	 */
 	public function __isset($name)
 	{
 		if (!parent::__isset($name)) {
@@ -595,16 +648,31 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 		}
 	}
 
+	/**
+	 * @param string $name
+	 *
+	 * @return bool
+	 */
 	public function canGetProperty($name)
 	{
 		return parent::canGetProperty($name) or $this->hasLangAttribute($name);
 	}
 
+	/**
+	 * @param string $name
+	 *
+	 * @return bool
+	 */
 	public function canSetProperty($name)
 	{
 		return parent::canSetProperty($name) or $this->hasLangAttribute($name);
 	}
 
+	/**
+	 * @param string $name
+	 *
+	 * @return bool
+	 */
 	public function hasProperty($name)
 	{
 		return parent::hasProperty($name) or $this->hasLangAttribute($name);

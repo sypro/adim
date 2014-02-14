@@ -25,15 +25,30 @@ class Lang
 	/**
 	 * @static
 	 *
+	 * @param string $column
+	 * @param string $index
+	 *
 	 * @return array
 	 */
-	public static function getLanguages()
+	public static function getLanguages($column = 'label', $index = 'code')
 	{
 		if (self::$models === null) {
-			$models = Language::model()->published()->ordered()->findAll();
-			self::$models = \CHtml::listData($models, 'code', 'label');
+			$models = Language::model()->published()->visible()->ordered()->findAll();
+			$array = array();
+			foreach ($models as $model) {
+				$code = \CHtml::value($model, 'code');
+				$label = \CHtml::value($model, 'label');
+				$locale = \CHtml::value($model, 'locale');
+				$array[] = array(
+					'code' => $code,
+					'label' => $label,
+					'locale' => $locale,
+				);
+			}
+			self::$models = $array;
 		}
-		return self::$models;
+
+		return arrayColumn(self::$models, $column, $index);
 	}
 
 	/**
@@ -52,6 +67,7 @@ class Lang
 	{
 		$getLang = r()->getQuery(app()->urlManager->languageVar);
 		$lang = self::checkLang($getLang) ? $getLang : self::getDefault();
+
 		return $lang;
 	}
 
@@ -74,6 +90,28 @@ class Lang
 		if (in_array($lang, self::getLanguageKeys(), true)) {
 			return true;
 		}
+
 		return false;
+	}
+
+	/**
+	 * Get existing locales in framework
+	 *
+	 * @return array
+	 */
+	public static function getLocales()
+	{
+		$locales = array();
+		$path = app()->getLocaleDataPath();
+		/** @var \DirectoryIterator[] $iterator */
+		$iterator = new \DirectoryIterator($path);
+		foreach ($iterator as $file) {
+			if ($file->isFile() && $file->getFilename() != 'README.' . $file->getExtension()) {
+				$key = rtrim($file->getFilename(), '.' . $file->getExtension());
+				$locales[$key] = $key;
+			}
+		}
+
+		return $locales;
 	}
 }

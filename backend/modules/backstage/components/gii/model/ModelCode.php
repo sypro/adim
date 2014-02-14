@@ -23,7 +23,7 @@ class ModelCode extends \CCodeModel
 	public $multiLang = true;
 	public $langModel = false;
 	public $seoModel = true;
-	public $commentsAsLabels = false;
+	public $commentsAsLabels = true;
 
 	/**
 	 * @var array list of candidate relation code. The array are indexed by AR class names and relation names.

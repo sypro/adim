@@ -25,15 +25,29 @@ class Lang
 	/**
 	 * @static
 	 *
+	 * @param string $column
+	 * @param string $index
+	 *
 	 * @return array
 	 */
-	public static function getLanguages()
+	public static function getLanguages($column = 'label', $index = 'code')
 	{
 		if (self::$models === null) {
 			$models = Language::model()->published()->visible()->ordered()->findAll();
-			self::$models = \CHtml::listData($models, 'code', 'label');
+			$array = array();
+			foreach ($models as $model) {
+				$code = \CHtml::value($model, 'code');
+				$label = \CHtml::value($model, 'label');
+				$locale = \CHtml::value($model, 'locale');
+				$array[] = array(
+					'code' => $code,
+					'label' => $label,
+					'locale' => $locale,
+				);
+			}
+			self::$models = $array;
 		}
-		return self::$models;
+		return arrayColumn(self::$models, $column, $index);
 	}
 
 	/**
@@ -75,5 +89,19 @@ class Lang
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * @param $requestLang
+	 *
+	 * @return string
+	 */
+	public static function getLocale($requestLang)
+	{
+		$languages = self::getLanguages('locale', 'code');
+		if (array_key_exists($requestLang, $languages)) {
+			return $languages[$requestLang];
+		}
+		return 'en';
 	}
 }
