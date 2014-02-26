@@ -186,6 +186,7 @@ $backend = array(
 				'back.main' => array(
 					'baseUrl' => '/',
 					'js' => array(
+						'js/form.helpers.js',
 						'js/application.js',
 					),
 					'css' => array(
