@@ -77,3 +77,26 @@ $(function() {
 		return false;
 	});
 });
+
+$(document).ready(function() {
+    var el = $('.form-actions');
+    var elTop = el.offset().top;
+    var elBottom = elTop + el.height() + 4;
+
+    function fixedFormActions() {
+        var windowTop = $(window).scrollTop();
+        var windowBottom = windowTop + $(window).height();
+
+        if(windowBottom < elBottom) {
+            el.addClass('form-actions-fixed');
+        } else {
+            el.removeClass('form-actions-fixed');
+        }
+    }
+
+    $(window).scroll(function() {
+        fixedFormActions();
+    });
+
+    fixedFormActions();
+});
