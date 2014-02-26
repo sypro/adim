@@ -188,6 +188,7 @@ $backend = array(
 					'js' => array(
 						'js/form.helpers.js',
 						'js/application.js',
+						'js/form.helpers.js',
 					),
 					'css' => array(
 						'css/application.css' => 'screen, projection',
