@@ -23,8 +23,7 @@ class m000000_002000_create_user_table extends CDbMigration
 				'name' => 'VARCHAR(75) NULL DEFAULT NULL',
 				'email' => 'VARCHAR(45) NULL DEFAULT NULL',
 				'role' => 'VARCHAR(20) NULL DEFAULT NULL',
-				'password' => 'VARCHAR(32) NULL DEFAULT NULL',
-				'salt' => 'VARCHAR(32) NULL DEFAULT NULL',
+				'password' => 'VARCHAR(64) NULL DEFAULT NULL',
 				'visible' => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT "0 - not visible; 1 - visible"',
 				'published' => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT "0 - not published; 1 - published"',
 				'position' => 'INT UNSIGNED NOT NULL DEFAULT 0 COMMENT "order by position DESC"',
@@ -33,7 +32,7 @@ class m000000_002000_create_user_table extends CDbMigration
 			),
 			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
 		);
-		$salt = Core::genSalt(20);
+
 		$time = time();
 		$command = new ConsoleCommand();
 
@@ -47,8 +46,7 @@ class m000000_002000_create_user_table extends CDbMigration
 			array(
 				'name' => $name,
 				'email' => $email,
-				'password' => Core::genHashPassword($salt, $password),
-				'salt' => $salt,
+				'password' => CPasswordHelper::hashPassword($password),
 				'role' => 'admin',
 				'created' => $time,
 				'modified' => $time,

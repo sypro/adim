@@ -18,7 +18,6 @@ use core\helpers\Core;
  * @property string $email
  * @property string $role
  * @property string $password
- * @property string $salt
  * @property integer $visible
  * @property integer $published
  * @property integer $position
@@ -129,7 +128,6 @@ class User extends ActiveRecord
 				'role' => 'Доступ',
 				'password' => 'Пароль',
 				'new_password' => 'Новый пароль',
-				'salt' => 'Соль',
 			)
 		);
 	}
@@ -266,7 +264,7 @@ class User extends ActiveRecord
 	 */
 	public function validatePassword($password)
 	{
-		return Core::genHashPassword($this->salt, $password) === $this->password;
+		return \CPasswordHelper::verifyPassword($password, $this->password);
 	}
 
 	/**
@@ -276,8 +274,7 @@ class User extends ActiveRecord
 	{
 		if (parent::beforeSave()) {
 			if (!empty($this->new_password)) {
-				$this->salt = Core::genSalt();
-				$this->password = Core::genHashPassword($this->salt, $this->new_password);
+				$this->password = \CPasswordHelper::hashPassword($this->new_password);
 			}
 
 			return true;
