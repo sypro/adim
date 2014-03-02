@@ -564,6 +564,12 @@ class Configuration extends ActiveRecord
 		return false;
 	}
 
+	protected function afterFind()
+	{
+		parent::afterFind();
+		$this->setRules();
+	}
+
 	/**
 	 * set up rules
 	 */
@@ -615,9 +621,9 @@ class Configuration extends ActiveRecord
 
 				'class' => '\fileProcessor\components\FileUploadBehavior',
 				'attributeName' => 'value',
-				'allowEmpty' => true,
+				'allowEmpty' => false,
 				'fileTypes' => null,
-				'scenarios' => array('file'),
+				'scenarios' => array('file', ),
 			),
 			'b_image_value' => array(
 				'configLanguageAttribute' => 'value',
@@ -625,9 +631,9 @@ class Configuration extends ActiveRecord
 
 				'class' => '\fileProcessor\components\FileUploadBehavior',
 				'attributeName' => 'value',
-				'allowEmpty' => true,
+				'allowEmpty' => false,
 				'fileTypes' => 'png, gif, jpeg, jpg',
-				'scenarios' => array('image'),
+				'scenarios' => array('image', ),
 			),
 		);
 		$behaviors = $this->prepareBehaviors($languageBehaviors);

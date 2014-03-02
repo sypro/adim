@@ -79,7 +79,6 @@ class BackstageController extends Controller
 	public function actionUpdate($id)
 	{
 		$model = $this->loadModel($id);
-		$model->setScenario('update');
 
 		$modelName = \CHtml::modelName($model);
 		if (isset($_POST[$modelName])) {
@@ -126,7 +125,7 @@ class BackstageController extends Controller
 		$class = $this->getModelClass();
 		$modelName = \CHtml::modelName($class);
 		/** @var $model ActiveRecord */
-		$model = new $class('insert');
+		$model = new $class();
 
 		\Yii::import('bootstrap.widgets.TbForm');
 
