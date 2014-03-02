@@ -547,6 +547,13 @@ class Configuration extends ActiveRecord
 		return $toEmails;
 	}
 
+	protected function afterFind()
+	{
+		parent::afterFind();
+		$this->setRules();
+	}
+
+
 	/**
 	 * This method is invoked before validation starts.
 	 * The default implementation calls {@link onBeforeValidate} to raise an event.
@@ -562,12 +569,6 @@ class Configuration extends ActiveRecord
 			return true;
 		}
 		return false;
-	}
-
-	protected function afterFind()
-	{
-		parent::afterFind();
-		$this->setRules();
 	}
 
 	/**

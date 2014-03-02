@@ -24,6 +24,11 @@ function parseResponse(response)
 	{
 		$("body").append(response.js);
 	}
+	jsFunctionsAssign();
+}
+function jsFunctionsAssign()
+{
+
 }
 $(function(){
 	$(document).on('submit', '.ajax-form', function (event) {

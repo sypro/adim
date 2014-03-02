@@ -38,7 +38,7 @@ class SiteController extends FrontendController
 	 */
 	public function actionError()
 	{
-		if ($error = app()->errorHandler->error) {
+		if (($error = app()->errorHandler->error)) {
 			if (r()->isAjaxRequest) {
 				echo $error['message'];
 			} else {

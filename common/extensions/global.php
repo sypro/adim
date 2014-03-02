@@ -11,6 +11,28 @@ function app()
 }
 
 /**
+ * Get config param
+ *
+ * @param $key
+ *
+ * @param bool $force
+ *
+ * @return int|null|string
+ */
+function config($key, $force = false)
+{
+	return app()->config->get($key, $force);
+}
+
+/**
+ * @return \CTheme
+ */
+function theme()
+{
+	return app()->theme;
+}
+
+/**
  * This is the shortcut to Yii::app()->clientScript
  *
  * @return \CClientScript

@@ -33,7 +33,7 @@ class Lang
 	public static function getLanguages($column = 'label', $index = 'code')
 	{
 		if (self::$models === null) {
-			$models = Language::model()->published()->visible()->ordered()->findAll();
+			$models = Language::model()->published()->ordered()->findAll();
 			$array = array();
 			foreach ($models as $model) {
 				$code = \CHtml::value($model, 'code');
