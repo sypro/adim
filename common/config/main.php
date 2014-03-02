@@ -15,6 +15,9 @@ $main = array(
 		'core' => array(
 			'class' => '\core\CoreModule',
 		),
+		'file-processor' => array(
+			'class' => '\fileProcessor\FileProcessorModule',
+		),
 	),
 	'components' => array(
 		'urlManager' => array(

@@ -7,7 +7,6 @@ namespace configuration\models;
 
 use backstage\components\ActiveRecord;
 use backstage\components\FileFormInputElement;
-use backstage\components\ImageFormInputElement;
 use CEvent;
 use CModelEvent;
 use core\components\Validator;
@@ -388,10 +387,11 @@ class Configuration extends ActiveRecord
 				), true);
 				break;
 			case self::TYPE_IMAGE:
-				$field = app()->controller->widget(ImageFormInputElement::getClassName(), array(
+				$field = app()->controller->widget(FileFormInputElement::getClassName(), array(
 						'htmlOptions' => $htmlOptions,
 						'model' => $this,
 						'attribute' => $fieldName,
+						'content' => 'image',
 					), true);
 				break;
 			case self::TYPE_HTML:
@@ -478,7 +478,8 @@ class Configuration extends ActiveRecord
 				break;
 			case self::TYPE_IMAGE:
 				$field = array(
-					'type' => ImageFormInputElement::getClassName(),
+					'type' => FileFormInputElement::getClassName(),
+					'content' => 'image',
 				);
 				break;
 			case self::TYPE_BOOLEAN:

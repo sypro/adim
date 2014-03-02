@@ -9,6 +9,8 @@ namespace core\components;
 /**
  * Class ActiveRecord
  * @package core\components
+ *
+ * @method integer[] getRelatedFiles()
  */
 abstract class ActiveRecord extends \CActiveRecord
 {

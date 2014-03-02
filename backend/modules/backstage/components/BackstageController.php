@@ -8,6 +8,7 @@ namespace backstage\components;
 
 use core\components\Controller;
 use admin\models\User;
+use fileProcessor\helpers\FPM;
 
 /**
  * Class BackstageController
@@ -30,9 +31,9 @@ class BackstageController extends Controller
 	{
 		return array(
 			'accessControl',
-			'postOnly +change',
-			'ajaxOnly +change',
-			'jsonHeader +change',
+			'postOnly +change +deleteFile',
+			'ajaxOnly +change +deleteFile',
+			'jsonHeader +change +deleteFile',
 		);
 	}
 
@@ -216,6 +217,25 @@ class BackstageController extends Controller
 		} else {
 			throw new \CHttpException(400, 'Invalid request. Please do not repeat this request again.');
 		}
+	}
+
+	/**
+	 * Delete only related file
+	 *
+	 * @param $id
+	 */
+	public function actionDeleteFile($id)
+	{
+		FPM::deleteFiles($id);
+		$data = array(
+			'replaces' => array(
+				array(
+					'what' => '#file' . $id,
+					'data' => null,
+				),
+			),
+		);
+		$this->renderJson($data);
 	}
 
 	/**
