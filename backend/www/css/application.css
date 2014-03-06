@@ -4,16 +4,3 @@
 .file-input-block-link {display: block;padding-top: 10px;}
 .container {min-width: 99% !important;}
 .ui-tooltip { position: absolute; padding: 3px; }
-
-.form-actions-fixed {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    margin: 0;
-    width: 100%;
-}
-
-.form-actions.form-actions-fixed {
-    padding-left: 200px !important;
-    margin-bottom: 0;
-}
