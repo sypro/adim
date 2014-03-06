@@ -16,7 +16,7 @@ namespace core\components;
  * @property \CFormatter $format
  * @property \language\components\LanguageUrlManager $urlManager
  * @property \configuration\components\ConfigurationComponent $config
- * @property \console\components\YiiMailer $mail
+ * @property \console\components\Mail $mail
  * @property \CTheme $theme
  *
  * @method \core\components\ClientScript getClientScript()

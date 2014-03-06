@@ -5,6 +5,11 @@
 
 namespace console\components;
 
+use CException;
+use Exception;
+use PHPMailer;
+use phpmailerException;
+
 /**
  * YiiMailer class - wrapper for PHPMailer
  * Yii extension for sending emails using views and layouts
@@ -32,7 +37,7 @@ namespace console\components;
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
  * @version 1.5, 2013-06-03
  */
-class YiiMailer extends \PHPMailer
+class YiiMailer extends PHPMailer
 {
 	/**
 	 * The From email address for the message.
@@ -69,21 +74,12 @@ class YiiMailer extends \PHPMailer
 	public $ContentType = 'text/html';
 
 	/**
-	 * application params configuration key
-	 */
-	const CONFIG_PARAMS = 'YiiMailer';
-
-	/**
 	 * Set and configure initial parameters
 	 *
 	 */
-	public function __construct()
+	public function __construct($config = array(), $exceptions = false)
 	{
-		$config = array();
-		if (isset(app()->params[self::CONFIG_PARAMS])) {
-			$config = app()->params[self::CONFIG_PARAMS];
-		}
-		//set config
+		parent::__construct($exceptions);
 		$this->setConfig($config);
 	}
 
@@ -92,13 +88,10 @@ class YiiMailer extends \PHPMailer
 	 *
 	 * @param array $config Config parameters
 	 *
-	 * @throws \CException
+	 * @throws CException
 	 */
-	private function setConfig($config)
+	private function setConfig(array $config = array())
 	{
-		if (!is_array($config)) {
-			throw new \CException("Configuration options must be an array!");
-		}
 		foreach ($config as $key => $val) {
 			$this->$key = $val;
 		}
@@ -282,8 +275,8 @@ class YiiMailer extends \PHPMailer
 	/**
 	 * Render message and send emails
 	 *
-	 * @throws \Exception
-	 * @throws \phpmailerException
+	 * @throws Exception
+	 * @throws phpmailerException
 	 * @return boolean True if sent successfully, false otherwise
 	 */
 	public function send()
@@ -301,7 +294,7 @@ class YiiMailer extends \PHPMailer
 			} else {
 				return $this->PostSend();
 			}
-		} catch (\phpmailerException $e) {
+		} catch (phpmailerException $e) {
 			$this->mailHeader = '';
 			$this->SetError($e->getMessage());
 			if ($this->exceptions) {
@@ -315,7 +308,7 @@ class YiiMailer extends \PHPMailer
 	/**
 	 * Save message as eml file
 	 *
-	 * @throws \CException
+	 * @throws CException
 	 * @return boolean True if saved successfully, false otherwise
 	 */
 	public function save()
@@ -324,7 +317,7 @@ class YiiMailer extends \PHPMailer
 		$dir = \Yii::getPathOfAlias($this->savePath);
 		//check if dir exists and is writable
 		if (!is_writable($dir)) {
-			throw new \CException('Directory "' . $dir . '" does not exist or is not writable!');
+			throw new CException('Directory "' . $dir . '" does not exist or is not writable!');
 		}
 
 		try {
@@ -333,7 +326,7 @@ class YiiMailer extends \PHPMailer
 			fclose($file);
 
 			return true;
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 			$this->SetError($e->getMessage());
 
 			return false;

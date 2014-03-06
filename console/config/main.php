@@ -37,7 +37,7 @@ $console = array(
 	),
 	'components' => array(
 		'mail' => array(
-			'class' => '\console\components\YiiMailer',
+			'class' => '\console\components\Mail',
 			'CharSet' => 'UTF-8',
 			'From' => 'noreply@domain.com',
 			'FromName' => 'noreply',
