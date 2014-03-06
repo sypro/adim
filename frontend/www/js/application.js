@@ -24,6 +24,11 @@ function parseResponse(response)
 	{
 		$("body").append(response.js);
 	}
+	jsFunctionsAssign();
+}
+function jsFunctionsAssign()
+{
+
 }
 $(function(){
 	$(document).on('submit', '.ajax-form', function (event) {
@@ -56,6 +61,9 @@ $(function(){
 	$(document).on('click', '.ajax-link', function (event) {
 		event.preventDefault();
 		var that = this;
+		if($(that).data('confirm') && !confirm($(that).data('confirm'))) {
+			return false;
+		}
 		jQuery.ajax({'cache': false, 'type': 'POST', 'dataType': 'json', 'data':$(that).data('params'), 'success': function (response) {
 			parseResponse(response);
 		}, 'error': function (response) {

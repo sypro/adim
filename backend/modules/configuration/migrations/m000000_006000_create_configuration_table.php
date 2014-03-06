@@ -1,11 +1,22 @@
 <?php
 
+/**
+ * Class m000000_006000_create_configuration_table
+ */
 class m000000_006000_create_configuration_table extends CDbMigration
 {
+	/**
+	 * migration related table name
+	 */
+	public $tableName = '{{configuration}}';
+
+	/**
+	 * commands will be executed in transaction
+	 */
 	public function up()
 	{
 		$this->createTable(
-			'{{configuration}}',
+			$this->tableName,
 			array(
 				'id' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY',
 
@@ -17,9 +28,6 @@ class m000000_006000_create_configuration_table extends CDbMigration
 
 				'preload' => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 0',
 
-				'visible' => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT "0 - not visible; 1 - visible"',
-				'published' => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT "0 - not published; 1 - published"',
-				'position' => 'INT UNSIGNED NOT NULL DEFAULT 0 COMMENT "order by position DESC"',
 				'created' => 'INT UNSIGNED NOT NULL COMMENT "unix timestamp - creation time"',
 				'modified' => 'INT UNSIGNED NOT NULL COMMENT "unix timestamp - last entity modified time"',
 
@@ -29,8 +37,11 @@ class m000000_006000_create_configuration_table extends CDbMigration
 		);
 	}
 
+	/**
+	 * commands will be executed in transaction
+	 */
 	public function down()
 	{
-		$this->dropTable('{{configuration}}');
+		$this->dropTable($this->tableName);
 	}
 }

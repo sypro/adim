@@ -22,6 +22,7 @@ class m000000_004000_create_language_table extends CDbMigration
 
 				'label' => 'VARCHAR(20) NULL DEFAULT NULL COMMENT "language label"',
 				'code' => 'VARCHAR(5) NOT NULL COMMENT "language code"',
+				'locale' => 'VARCHAR (5) NULL DEFAULT NULL',
 
 				'visible' => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT "0 - not visible; 1 - visible"',
 				'published' => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT "0 - not published; 1 - published"',
@@ -37,6 +38,7 @@ class m000000_004000_create_language_table extends CDbMigration
 		$this->insert('{{language}}', array(
 			'label' => 'рус',
 			'code' => 'ru',
+			'locale' => 'ru',
 		));
 	}
 

@@ -13,6 +13,9 @@ use language\models\Language;
  */
 class LanguageController extends BackstageController
 {
+	/**
+	 * @return string
+	 */
 	public function getModelClass()
 	{
 		return Language::getClassName();

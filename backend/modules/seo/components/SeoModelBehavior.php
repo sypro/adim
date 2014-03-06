@@ -41,15 +41,18 @@ class SeoModelBehavior extends \CActiveRecordBehavior
 						$seoData = new Seo('insert');
 					}
 					$seoData->setAttributes($_POST[$modelName][$key]);
-					$seoData->setAttributes(array(
+					$seoData->setAttributes(
+						array(
 							'model_name' => $ownerClass,
 							'model_id' => $ownerPK,
 							'lang_id' => $key,
-						));
+						)
+					);
 					$seoData->save();
 				}
 			}
 		}
+
 		return true;
 	}
 
@@ -64,40 +67,52 @@ class SeoModelBehavior extends \CActiveRecordBehavior
 			$ownerPK = $this->getOwnerPK();
 			$ownerClass = get_class($this->owner);
 			//gets SEO data for owner model
-			$seoData = Seo::model()->findByPk(array(
-				'model_name' => $ownerClass,
-				'model_id' => $ownerPK,
-				'lang_id' => $lang,
-			));
-			//if no SEO data, then create new record
-			if (!$seoData) {
-				$seoData = new Seo();
-				$seoData->setAttributes(array(
+			$seoData = Seo::model()->findByPk(
+				array(
 					'model_name' => $ownerClass,
 					'model_id' => $ownerPK,
 					'lang_id' => $lang,
-				));
+				)
+			);
+			//if no SEO data, then create new record
+			if (!$seoData) {
+				$seoData = new Seo();
+				$seoData->setAttributes(
+					array(
+						'model_name' => $ownerClass,
+						'model_id' => $ownerPK,
+						'lang_id' => $lang,
+					)
+				);
 			}
+
 			return $seoData;
 		} else {
 			$ownerPK = $this->getOwnerPK();
 			$ownerClass = get_class($this->owner);
 			$seoData = array();
 			foreach (Lang::getLanguageKeys() as $key) {
-				$seoData[$key] = $this->owner->isNewRecord ? null : Seo::model()->findByPk(array(
-					'model_name' => $ownerClass,
-					'model_id' => $ownerPK,
-					'lang_id' => $key,
-				));
+				$seoData[$key] = $this->owner->isNewRecord
+					? null
+					: Seo::model()->findByPk(
+						array(
+							'model_name' => $ownerClass,
+							'model_id' => $ownerPK,
+							'lang_id' => $key,
+						)
+					);
 				if (!$seoData[$key]) {
 					$seoData[$key] = new Seo();
 				}
-				$seoData[$key]->setAttributes(array(
-					'model_name' => $ownerClass,
-					'model_id' => $ownerPK,
-					'lang_id' => $key,
-				));
+				$seoData[$key]->setAttributes(
+					array(
+						'model_name' => $ownerClass,
+						'model_id' => $ownerPK,
+						'lang_id' => $key,
+					)
+				);
 			}
+
 			return $seoData;
 		}
 	}

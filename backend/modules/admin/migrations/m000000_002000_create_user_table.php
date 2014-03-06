@@ -14,6 +14,10 @@ class m000000_002000_create_user_table extends CDbMigration
 	 * @var string
 	 */
 	public $tableName = '{{admin_user}}';
+
+	/**
+	 * commands will be executed in transaction
+	 */
 	public function up()
 	{
 		$this->createTable(
@@ -54,6 +58,9 @@ class m000000_002000_create_user_table extends CDbMigration
 		);
 	}
 
+	/**
+	 * commands will be executed in transaction
+	 */
 	public function down()
 	{
 		$this->dropTable($this->tableName);

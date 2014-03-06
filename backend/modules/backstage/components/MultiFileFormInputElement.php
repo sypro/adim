@@ -9,10 +9,11 @@ namespace backstage\components;
 use fileProcessor\helpers\FPM;
 
 /**
- * Class FileFormInputElement
+ * Class ImageFormInputElement
+ *
  * @package backstage\components
  */
-class FileFormInputElement extends Widget
+class MultiFileFormInputElement extends Widget
 {
 	/**
 	 * @var array
@@ -39,6 +40,7 @@ class FileFormInputElement extends Widget
 	public $content = 'file';
 
 	/**
+	 * @return null|string|void
 	 * @throws \CHttpException
 	 */
 	public function run()
@@ -46,40 +48,42 @@ class FileFormInputElement extends Widget
 		if (!$this->model || !$this->attribute) {
 			throw new \CHttpException(400, t('You need set model and attribute!'));
 		}
+		if ($this->model->isNewRecord) {
+			return null;
+		}
 		\Yii::import('bootstrap.widgets.TbActiveForm');
 		$form = new \TbActiveForm();
 		$form->type = 'horizontal';
 
-		$html = $form->fileField($this->model, $this->attribute, $this->htmlOptions);
+		$this->htmlOptions['multiple'] = true;
 
-		$fileId = $this->model->{$this->attribute};
-
-		if (!$fileId) {
-			echo $html;
-			return null;
-		}
-		$html .= \CHtml::openTag(
+		echo $form->fileField($this->model, $this->attribute, $this->htmlOptions);
+		$html = \CHtml::openTag(
 			'ul',
 			array(
 				'class' => 'well-small thumbnails',
+				'data-id' => $this->model->getPrimaryKey(),
+				'data-action' => \CHtml::normalizeUrl(array('sortImage')),
 			)
 		);
-		$html .= \CHtml::openTag('li', array('id' => 'file' . $fileId,));
-		$html .= \CHtml::openTag('span', array('class' => 'thumbnail span3',));
-		$html .= \CHtml::link(
-			'<i class="icon-trash"></i>',
-			array(
-				'deleteFile',
-				'id' => $fileId,
-			),
-			array(
-				'class' => 'btn btn-mini remove ajax-link fpm-file' . $fileId,
-				'data-confirm' => 'You really want to delete this file?',
-			)
-		);
-		$html .= $this->renderFileView($fileId);
-		$html .= \CHtml::closeTag('span');
-		$html .= \CHtml::closeTag('li');
+		foreach ($this->model->getRelatedFiles() as $fileId) {
+			$html .= \CHtml::openTag('li', array('class' => 'height200', 'id' => 'file' . $fileId,));
+			$html .= \CHtml::openTag('span', array('class' => 'thumbnail span2',));
+			$html .= \CHtml::link(
+				'<i class="icon-trash"></i>',
+				array(
+					'deleteFile',
+					'id' => $fileId,
+				),
+				array(
+					'class' => 'btn btn-mini remove ajax-link fpm-file' . $fileId,
+					'data-confirm' => 'You really want to delete this file?',
+				)
+			);
+			$html .= $this->renderFileView($fileId);
+			$html .= \CHtml::closeTag('span');
+			$html .= \CHtml::closeTag('li');
+		}
 		$html .= \CHtml::closeTag('ul');
 
 		echo $html;
@@ -103,7 +107,7 @@ class FileFormInputElement extends Widget
 				break;
 			case 'image':
 				$return = \CHtml::link(
-					FPM::image($fileId, 'admin', 'form'),
+					FPM::image($fileId, 'admin', 'view'),
 					FPM::originalSrc($fileId),
 					array('target' => '_blank',)
 				);

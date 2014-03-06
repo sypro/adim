@@ -23,7 +23,7 @@ class ElfinderController extends BackstageController
 				'settings' => array(
 					'roots' => array(
 						array(
-							'URL' => 'http://www.15rokiv.novy.tv/uploads/files/',
+							'URL' => '/uploads/files/',
 							'rootAlias' => 'Home',
 							'mimeDetect' => 'none',
 							'driver' => 'LocalFileSystem',

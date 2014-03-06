@@ -11,6 +11,28 @@ function app()
 }
 
 /**
+ * Get config param
+ *
+ * @param $key
+ *
+ * @param bool $force
+ *
+ * @return int|null|string
+ */
+function config($key, $force = false)
+{
+	return app()->config->get($key, $force);
+}
+
+/**
+ * @return \CTheme
+ */
+function theme()
+{
+	return app()->theme;
+}
+
+/**
  * This is the shortcut to Yii::app()->clientScript
  *
  * @return \CClientScript
@@ -337,4 +359,34 @@ function mergeArray()
 	}
 
 	return $res;
+}
+
+/**
+ * Array column implementation
+ *
+ * @param $array
+ * @param $column
+ * @param null $index
+ *
+ * @return array
+ */
+function arrayColumn($array, $column, $index = null)
+{
+	$results = array();
+	if (!is_array($array)) {
+		return $results;
+	}
+	foreach ($array as $child) {
+		if (!is_array($child)) {
+			continue;
+		}
+		if (array_key_exists($column, $child)) {
+			if ($index && array_key_exists($index, $child)) {
+				$results[$child[$index]] = $child[$column];
+			} else {
+				$results[] = $child[$column];
+			}
+		}
+	}
+	return $results;
 }

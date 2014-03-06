@@ -294,14 +294,14 @@ foreach($searchColumns as $name => $column)
 				$behaviors,
 				array(
 <?php if (in_array('image_id', array_keys($columns))) :?>
-					'image_id' => array(
+					'b_image_id' => array(
 						'class' => '\fileProcessor\components\FileUploadBehavior',
 						'attributeName' => 'image_id',
 						'fileTypes' => 'png, gif, jpeg, jpg',
 					),
 <?php endif; ?>
 <?php if (in_array('file_id', array_keys($columns))) :?>
-					'file_id' => array(
+					'b_file_id' => array(
 						'class' => '\fileProcessor\components\FileUploadBehavior',
 						'attributeName' => 'file_id',
 						'fileTypes' => 'png, gif, jpeg, jpg, doc, pdf, ppt, zip, rar',

@@ -101,7 +101,7 @@ class LanguageUrlManager extends UrlManager
 			$requestLang = Lang::getDefault();
 		}
 
-		app()->language = $requestLang;
+		app()->setLanguage(Lang::getLocale($requestLang));
 
 		return $route;
 	}

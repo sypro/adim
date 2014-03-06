@@ -9,6 +9,8 @@ namespace core\components;
 /**
  * Class ActiveRecord
  * @package core\components
+ *
+ * @method integer[] getRelatedFiles()
  */
 abstract class ActiveRecord extends \CActiveRecord
 {
@@ -342,5 +344,20 @@ abstract class ActiveRecord extends \CActiveRecord
 	public static function model($className = __CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function loadData()
+	{
+		$modelName = \CHtml::modelName($this);
+		if (isset($_POST[$modelName])) {
+			$this->setAttributes($_POST[$modelName]);
+
+			return true;
+		}
+
+		return false;
 	}
 }

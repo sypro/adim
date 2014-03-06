@@ -23,7 +23,7 @@ $console = array(
 				'backTranslate' => 'back.modules.translate.migrations',
 				'backConf' => 'back.modules.configuration.migrations',
 				'backMenu' => 'back.modules.menu.migrations',
-				'fileProcessor' => 'root.vendor.metalguardian.yii-file-processor.fileProcessor.migrations'
+				'fileProcessor' => 'root.vendor.metalguardian.yii-file-processor.fileProcessor.migrations',
 			),
 			'migrationSubPath' => 'migrations',
 			'disabledModules' => array(),
@@ -37,7 +37,7 @@ $console = array(
 	),
 	'components' => array(
 		'mail' => array(
-			'class' => '\console\components\YiiMailer',
+			'class' => '\console\components\Mail',
 			'CharSet' => 'UTF-8',
 			'From' => 'noreply@domain.com',
 			'FromName' => 'noreply',

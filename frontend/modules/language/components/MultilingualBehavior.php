@@ -7,6 +7,7 @@
 namespace language\components;
 
 use backstage\components\ActiveRecord;
+use language\helpers\Lang;
 
 /**
  * Class MultilingualBehavior
@@ -313,7 +314,7 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 		if (!isset($this->multiLangRelation)) {
 			$this->multiLangRelation = 'multiLang_' . \CHtml::modelName($ownerClassName);
 		}
-		$this->createLocalizedRelation($owner, \Yii::app()->language);
+		$this->createLocalizedRelation($owner, Lang::getCurrentLanguage());
 		$this->createMultiLangRelation($owner);
 		$rules = $owner->rules();
 		$validators = $owner->getValidatorList();
@@ -352,7 +353,7 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 	public function localized($lang = null)
 	{
 		$owner = $this->getOwner();
-		if ($lang != null && $lang != \Yii::app()->language && in_array($lang, $this->languages)) {
+		if ($lang != null && $lang != Lang::getCurrentLanguage() && in_array($lang, $this->languages)) {
 			$this->createLocalizedRelation($owner, $lang);
 			$this->_notDefaultLanguage = true;
 		}
@@ -503,7 +504,7 @@ class MultilingualBehavior extends \CActiveRecordBehavior
 				}
 			}
 			if ($this->_notDefaultLanguage) {
-				$this->createLocalizedRelation($owner, \Yii::app()->language);
+				$this->createLocalizedRelation($owner, Lang::getCurrentLanguage());
 				$this->_notDefaultLanguage = false;
 			}
 		}

@@ -6,21 +6,39 @@
 
 namespace language\widgets\languageChecker;
 
+use core\components\Menu;
 use frontend\components\FrontendController;
-use frontend\components\Widget;
 use language\helpers\Lang;
 
 /**
- * Class Language
+ * Class LanguageCheckerMenu
  *
- * @package language\widgets\language
+ * @package language\widgets\languageChecker
  */
-class LanguageChecker extends Widget
+class LanguageCheckerMenu extends Menu
 {
+	public function init()
+	{
+		$items = array();
+		foreach (Lang::getLanguagesVisible() as $key => $lang) {
+			$items[] = array('label' => $lang, 'url' => $this->prepareUrl($key), 'active' => ($key === Lang::get()), );
+		}
+
+		$this->items = $items;
+		parent::init();
+	}
+
+	/**
+	 * @return null|void
+	 */
 	public function run()
 	{
-		$this->render('default');
+		if (count($this->items) < 2) {
+			return null;
+		}
+		parent::run();
 	}
+
 
 	/**
 	 * @param $lang

@@ -70,19 +70,19 @@ $backend = array(
 						'width' => 100,
 						'height' => 100,
 						'quality' => 70,
-						'do' => 'thumb', // resize|thumb|adaptiveThumb
+						'do' => 'resize', // resize|adaptiveResize
 					),
 					'view' => array(
 						'width' => 300,
 						'height' => 300,
 						'quality' => 90,
-						'do' => 'thumb', // resize|thumb|adaptiveThumb
+						'do' => 'resize', // resize|adaptiveResize
 					),
 					'form' => array(
 						'width' => 300,
 						'height' => 300,
 						'quality' => 90,
-						'do' => 'thumb', // resize|thumb|adaptiveThumb
+						'do' => 'resize', // resize|adaptiveResize
 					),
 				),
 			),

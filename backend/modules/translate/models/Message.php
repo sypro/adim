@@ -235,7 +235,7 @@ class Message extends ActiveRecord
 					'translation',
 					array(
 						'name' => 'language',
-						'filter' => Lang::getLanguages(),
+						'filter' => Lang::getLanguages('label', 'locale'),
 						'htmlOptions' => array('class' => 'span2 center', ),
 					),
 					array(
@@ -310,7 +310,7 @@ class Message extends ActiveRecord
 				'language' => array(
 					'type' => 'dropdownlist',
 					'class' => 'span3 language_selects',
-					'items' => Lang::getLanguages(),
+					'items' => Lang::getLanguages('label', 'locale'),
 					'empty' => '',
 					'disabled' => $isUpdate,
 					'id' => 'language_code_select',

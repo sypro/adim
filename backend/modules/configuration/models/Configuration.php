@@ -7,7 +7,6 @@ namespace configuration\models;
 
 use backstage\components\ActiveRecord;
 use backstage\components\FileFormInputElement;
-use backstage\components\ImageFormInputElement;
 use CEvent;
 use CModelEvent;
 use core\components\Validator;
@@ -23,9 +22,6 @@ use language\helpers\Lang;
  * @property string $description
  * @property integer $type
  * @property integer $preload
- * @property integer $visible
- * @property integer $published
- * @property integer $position
  */
 class Configuration extends ActiveRecord
 {
@@ -391,10 +387,11 @@ class Configuration extends ActiveRecord
 				), true);
 				break;
 			case self::TYPE_IMAGE:
-				$field = app()->controller->widget(ImageFormInputElement::getClassName(), array(
+				$field = app()->controller->widget(FileFormInputElement::getClassName(), array(
 						'htmlOptions' => $htmlOptions,
 						'model' => $this,
 						'attribute' => $fieldName,
+						'content' => 'image',
 					), true);
 				break;
 			case self::TYPE_HTML:
@@ -481,7 +478,8 @@ class Configuration extends ActiveRecord
 				break;
 			case self::TYPE_IMAGE:
 				$field = array(
-					'type' => ImageFormInputElement::getClassName(),
+					'type' => FileFormInputElement::getClassName(),
+					'content' => 'image',
 				);
 				break;
 			case self::TYPE_BOOLEAN:
@@ -549,6 +547,13 @@ class Configuration extends ActiveRecord
 		}
 		return $toEmails;
 	}
+
+	protected function afterFind()
+	{
+		parent::afterFind();
+		$this->setRules();
+	}
+
 
 	/**
 	 * This method is invoked before validation starts.
@@ -618,9 +623,9 @@ class Configuration extends ActiveRecord
 
 				'class' => '\fileProcessor\components\FileUploadBehavior',
 				'attributeName' => 'value',
-				'allowEmpty' => true,
+				'allowEmpty' => false,
 				'fileTypes' => null,
-				'scenarios' => array('file'),
+				'scenarios' => array('file', ),
 			),
 			'b_image_value' => array(
 				'configLanguageAttribute' => 'value',
@@ -628,9 +633,9 @@ class Configuration extends ActiveRecord
 
 				'class' => '\fileProcessor\components\FileUploadBehavior',
 				'attributeName' => 'value',
-				'allowEmpty' => true,
+				'allowEmpty' => false,
 				'fileTypes' => 'png, gif, jpeg, jpg',
-				'scenarios' => array('image'),
+				'scenarios' => array('image', ),
 			),
 		);
 		$behaviors = $this->prepareBehaviors($languageBehaviors);
@@ -658,7 +663,7 @@ class Configuration extends ActiveRecord
 	 */
 	public static function getLocalizedAttributesList()
 	{
-		return array('value');
+		return array('value', );
 	}
 
 	/**
@@ -668,6 +673,6 @@ class Configuration extends ActiveRecord
 	 */
 	public function ordered()
 	{
-		return $this;
+		return $this->order('t.config_key ASC');
 	}
 }

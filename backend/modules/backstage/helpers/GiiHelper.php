@@ -159,7 +159,8 @@ class GiiHelper
 			case ($column->type === 'integer'):
 				if ($column->name == 'image_id') {
 					$row = "'image_id' => array(
-					'type' => '\\backstage\\components\\ImageFormInputElement',
+					'type' => '\\backstage\\components\\FileFormInputElement',
+					'content' => 'image',
 				),";
 				} else {
 					$row = "'{$name}' => array(

@@ -23,27 +23,26 @@ class EmailSendCommand extends \CConsoleCommand
 	 */
 	public function run($args)
 	{
+		$queueItem = EmailQueue::getNextItem();
 
-		$email = EmailQueue::getNextItem();
+		if ($queueItem) {
+			$email = app()->mail->createEmail();
+			$email->setBody($queueItem->body);
+			$email->setSubject($queueItem->subject);
 
-		if ($email) {
-			$mail = new YiiMailer();
-			$mail->setBody($email->body);
-			$mail->setSubject($email->subject);
-
-			$to = (array)jd($email->to);
+			$to = (array)jd($queueItem->to);
 			foreach ($to as $address => $name) {
 				if (is_int($address)) {
-					$mail->AddAddress($name);
+					$email->AddAddress($name);
 				} else {
-					$mail->AddAddress($address, $name);
+					$email->AddAddress($address, $name);
 				}
 			}
 
-			if ($mail->send()) {
-				$email->changeStatus(EmailQueue::STATUS_SENDED);
+			if ($email->send()) {
+				$queueItem->changeStatus(EmailQueue::STATUS_SENDED);
 			} else {
-				$email->notSended($mail->getError());
+				$queueItem->notSended($email->getError());
 			}
 		}
 	}

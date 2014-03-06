@@ -1,6 +1,12 @@
 .center {text-align:center!important;}
 #toggle-seo-box {display: none;}
-.file-input-block-image {display: block;padding-top: 10px;}
-.file-input-block-link {display: block;padding-top: 10px;}
 .container {min-width: 99% !important;}
 .ui-tooltip { position: absolute; padding: 3px; }
+.form-actions-fixed {position: fixed;left: 0;bottom: 0;margin: 0;width: 100%;}
+.form-actions.form-actions-fixed {padding-left: 200px !important;margin-bottom: 0;}
+.thumbnail { position: relative; }
+.thumbnails { margin-left: 0; }
+.thumbnails li { display: inline-block; *display:inline; float: none; vertical-align: top; margin-left: 0 !important; margin-right: 10px; }
+.thumbnails .remove { position: absolute; top: 1px; right: 1px; }
+.thumbnail.fpm-form-file {margin-left: 0;}
+li.height200 {height: 200px;}
