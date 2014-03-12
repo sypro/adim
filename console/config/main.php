@@ -34,6 +34,9 @@ $console = array(
 		'message' => array(
 			'class' => '\console\components\commands\CoreMessageCommand',
 		),
+		'chmod' => array(
+			'class' => '\console\components\commands\ChmodCommand',
+		),
 	),
 	'components' => array(
 		'mail' => array(
