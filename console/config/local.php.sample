@@ -7,16 +7,8 @@ return array(
 	),
 	'params' => array(
 		'composer.callbacks' => array(
-			'pre-update' => array(
-				array(
-					'git pull',
-				),
-			),
-			'pre-install' => array(
-				array(
-					'git pull',
-				),
-			),
+			'pre-update' => array(),
+			'pre-install' => array(),
 		),
 	),
 );

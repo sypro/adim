@@ -36,26 +36,6 @@ class m000000_002000_create_user_table extends CDbMigration
 			),
 			'ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COLLATE=utf8_unicode_ci'
 		);
-
-		$time = time();
-		$command = new ConsoleCommand();
-
-		echo "\r\n\r\n";
-		$name = $command->prompt('Admin name', 'admin');
-		$email = $command->prompt('Admin email (used as login)', 'admin@melon.dev');
-		$password = $command->prompt('Admin password', 'admin@melon.dev');
-
-		$this->insert(
-			$this->tableName,
-			array(
-				'name' => $name,
-				'email' => $email,
-				'password' => CPasswordHelper::hashPassword($password),
-				'role' => 'admin',
-				'created' => $time,
-				'modified' => $time,
-			)
-		);
 	}
 
 	/**
