@@ -31,8 +31,7 @@ class MelonApp
 		$global = $root . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'common' . DIRECTORY_SEPARATOR . 'extensions' . DIRECTORY_SEPARATOR . 'global.php';
 		require_once($global);
 
-		$config = require_once($root . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'main.php');
-
+		$config = require($root . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'main.php');
 		if (isset($config['params']['debug']) && $config['params']['debug']) {
 			/** enable error display */
 			ini_set('display_errors', 1);
