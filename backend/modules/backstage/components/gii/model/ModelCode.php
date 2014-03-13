@@ -634,6 +634,6 @@ class ModelCode extends \CCodeModel
 
 	public function getNameSpace()
 	{
-		return strtr($this->modelPath, array('.' => '\\', 'application' => 'back', ));
+		return strtr($this->modelPath, array('.' => '\\', 'application' => 'backend', ));
 	}
 }

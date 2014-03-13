@@ -2,7 +2,7 @@
 
 class ControllerCode extends CCodeModel
 {
-	const BASE_NAMESPACE = 'back';
+	const BASE_NAMESPACE = 'backend';
 	public $controller;
 	public $baseClass = '\backstage\components\BackstageController';
 	public $actions = 'index';

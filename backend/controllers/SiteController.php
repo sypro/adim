@@ -3,7 +3,7 @@
  *
  */
 
-namespace back\controllers;
+namespace backend\controllers;
 
 use backstage\components\BackstageController;
 

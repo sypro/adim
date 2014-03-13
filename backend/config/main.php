@@ -6,7 +6,7 @@ $backend = array(
 	'timeZone' => 'Europe/Kiev',
 	/*'name' => '{application-name}',*/
 	'aliases' => array(
-		'back' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
+		'backend' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
 		'backstage' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'backstage'
 		),
@@ -110,7 +110,7 @@ $backend = array(
 			'class' => '\emailQueue\EmailQueueModule',
 		),
 	),
-	'controllerNamespace' => '\back\controllers',
+	'controllerNamespace' => '\backend\controllers',
 	'controllerMap' => array(
 		'image' => array(
 			'class' => '\fileProcessor\controllers\ImageController',
@@ -183,7 +183,7 @@ $backend = array(
 		'clientScript' => array(
 			'class' => '\core\components\ClientScript',
 			'packages' => array(
-				'back.main' => array(
+				'backend.main' => array(
 					'baseUrl' => '/',
 					'js' => array(
 						'js/form.helpers.js',

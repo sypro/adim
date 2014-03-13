@@ -61,7 +61,6 @@ class TranslateModule extends WebModule
 		$assetsUrl = $this->getAssetsUrl();
 
 		cs()->registerCoreScript('jquery');
-		cs()->registerPackage('back.main');
 		cs()->registerScriptFile($assetsUrl . '/js/translate.js');
 	}
 }
