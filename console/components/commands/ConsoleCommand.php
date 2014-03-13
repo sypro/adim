@@ -6,8 +6,6 @@
 
 namespace console\components\commands;
 
-use CConsoleCommandRunner;
-
 /**
  * Class ConsoleCommand
  * @package console\components\commands

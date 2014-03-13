@@ -36,7 +36,9 @@ $console = array(
 		),
 		'chmod' => array(
 			'class' => '\console\components\commands\ChmodCommand',
-			'directories' => false,
+		),
+		'translate' => array(
+			'class' => '\console\components\commands\TranslateCommand',
 		),
 	),
 	'components' => array(

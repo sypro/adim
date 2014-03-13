@@ -182,9 +182,6 @@ $frontend = array(
 		'config' => array(
 			'class' => '\configuration\components\ConfigurationComponent',
 		),
-		'messages' => array(
-			'class' => '\front\components\DbMessageSource',
-		),
 	),
 );
 

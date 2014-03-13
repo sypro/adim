@@ -4,11 +4,11 @@
  * Email: metal@vintage.com.ua
  */
 
-namespace front\components;
+namespace core\components;
 
 /**
  * Class DbMessageSource
- * @package front\components
+ * @package core\components
  */
 class DbMessageSource extends \CDbMessageSource
 {
