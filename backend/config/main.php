@@ -38,15 +38,6 @@ $backend = array(
 	'preload' => array('bootstrap',),
 	'import' => array(),
 	'modules' => array(
-		'gii' => array(
-			'class' => 'system.gii.GiiModule',
-			'password' => false,
-			'ipFilters' => array('127.0.0.1', '::1'),
-			'generatorPaths' => array(
-				'back.components.gii',
-				'bootstrap.src.gii',
-			),
-		),
 		'back' => array(
 			'class' => '\back\BackModule',
 		),
@@ -196,15 +187,6 @@ $backend = array(
 				),
 			),
 			'scriptMap' => array(),
-		),
-		'log' => array(
-			'routes' => array(
-				array(
-					'class' => '\YiiDebugToolbarRoute',
-					// Access is restricted by default to the localhost
-					'ipFilters' => array('127.0.0.1',),
-				),
-			),
 		),
 	),
 );

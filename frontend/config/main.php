@@ -31,14 +31,6 @@ $frontend = array(
 	'theme' => 'melon',
 	'preload' => array('maintenanceMode', ),
 	'modules' => array(
-		'gii' => array(
-			'class' => 'system.gii.GiiModule',
-			'password' => false,
-			'ipFilters' => array('127.0.0.1','::1'),
-			'generatorPaths' => array(
-				'front.components.gii',
-			),
-		),
 		'front' => array(
 			'class' => '\front\FrontModule',
 		),
@@ -192,15 +184,6 @@ $frontend = array(
 		),
 		'messages' => array(
 			'class' => '\front\components\DbMessageSource',
-		),
-		'log' => array(
-			'routes' => array(
-				array(
-					'class' => '\YiiDebugToolbarRoute',
-					// Access is restricted by default to the localhost
-					'ipFilters' => array('127.0.0.1', ),
-				),
-			),
 		),
 	),
 );
