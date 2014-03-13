@@ -6,8 +6,8 @@ $frontend = array(
 	'name' => '',
 	'aliases' => array(
 		'front' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
-		'frontend' => realpath(
-			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'frontend'
+		'front2' => realpath(
+			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'front2'
 		),
 		'menu' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'menu'
@@ -36,11 +36,11 @@ $frontend = array(
 			'password' => false,
 			'ipFilters' => array('127.0.0.1','::1'),
 			'generatorPaths' => array(
-				'frontend.components.gii',
+				'front2.components.gii',
 			),
 		),
-		'frontend' => array(
-			'class' => '\frontend\FrontendModule',
+		'front2' => array(
+			'class' => '\front2\Front2Module',
 		),
 		'file-processor' => array(
 			'class' => '\fileProcessor\FileProcessorModule',
@@ -128,7 +128,7 @@ $frontend = array(
 			//'urls' => array('/site/login', '/login', ),
 		),
 		'user' => array(
-			'class' => '\frontend\components\WebUser',
+			'class' => '\front2\components\WebUser',
 			// enable cookie-based authentication
 			'allowAutoLogin' => true,
 			'autoRenewCookie' => true,
@@ -138,7 +138,7 @@ $frontend = array(
 			),
 		),
 		'request' => array(
-			'class' => '\frontend\components\HttpRequest',
+			'class' => '\front2\components\HttpRequest',
 			'enableCookieValidation' => true,
 			'enableCsrfValidation' => true,
 			'csrfCookie' => array(
@@ -174,7 +174,7 @@ $frontend = array(
 			'errorAction' => 'site/error',
 		),
 		'session' => array(
-			'class' => '\frontend\components\DbHttpSession',
+			'class' => '\front2\components\DbHttpSession',
 			'connectionID' => 'db',
 			'autoStart' => true,
 			'cookieMode' => 'allow',
@@ -191,7 +191,7 @@ $frontend = array(
 			'class' => '\configuration\components\ConfigurationComponent',
 		),
 		'messages' => array(
-			'class' => '\frontend\components\DbMessageSource',
+			'class' => '\front2\components\DbMessageSource',
 		),
 		'log' => array(
 			'routes' => array(

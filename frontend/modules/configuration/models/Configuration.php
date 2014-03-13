@@ -5,7 +5,7 @@
 
 namespace configuration\models;
 
-use frontend\components\ActiveRecord;
+use front2\components\ActiveRecord;
 
 /**
  * This is the model class for table "{{configuration}}".
