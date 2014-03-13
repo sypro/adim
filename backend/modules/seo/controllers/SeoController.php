@@ -5,14 +5,14 @@
 
 namespace seo\controllers;
 
-use backstage\components\ActiveRecord;
-use backstage\components\BackstageController;
+use back\components\ActiveRecord;
+use back\components\BackController;
 use seo\models\Seo;
 
 /**
  * Class SeoController
  */
-class SeoController extends BackstageController
+class SeoController extends BackController
 {
 	/**
 	 * @return array
@@ -173,7 +173,7 @@ class SeoController extends BackstageController
 		}
 
 		$this->render(
-			'backstage.components.adminTemplates.update',
+			'back.components.adminTemplates.update',
 			array(
 				'model' => $model,
 				'form' => $form,

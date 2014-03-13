@@ -6,14 +6,14 @@
 
 namespace elfinder\controllers;
 
-use backstage\components\BackstageController;
+use back\components\BackController;
 
 /**
  * Class ElfinderController
  *
  * @package elfinder\controllers
  */
-class ElfinderController extends BackstageController
+class ElfinderController extends BackController
 {
 	public function actions()
 	{

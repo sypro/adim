@@ -5,7 +5,7 @@
 
 namespace admin\models;
 
-use backstage\components\ActiveRecord;
+use back\components\ActiveRecord;
 use core\helpers\Core;
 
 /**

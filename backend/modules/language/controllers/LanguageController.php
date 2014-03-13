@@ -5,13 +5,13 @@
 
 namespace language\controllers;
 
-use backstage\components\BackstageController;
+use back\components\BackController;
 use language\models\Language;
 
 /**
  * Class LanguageController
  */
-class LanguageController extends BackstageController
+class LanguageController extends BackController
 {
 	/**
 	 * @return string

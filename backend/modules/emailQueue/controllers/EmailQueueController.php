@@ -5,12 +5,12 @@
 
 namespace emailQueue\controllers;
 
-use backstage\components\BackstageController;
+use back\components\BackController;
 
 /**
  * Class EmailQueueController
  */
-class EmailQueueController extends BackstageController
+class EmailQueueController extends BackController
 {
 	/**
 	 * @return string

@@ -5,12 +5,12 @@
 
 namespace translate\controllers;
 
-use backstage\components\BackstageController;
+use back\components\BackController;
 
 /**
  * Class SourceMessageController
  */
-class MessageController extends BackstageController
+class MessageController extends BackController
 {
 	public function getModelClass()
 	{
@@ -82,7 +82,7 @@ class MessageController extends BackstageController
 			}
 		}
 
-		$this->render('backstage.components.adminTemplates.update', array(
+		$this->render('back.components.adminTemplates.update', array(
 				'model' => $model,
 				'form' => $form,
 			));
@@ -131,7 +131,7 @@ class MessageController extends BackstageController
 			}
 		}
 
-		$this->render('backstage.components.adminTemplates.update', array(
+		$this->render('back.components.adminTemplates.update', array(
 				'model' => $model,
 				'form' => $form,
 			));

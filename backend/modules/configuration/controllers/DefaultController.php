@@ -5,12 +5,12 @@
 
 namespace configuration\controllers;
 
-use backstage\components\BackstageController;
+use back\components\BackController;
 
 /**
  * Class DefaultController
  */
-class DefaultController extends BackstageController
+class DefaultController extends BackController
 {
 	public function actionIndex()
 	{

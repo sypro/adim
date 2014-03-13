@@ -6,7 +6,7 @@
 
 namespace language\components;
 
-use backstage\components\ActiveRecord;
+use back\components\ActiveRecord;
 
 /**
  * Class MultilingualBehavior

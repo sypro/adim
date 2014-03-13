@@ -5,7 +5,7 @@
 
 namespace translate\models;
 
-use backstage\components\ActiveRecord;
+use back\components\ActiveRecord;
 use core\components\DoubleUniqueValidator;
 use language\helpers\Lang;
 

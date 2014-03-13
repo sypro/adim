@@ -7,8 +7,8 @@ $backend = array(
 	/*'name' => '{application-name}',*/
 	'aliases' => array(
 		'backend' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
-		'backstage' => realpath(
-			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'backstage'
+		'back' => realpath(
+			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'back'
 		),
 		'admin' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'admin'
@@ -43,12 +43,12 @@ $backend = array(
 			'password' => false,
 			'ipFilters' => array('127.0.0.1', '::1'),
 			'generatorPaths' => array(
-				'backstage.components.gii',
+				'back.components.gii',
 				'bootstrap.src.gii',
 			),
 		),
-		'backstage' => array(
-			'class' => '\backstage\BackstageModule',
+		'back' => array(
+			'class' => '\back\BackModule',
 		),
 		'admin' => array(
 			'class' => '\admin\AdminModule',
@@ -118,11 +118,11 @@ $backend = array(
 	),
 	'components' => array(
 		'bootstrap' => array(
-			'class' => '\backstage\components\Bootstrap',
+			'class' => '\back\components\Bootstrap',
 			'responsiveCss' => true,
 		),
 		'format' => array(
-			'class' => '\backstage\components\Formatter',
+			'class' => '\back\components\Formatter',
 		),
 		'user' => array(
 			'class' => '\admin\components\WebUser',

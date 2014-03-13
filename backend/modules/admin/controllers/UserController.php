@@ -5,13 +5,13 @@
 
 namespace admin\controllers;
 
-use backstage\components\BackstageController;
+use back\components\BackController;
 use admin\models\LoginForm;
 
 /**
  * Class UserController
  */
-class UserController extends BackstageController
+class UserController extends BackController
 {
 	/**
 	 * @return string

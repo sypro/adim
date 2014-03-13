@@ -5,12 +5,12 @@
 
 namespace translate\controllers;
 
-use backstage\components\BackstageController;
+use back\components\BackController;
 
 /**
  * Class SourceMessageController
  */
-class SourceMessageController extends BackstageController
+class SourceMessageController extends BackController
 {
 	public function getModelClass()
 	{

@@ -5,7 +5,7 @@ class CrudCode extends CCodeModel
 	const BASE_NAMESPACE = 'back';
 	public $model;
 	public $controller;
-	public $baseControllerClass = '\backstage\components\BackstageController';
+	public $baseControllerClass = '\backstage\components\BackController';
 
 	private $_modelClass;
 	private $_table;
