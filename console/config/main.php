@@ -28,8 +28,8 @@ $console = array(
 			'migrationSubPath' => 'migrations',
 			'disabledModules' => array(),
 		),
-		'emailSend' => array(
-			'class' => '\console\components\commands\EmailSendCommand',
+		'email' => array(
+			'class' => '\console\components\commands\EmailCommand',
 		),
 		'message' => array(
 			'class' => '\console\components\commands\CoreMessageCommand',

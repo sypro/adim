@@ -10,18 +10,16 @@ use console\components\EmailQueue;
 use console\components\YiiMailer;
 
 /**
- * Class EmailSendCommand
+ * Class EmailCommand
  *
  * @package console\commands
  */
-class EmailSendCommand extends \CConsoleCommand
+class EmailCommand extends \CConsoleCommand
 {
 	/**
-	 * @param array $args
-	 *
 	 * @return int|void
 	 */
-	public function run($args)
+	public function actionSend()
 	{
 		$queueItem = EmailQueue::getNextItem();
 
