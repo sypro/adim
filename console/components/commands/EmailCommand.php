@@ -19,7 +19,7 @@ class EmailCommand extends \CConsoleCommand
 	/**
 	 * @return int|void
 	 */
-	public function actionSend()
+	public function actionIndex()
 	{
 		$queueItem = EmailQueue::getNextItem();
 
