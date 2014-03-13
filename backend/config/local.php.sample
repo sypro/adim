@@ -1,0 +1,25 @@
+<?php
+
+return array(
+	'modules' => array(
+		'gii' => array(
+			'class' => 'system.gii.GiiModule',
+			'password' => false,
+			'ipFilters' => false,
+			'generatorPaths' => array(
+				'back.components.gii',
+			),
+		),
+	),
+	'components' => array(
+		'log' => array(
+			'routes' => array(
+				array(
+					'class' => '\YiiDebugToolbarRoute',
+					// Access is restricted by default to the localhost
+					'ipFilters' => array('*',),
+				),
+			),
+		),
+	),
+);
