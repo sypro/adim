@@ -5,7 +5,7 @@
 
 namespace seo\components;
 
-use front2\components\ActiveRecord;
+use front\components\ActiveRecord;
 use language\helpers\Lang;
 
 /**

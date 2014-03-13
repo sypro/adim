@@ -5,7 +5,7 @@
 
 namespace seo\models;
 
-use front2\components\ActiveRecord;
+use front\components\ActiveRecord;
 
 /**
  * This is the model class for table "{{seo}}".

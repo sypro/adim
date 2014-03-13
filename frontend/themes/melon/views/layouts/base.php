@@ -6,7 +6,7 @@
  */
 
 /**
- * @var $this \front2\components\Front2Controller
+ * @var $this \front\components\FrontController
  */
 cs()->registerPackage('theme.melon');
 cs()->registerPackage('frontend.main');

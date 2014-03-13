@@ -5,14 +5,14 @@
 
 namespace frontend\controllers;
 
-use front2\components\Front2Controller;
+use front\components\FrontController;
 
 /**
  * Class SiteController
  *
  * @package frontend\controllers
  */
-class SiteController extends Front2Controller
+class SiteController extends FrontController
 {
 	/**
 	 * @var string

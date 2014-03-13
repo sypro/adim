@@ -3,7 +3,7 @@
  *
  */
 
-namespace menu\controllers;
+namespace front\controllers;
 
 use front\components\FrontController;
 

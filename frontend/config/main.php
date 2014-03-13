@@ -1,13 +1,13 @@
 <?php
 $main = require(__DIR__ . '/../../common/config/main.php');
 $frontend = array(
-	'id'=>'front',
+	'id' => 'melon-frontend',
 	'basePath' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
 	'name' => '',
 	'aliases' => array(
 		'frontend' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
-		'front2' => realpath(
-			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'front2'
+		'front' => realpath(
+			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'front'
 		),
 		'menu' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'menu'
@@ -36,11 +36,11 @@ $frontend = array(
 			'password' => false,
 			'ipFilters' => array('127.0.0.1','::1'),
 			'generatorPaths' => array(
-				'front2.components.gii',
+				'front.components.gii',
 			),
 		),
-		'front2' => array(
-			'class' => '\front2\Front2Module',
+		'front' => array(
+			'class' => '\front\FrontModule',
 		),
 		'file-processor' => array(
 			'class' => '\fileProcessor\FileProcessorModule',
@@ -128,7 +128,7 @@ $frontend = array(
 			//'urls' => array('/site/login', '/login', ),
 		),
 		'user' => array(
-			'class' => '\front2\components\WebUser',
+			'class' => '\front\components\WebUser',
 			// enable cookie-based authentication
 			'allowAutoLogin' => true,
 			'autoRenewCookie' => true,
@@ -138,7 +138,7 @@ $frontend = array(
 			),
 		),
 		'request' => array(
-			'class' => '\front2\components\HttpRequest',
+			'class' => '\front\components\HttpRequest',
 			'enableCookieValidation' => true,
 			'enableCsrfValidation' => true,
 			'csrfCookie' => array(
@@ -174,7 +174,7 @@ $frontend = array(
 			'errorAction' => 'site/error',
 		),
 		'session' => array(
-			'class' => '\front2\components\DbHttpSession',
+			'class' => '\front\components\DbHttpSession',
 			'connectionID' => 'db',
 			'autoStart' => true,
 			'cookieMode' => 'allow',
@@ -191,7 +191,7 @@ $frontend = array(
 			'class' => '\configuration\components\ConfigurationComponent',
 		),
 		'messages' => array(
-			'class' => '\front2\components\DbMessageSource',
+			'class' => '\front\components\DbMessageSource',
 		),
 		'log' => array(
 			'routes' => array(

@@ -1,9 +1,9 @@
-<?php
+<?php echo "<?php\n"; ?>
 /**
  *
  */
 
-namespace menu\controllers;
+namespace <?php echo $this->moduleID; ?>\controllers;
 
 use front\components\FrontController;
 
