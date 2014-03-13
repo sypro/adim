@@ -60,11 +60,21 @@ $console = array(
 					'yiic',
 					'migrate',
 				),
+				array(
+					'yiic',
+					'chmod',
+					'system'
+				),
 			),
 			'post-install' => array(
 				array(
 					'yiic',
 					'migrate',
+				),
+				array(
+					'yiic',
+					'chmod',
+					'system'
 				),
 			),
 		),
