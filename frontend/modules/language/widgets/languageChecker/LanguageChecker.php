@@ -6,8 +6,8 @@
 
 namespace language\widgets\languageChecker;
 
-use frontend\components\FrontendController;
-use frontend\components\Widget;
+use front\components\FrontController;
+use front\components\Widget;
 use language\helpers\Lang;
 
 /**
@@ -29,7 +29,7 @@ class LanguageChecker extends Widget
 	 */
 	public function prepareUrl($lang)
 	{
-		/** @var FrontendController $controller */
+		/** @var FrontController $controller */
 		$controller = app()->getController();
 		$get = $_GET;
 		$get = array_merge($get, array(app()->urlManager->languageVar => $lang));

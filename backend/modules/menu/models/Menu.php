@@ -5,7 +5,7 @@
 
 namespace menu\models;
 
-use backstage\components\ActiveRecord;
+use back\components\ActiveRecord;
 use language\helpers\Lang;
 
 /**
@@ -236,7 +236,7 @@ class Menu extends ActiveRecord
 						'filter' => \CHtml::listData(MenuType::getItems(true, true, array('id', 'label', )), 'id', 'label'),
 					),
 					array(
-						'class' => 'backstage\components\CheckColumn',
+						'class' => 'back\components\CheckColumn',
 						'header' => 'Опубликовано',
 						'name' => 'published',
 					),

@@ -5,12 +5,12 @@
 
 namespace menu\controllers;
 
-use frontend\components\FrontendController;
+use front\components\FrontController;
 
 /**
  * Class DefaultController
  */
-class DefaultController extends FrontendController
+class DefaultController extends FrontController
 {
 	public function actionIndex()
 	{

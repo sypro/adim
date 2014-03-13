@@ -3,6 +3,6 @@
  *
  */
 /**
- * @var \front\controllers\SiteController $this
+ * @var \frontend\controllers\SiteController $this
  */
 ?>

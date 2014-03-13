@@ -6,9 +6,9 @@
  */
 
 /**
- * @var $this \frontend\components\FrontendController
+ * @var $this \front\components\FrontController
  */
 cs()->registerPackage('theme.melon');
-cs()->registerPackage('front.main');
+cs()->registerPackage('frontend.main');
 ?>
 	<?php echo $content; ?>

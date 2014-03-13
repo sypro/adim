@@ -5,7 +5,7 @@
 
 namespace configuration\models;
 
-use backstage\components\ActiveRecord;
+use back\components\ActiveRecord;
 
 /**
  * This is the model class for table "{{configuration_lang}}".

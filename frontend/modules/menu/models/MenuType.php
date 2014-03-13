@@ -5,7 +5,7 @@
 
 namespace menu\models;
 
-use frontend\components\ActiveRecord;
+use front\components\ActiveRecord;
 
 /**
  * This is the model class for table "{{menu_type}}".

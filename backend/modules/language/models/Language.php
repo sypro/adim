@@ -5,7 +5,7 @@
 
 namespace language\models;
 
-use backstage\components\ActiveRecord;
+use back\components\ActiveRecord;
 use language\helpers\Lang;
 
 /**
@@ -156,12 +156,12 @@ class Language extends ActiveRecord
 					'code',
 					'locale',
 					array(
-						'class' => 'backstage\components\CheckColumn',
+						'class' => 'back\components\CheckColumn',
 						'header' => 'Видим',
 						'name' => 'visible',
 					),
 					array(
-						'class' => 'backstage\components\CheckColumn',
+						'class' => 'back\components\CheckColumn',
 						'header' => 'Опубликовано',
 						'name' => 'published',
 					),

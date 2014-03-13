@@ -5,8 +5,8 @@
 
 namespace seo\widgets\seoWidget;
 
-use backstage\components\ActiveRecord;
-use backstage\components\Widget;
+use back\components\ActiveRecord;
+use back\components\Widget;
 use seo\models\Seo;
 
 /**

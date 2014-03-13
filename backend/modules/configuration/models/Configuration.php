@@ -5,8 +5,8 @@
 
 namespace configuration\models;
 
-use backstage\components\ActiveRecord;
-use backstage\components\FileFormInputElement;
+use back\components\ActiveRecord;
+use back\components\FileFormInputElement;
 use CEvent;
 use CModelEvent;
 use core\components\Validator;
@@ -252,7 +252,7 @@ class Configuration extends ActiveRecord
 					),
 					'description',
 					array(
-						'class' => 'backstage\components\CheckColumn',
+						'class' => 'back\components\CheckColumn',
 						'header' => 'Прелоад',
 						'name' => 'preload',
 					),

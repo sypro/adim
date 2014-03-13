@@ -5,8 +5,8 @@
 
 namespace configuration\controllers;
 
-use backstage\components\ActiveRecord;
-use backstage\components\BackstageController;
+use back\components\ActiveRecord;
+use back\components\BackController;
 use CAction;
 use configuration\models\Configuration;
 use core\components\ClientScript;
@@ -15,7 +15,7 @@ use language\helpers\Lang;
 /**
  * Class ConfigurationController
  */
-class ConfigurationController extends BackstageController
+class ConfigurationController extends BackController
 {
 	public function filters()
 	{

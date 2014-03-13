@@ -3,16 +3,16 @@
  *
  */
 
-namespace back\controllers;
+namespace backend\controllers;
 
-use backstage\components\BackstageController;
+use back\components\BackController;
 
 /**
  * Class SiteController
  *
  * @package melon\controllers
  */
-class SiteController extends BackstageController
+class SiteController extends BackController
 {
 	/**
 	 * index page of the site

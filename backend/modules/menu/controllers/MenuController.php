@@ -5,12 +5,12 @@
 
 namespace menu\controllers;
 
-use backstage\components\BackstageController;
+use back\components\BackController;
 
 /**
  * Class MenuController
  */
-class MenuController extends BackstageController
+class MenuController extends BackController
 {
 	public function getModelClass()
 	{

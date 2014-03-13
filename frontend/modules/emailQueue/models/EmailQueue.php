@@ -5,7 +5,7 @@
 
 namespace emailQueue\models;
 
-use frontend\components\ActiveRecord;
+use front\components\ActiveRecord;
 
 /**
  * This is the model class for table "{{email_queue}}".

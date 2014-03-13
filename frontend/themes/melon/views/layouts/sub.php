@@ -5,7 +5,8 @@
  */
 
 /**
- * @var $this \frontend\components\FrontendController
+ * @var $this \front\components\FrontController
+ * @var $content string
  */
 ?>
 <?php

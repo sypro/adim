@@ -3,16 +3,16 @@
  *
  */
 
-namespace front\controllers;
+namespace frontend\controllers;
 
-use frontend\components\FrontendController;
+use front\components\FrontController;
 
 /**
  * Class SiteController
  *
- * @package front\controllers
+ * @package frontend\controllers
  */
-class SiteController extends FrontendController
+class SiteController extends FrontController
 {
 	/**
 	 * @var string

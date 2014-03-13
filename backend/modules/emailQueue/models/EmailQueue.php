@@ -5,7 +5,7 @@
 
 namespace emailQueue\models;
 
-use backstage\components\ActiveRecord;
+use back\components\ActiveRecord;
 use CActiveRecord;
 use CEvent;
 use CModelEvent;

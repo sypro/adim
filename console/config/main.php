@@ -8,8 +8,8 @@ $console = array(
 	'name' => 'Melon Console Application',
 	'aliases' => array(
 		'console' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
-		'back' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'backend'),
-		'front' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'frontend'),
+		'backend' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'backend'),
+		'frontend' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'frontend'),
 	),
 	'basePath' => realpath(__DIR__ . DIRECTORY_SEPARATOR .  '..'),
 	'commandMap' => array(
@@ -28,14 +28,15 @@ $console = array(
 			'migrationSubPath' => 'migrations',
 			'disabledModules' => array(),
 		),
-		'emailSend' => array(
-			'class' => '\console\components\commands\EmailSendCommand',
+		'email' => array(
+			'class' => '\console\components\commands\EmailCommand',
 		),
 		'message' => array(
 			'class' => '\console\components\commands\CoreMessageCommand',
 		),
 		'chmod' => array(
 			'class' => '\console\components\commands\ChmodCommand',
+			'directories' => false,
 		),
 	),
 	'components' => array(

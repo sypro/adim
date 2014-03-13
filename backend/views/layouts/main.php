@@ -1,8 +1,8 @@
 <?php
 /**
- * @var $this BackstageController
+ * @var $this BackController
  * @var $content
  */
-use backstage\components\BackstageController;
+use back\components\BackController;
 
 echo $content;

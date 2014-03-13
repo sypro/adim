@@ -1,13 +1,13 @@
 <?php
 $main = require(__DIR__ . '/../../common/config/main.php');
 $frontend = array(
-	'id'=>'front',
+	'id' => 'melon-frontend',
 	'basePath' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
 	'name' => '',
 	'aliases' => array(
-		'front' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
-		'frontend' => realpath(
-			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'frontend'
+		'frontend' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
+		'front' => realpath(
+			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'front'
 		),
 		'menu' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'menu'
@@ -36,11 +36,11 @@ $frontend = array(
 			'password' => false,
 			'ipFilters' => array('127.0.0.1','::1'),
 			'generatorPaths' => array(
-				'frontend.components.gii',
+				'front.components.gii',
 			),
 		),
-		'frontend' => array(
-			'class' => '\frontend\FrontendModule',
+		'front' => array(
+			'class' => '\front\FrontModule',
 		),
 		'file-processor' => array(
 			'class' => '\fileProcessor\FileProcessorModule',
@@ -66,7 +66,7 @@ $frontend = array(
 			'class' => '\configuration\ConfigurationModule',
 		),
 	),
-	'controllerNamespace' => '\front\controllers',
+	'controllerNamespace' => '\frontend\controllers',
 	'controllerMap'=>array(
 		'image' => array(
 			'class'=>'\fileProcessor\controllers\ImageController',
@@ -128,7 +128,7 @@ $frontend = array(
 			//'urls' => array('/site/login', '/login', ),
 		),
 		'user' => array(
-			'class' => '\frontend\components\WebUser',
+			'class' => '\front\components\WebUser',
 			// enable cookie-based authentication
 			'allowAutoLogin' => true,
 			'autoRenewCookie' => true,
@@ -138,7 +138,7 @@ $frontend = array(
 			),
 		),
 		'request' => array(
-			'class' => '\frontend\components\HttpRequest',
+			'class' => '\front\components\HttpRequest',
 			'enableCookieValidation' => true,
 			'enableCsrfValidation' => true,
 			'csrfCookie' => array(
@@ -149,7 +149,7 @@ $frontend = array(
 		'clientScript' => array(
 			'class' => '\core\components\ClientScript',
 			'packages' => array(
-				'front.main' => array(
+				'frontend.main' => array(
 					'baseUrl' => '/',
 					'js' => array(
 						'js/application.js',
@@ -174,7 +174,7 @@ $frontend = array(
 			'errorAction' => 'site/error',
 		),
 		'session' => array(
-			'class' => '\frontend\components\DbHttpSession',
+			'class' => '\front\components\DbHttpSession',
 			'connectionID' => 'db',
 			'autoStart' => true,
 			'cookieMode' => 'allow',
@@ -191,7 +191,7 @@ $frontend = array(
 			'class' => '\configuration\components\ConfigurationComponent',
 		),
 		'messages' => array(
-			'class' => '\frontend\components\DbMessageSource',
+			'class' => '\front\components\DbMessageSource',
 		),
 		'log' => array(
 			'routes' => array(
