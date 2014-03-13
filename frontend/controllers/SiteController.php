@@ -3,14 +3,14 @@
  *
  */
 
-namespace front\controllers;
+namespace frontend\controllers;
 
 use front2\components\Front2Controller;
 
 /**
  * Class SiteController
  *
- * @package front\controllers
+ * @package frontend\controllers
  */
 class SiteController extends Front2Controller
 {

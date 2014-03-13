@@ -8,7 +8,7 @@ namespace front2\components;
 
 /**
  * Class DbHttpSession
- * @package front\components
+ * @package frontend\components
  */
 class DbHttpSession extends \CDbHttpSession
 {

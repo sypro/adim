@@ -8,7 +8,7 @@ use front2\helpers\GiiHelper;
 
 class ModelCode extends \CCodeModel
 {
-	const BASE_NAMESPACE = 'front';
+	const BASE_NAMESPACE = 'frontend';
 	public $connectionId='db';
 	public $tablePrefix;
 	public $tableName;

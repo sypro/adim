@@ -2,7 +2,7 @@
 
 class ControllerCode extends CCodeModel
 {
-	const BASE_NAMESPACE = 'front';
+	const BASE_NAMESPACE = 'frontend';
 	public $controller;
 	public $baseClass = '\front2\components\Front2Controller';
 	public $actions = 'index';

@@ -5,7 +5,7 @@ $frontend = array(
 	'basePath' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
 	'name' => '',
 	'aliases' => array(
-		'front' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
+		'frontend' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'),
 		'front2' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'front2'
 		),
@@ -66,7 +66,7 @@ $frontend = array(
 			'class' => '\configuration\ConfigurationModule',
 		),
 	),
-	'controllerNamespace' => '\front\controllers',
+	'controllerNamespace' => '\frontend\controllers',
 	'controllerMap'=>array(
 		'image' => array(
 			'class'=>'\fileProcessor\controllers\ImageController',
@@ -149,7 +149,7 @@ $frontend = array(
 		'clientScript' => array(
 			'class' => '\core\components\ClientScript',
 			'packages' => array(
-				'front.main' => array(
+				'frontend.main' => array(
 					'baseUrl' => '/',
 					'js' => array(
 						'js/application.js',

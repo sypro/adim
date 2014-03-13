@@ -9,6 +9,6 @@
  * @var $this \front2\components\Front2Controller
  */
 cs()->registerPackage('theme.melon');
-cs()->registerPackage('front.main');
+cs()->registerPackage('frontend.main');
 ?>
 	<?php echo $content; ?>
