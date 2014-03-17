@@ -9,6 +9,7 @@ namespace console\components\commands;
 use CDbConnection;
 use CException;
 use core\components\DbMessageSource;
+use DirectoryIterator;
 use Yii;
 
 /**
@@ -33,6 +34,10 @@ class TranslateCommand extends \CConsoleCommand
 	 */
 	public $connectionId;
 
+	protected $directories = array(
+		'frontend.messages',
+	);
+
 	/**
 	 * Db connection
 	 *
@@ -55,6 +60,61 @@ class TranslateCommand extends \CConsoleCommand
 
 	public function actionIndex()
 	{
+		foreach ($this->directories as $path) {
+			if ($path) {
+				$path = Yii::getPathOfAlias($path);
+				$this->actionPath($path);
+			}
+		}
+	}
+
+	/**
+	 * Scan directory for languages directories with translation files
+	 *
+	 * @param $path
+	 */
+	public function actionPath($path)
+	{
+		/** @var DirectoryIterator[] $iterator */
+		$iterator = new DirectoryIterator($path);
+		foreach ($iterator as $fileInfo) {
+			if (!$fileInfo->isDot() && $fileInfo->isDir()) {
+				$this->actionLanguage($fileInfo->getRealPath(), $fileInfo->getFilename());
+			}
+		}
+	}
+
+	/**
+	 * Scan one directory with translation files
+	 *
+	 * @param $path
+	 * @param $language
+	 */
+	public function actionLanguage($path, $language)
+	{
+		/** @var DirectoryIterator[] $iterator */
+		$iterator = new DirectoryIterator($path);
+		foreach ($iterator as $fileInfo) {
+			if ($fileInfo->isFile() && $fileInfo->getExtension() === 'php') {
+				$this->actionFile($fileInfo->getRealPath(), $language, pathinfo($fileInfo->getRealPath(), PATHINFO_FILENAME));
+			}
+		}
+	}
+
+	/**
+	 * Process one translation file
+	 *
+	 * @param $path
+	 * @param $language
+	 * @param $category
+	 */
+	public function actionFile($path, $language, $category)
+	{
+		$data = require($path);
+		foreach ($data as $source => $message) {
+			$sourceId = $this->sourceProcess($source, $category);
+			$this->translateProcess($sourceId, $language, $message);
+		}
 	}
 
 	/**
@@ -68,7 +128,7 @@ class TranslateCommand extends \CConsoleCommand
 	{
 		$insertId = $this->getDbConnection()->createCommand()
 			->select('id')
-			->from('{{source_message}}')
+			->from($this->sourceMessageTable)
 			->where('category = :cat AND message = :mess', array(':cat' => $category, ':mess' => $key,))
 			->queryScalar();
 		if ($insertId) {
@@ -76,7 +136,7 @@ class TranslateCommand extends \CConsoleCommand
 		}
 
 		$this->getDbConnection()->createCommand()->insert(
-			'{{source_message}}',
+			$this->sourceMessageTable,
 			array(
 				'id' => null,
 				'category' => $category,
@@ -86,6 +146,35 @@ class TranslateCommand extends \CConsoleCommand
 		$insertId = $this->getDbConnection()->getLastInsertID();
 
 		return $insertId;
+	}
+
+	/**
+	 * @param $id
+	 * @param $language
+	 * @param $translate
+	 *
+	 * @return bool
+	 */
+	public function translateProcess($id, $language, $translate)
+	{
+		$insertId = $this->getDbConnection()->createCommand()
+			->select('id')
+			->from($this->translatedMessageTable)
+			->where('id = :id AND language = :lang', array(':id' => $id, ':lang' => $language, ))
+			->queryScalar();
+		if ($insertId) {
+			return true;
+		}
+
+		$this->getDbConnection()->createCommand()->insert(
+			$this->translatedMessageTable,
+			array(
+				'id' => $id,
+				'language' => $language,
+				'translation' => $translate,
+			)
+		);
+		return true;
 	}
 
 	/**
@@ -108,5 +197,13 @@ class TranslateCommand extends \CConsoleCommand
 		}
 
 		return $this->db;
+	}
+
+	/**
+	 * @param array $directories
+	 */
+	public function setDirectories($directories)
+	{
+		$this->directories = mergeArray($this->directories, (array)$directories);
 	}
 }

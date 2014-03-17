@@ -39,6 +39,8 @@ $console = array(
 		),
 		'translate' => array(
 			'class' => '\console\components\commands\TranslateCommand',
+			'directories' => array(
+			),
 		),
 	),
 	'components' => array(
