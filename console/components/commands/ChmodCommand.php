@@ -29,6 +29,9 @@ class ChmodCommand extends CConsoleCommand
 		// asset folders
 		'backend.www.assets',
 		'frontend.www.assets',
+		// uploads
+		'frontend.www.uploads',
+		'frontend.www.uploads.files',
 	);
 
 	/**
