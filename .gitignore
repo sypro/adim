@@ -24,10 +24,6 @@ nbproject/
 # sass cache files
 *.sass-cache
 
-# mac deployment helpers
-switch
-index
-
 # other
 *~
 ~*
