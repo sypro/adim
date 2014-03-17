@@ -106,8 +106,8 @@ class Lang
 		/** @var \DirectoryIterator[] $iterator */
 		$iterator = new \DirectoryIterator($path);
 		foreach ($iterator as $file) {
-			if ($file->isFile() && $file->getFilename() != 'README.' . $file->getExtension()) {
-				$key = rtrim($file->getFilename(), '.' . $file->getExtension());
+			if ($file->isFile() && $file->getExtension() === 'php') {
+				$key = pathinfo($file->getRealPath(), PATHINFO_FILENAME);
 				$locales[$key] = $key;
 			}
 		}
