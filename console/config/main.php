@@ -32,7 +32,7 @@ $console = array(
 			'class' => '\console\components\commands\EmailCommand',
 		),
 		'message' => array(
-			'class' => '\console\components\commands\CoreMessageCommand',
+			'class' => '\console\components\commands\MessageCommand',
 		),
 		'chmod' => array(
 			'class' => '\console\components\commands\ChmodCommand',
