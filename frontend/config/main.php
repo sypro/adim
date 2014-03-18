@@ -91,6 +91,8 @@ $frontend = array(
 				array('site/index', 'pattern' => '<lang:\w{2}>'),
 				array('site/index', 'pattern' => ''),
 
+				array('site/cms', 'pattern' => 'cmsmagazine56dda8314b32734acb0c402354cf7bc9.txt',),
+
 				array(
 					'class' => '\fileProcessor\components\YiiFileProcessorUrlRule',
 					'connectionId' => 'db',
