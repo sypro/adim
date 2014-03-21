@@ -17,12 +17,12 @@ $console = array(
 			'class' => '\console\components\commands\MigrateCommand',
 			'migrationTable' => '{{yii_migration}}',
 			'modulePaths' => array(
-				'backAdmin' => 'back.modules.admin.migrations',
-				'backSeo' => 'back.modules.seo.migrations',
-				'backLanguage' => 'back.modules.language.migrations',
-				'backTranslate' => 'back.modules.translate.migrations',
-				'backConf' => 'back.modules.configuration.migrations',
-				'backMenu' => 'back.modules.menu.migrations',
+				'backAdmin' => 'backend.modules.admin.migrations',
+				'backSeo' => 'backend.modules.seo.migrations',
+				'backLanguage' => 'backend.modules.language.migrations',
+				'backTranslate' => 'backend.modules.translate.migrations',
+				'backConf' => 'backend.modules.configuration.migrations',
+				'backMenu' => 'backend.modules.menu.migrations',
 				'fileProcessor' => 'root.vendor.metalguardian.yii-file-processor.fileProcessor.migrations',
 			),
 			'migrationSubPath' => 'migrations',
@@ -32,11 +32,15 @@ $console = array(
 			'class' => '\console\components\commands\EmailCommand',
 		),
 		'message' => array(
-			'class' => '\console\components\commands\CoreMessageCommand',
+			'class' => '\console\components\commands\MessageCommand',
 		),
 		'chmod' => array(
 			'class' => '\console\components\commands\ChmodCommand',
-			'directories' => false,
+		),
+		'translate' => array(
+			'class' => '\console\components\commands\TranslateCommand',
+			'directories' => array(
+			),
 		),
 	),
 	'components' => array(
@@ -64,7 +68,6 @@ $console = array(
 				array(
 					'yiic',
 					'chmod',
-					'system'
 				),
 			),
 			'post-install' => array(
@@ -75,7 +78,6 @@ $console = array(
 				array(
 					'yiic',
 					'chmod',
-					'system'
 				),
 			),
 		),

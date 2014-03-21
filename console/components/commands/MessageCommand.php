@@ -7,11 +7,11 @@ namespace console\components\commands;
 \Yii::import('system.cli.commands.MessageCommand');
 
 /**
- * Class CoreMessageCommand
+ * Class MessageCommand
  *
  * @package console\commands
  */
-class CoreMessageCommand extends \MessageCommand
+class MessageCommand extends \MessageCommand
 {
 	/**
 	 * @var string
@@ -118,16 +118,20 @@ class CoreMessageCommand extends \MessageCommand
 			}
 
 			$n = preg_match_all(
-				'/\b' . $currentTranslator . '\s*\(\s*(\'.[^\']*?(?<!\\\\)\'|".[^"]*?(?<!\\\\)")\s*,\s*array\(.*\)\s*[\)]/',
+				'/\b'.$currentTranslator.'\s*\(\s*(\'[\w.\/]*?(?<!\.)\'|"[\w.]*?(?<!\.)")\s*,\s*(\'.[^\']*?(?<!\\\\)\'|".[^"]*?(?<!\\\\)")\s*[,\)]/',
 				$subject,
 				$matches,
 				PREG_SET_ORDER
 			);
 
 			for ($i = 0; $i < $n; ++$i) {
-				$category = 'core';
-				$message = $matches[$i][1];
-				$messages[$category][] = eval("return {$message};"); // use eval to eliminate quote escape
+				if (($pos = strpos($matches[$i][1], '.')) !== false) {
+					$category = substr($matches[$i][1], $pos + 1, -1);
+				} else {
+					$category = substr($matches[$i][1], 1, -1);
+				}
+				$message = $matches[$i][2];
+				$messages[$category][] = eval("return $message;"); // use eval to eliminate quote escape
 			}
 		}
 

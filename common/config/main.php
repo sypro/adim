@@ -51,6 +51,9 @@ $main = array(
 			'timeFormat' => 'H:i:s',
 			'datetimeFormat' => 'd.m.Y H:i:s',
 		),
+		'messages' => array(
+			'class' => '\core\components\DbMessageSource',
+		),
 	),
 	'sourceLanguage' => 'no',
 	'language' => 'ru',

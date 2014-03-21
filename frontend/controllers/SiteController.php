@@ -33,6 +33,12 @@ class SiteController extends FrontController
 		$this->render('maintenance');
 	}
 
+	public function actionCms()
+	{
+		$this->layout = false;
+		$this->render('cms');
+	}
+
 	/**
 	 * This is the action to handle external exceptions.
 	 */

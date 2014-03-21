@@ -21,7 +21,7 @@ function app()
  */
 function config($key, $force = false)
 {
-	return app()->config->get($key, $force);
+	return \Yii::app()->config->get($key, $force);
 }
 
 /**
@@ -29,7 +29,7 @@ function config($key, $force = false)
  */
 function theme()
 {
-	return app()->theme;
+	return \Yii::app()->theme;
 }
 
 /**
@@ -147,8 +147,12 @@ function l($text, $url = '#', $htmlOptions = array())
  *
  * @return string
  */
-function t($message, $params = array(), $category = 'core', $source = null, $language = null)
+function t($category, $message = null, $params = array(), $source = null, $language = null)
 {
+	if (is_null($message)) {
+		$message = $category;
+		$category = 'core';
+	}
 	return \Yii::t($category, $message, $params, $source, $language);
 }
 

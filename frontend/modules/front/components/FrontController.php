@@ -25,13 +25,7 @@ class FrontController extends Controller
 	{
 		parent::init();
 
-		/*if (\Yii::app()->getGlobalState('useSecondSessionWhen')+60*10 < time()) {
-			\Yii::app()->setGlobalState('useSecondSession', false);
-		}
-
-		if (\Yii::app()->getGlobalState('useSecondSession')) {
-			\Yii::app()->setComponent('session', \Yii::app()->getComponent('sessionSecond'));
-		}*/
+		cs()->registerMetaTag('56dda8314b32734acb0c402354cf7bc9', 'cmsmagazine');
 	}
 
 	/**
