@@ -19,6 +19,16 @@ function parseResponse(response)
 		$("body").append(response.js);
 	}
 }
+function fixedFormActions(el, elBottom) {
+	var windowTop = $(window).scrollTop();
+	var windowBottom = windowTop + $(window).height();
+
+	if (windowBottom < elBottom) {
+		el.addClass('form-actions-fixed');
+	} else {
+		el.removeClass('form-actions-fixed');
+	}
+}
 $(function() {
 	$(document).on('change', '.do-change-value', function(event) {
 		event.preventDefault();
@@ -93,27 +103,16 @@ $(function() {
 		}, 'url': that.href});
 		return false;
 	});
-});
 
-$(document).ready(function() {
-    var el = $('.form-actions');
-    var elTop = el.offset().top;
-    var elBottom = elTop + el.height() + 4;
+	var formActions = $('.form-actions');
+	if(formActions.length > 0) {
+		var elTop = formActions.offset().top;
+		var elBottom = elTop + formActions.height() + 4;
 
-    function fixedFormActions() {
-        var windowTop = $(window).scrollTop();
-        var windowBottom = windowTop + $(window).height();
+		$(window).scroll(function () {
+			fixedFormActions(formActions, elBottom);
+		});
 
-        if(windowBottom < elBottom) {
-            el.addClass('form-actions-fixed');
-        } else {
-            el.removeClass('form-actions-fixed');
-        }
-    }
-
-    $(window).scroll(function() {
-        fixedFormActions();
-    });
-
-    fixedFormActions();
+		fixedFormActions(formActions, elBottom);
+	}
 });
