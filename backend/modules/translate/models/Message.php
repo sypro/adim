@@ -317,13 +317,7 @@ class Message extends ActiveRecord
 				),
 				'translation' =>
 					$editor ?
-					array(
-						'type' => 'bootstrap.widgets.TbCKEditor',
-						'editorOptions' => array(
-							'width' => 800,
-							'language' => 'ru',
-						),
-					) : array(
+					$this->getRedactorFormElement(array()) : array(
 						'type' => 'textarea',
 						'class' => 'span6',
 						'rows' => 4,

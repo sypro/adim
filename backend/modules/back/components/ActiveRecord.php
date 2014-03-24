@@ -220,9 +220,8 @@ abstract class ActiveRecord extends CoreActiveRecord
 				$labels[$key] = (isset($labels[$attribute]) ? $labels[$attribute] : $attribute) . '[' . $language . ']';
 			}
 		}
-		foreach (static::getLocalizedAttributesList() as $attribute) {
-			$key = $attribute;
-			$labels[$key] = (isset($labels[$attribute]) ? $labels[$attribute] : $attribute) . '[' . Lang::getDefault() . ']';
+		foreach (static::getLocalizedAttributesList() as $key) {
+			$labels[$key] = (isset($labels[$key]) ? $labels[$key] : $key) . '[' . Lang::getDefault() . ']';
 		}
 
 		return $labels;
@@ -379,5 +378,46 @@ abstract class ActiveRecord extends CoreActiveRecord
 		$result = empty($result) ? $behaviors : $result;
 
 		return $result;
+	}
+
+	/**
+	 * @param $options
+	 *
+	 * @return array
+	 */
+	public function getRedactorFormElement($options)
+	{
+		return mergeArray(
+			array(
+				'type' => 'ImperaviRedactorWidget',
+				'options' => array('lang' => 'ru',),
+				'plugins' => array(
+					'fullscreen' => array(
+						'js' => array('fullscreen.js',),
+					),
+					'fontsize' => array(
+						'js' => array('fontsize.js',),
+					),
+					'fontfamily' => array(
+						'js' => array('fontfamily.js',),
+					),
+					'fontcolor' => array(
+						'js' => array('fontcolor.js',),
+					),
+					/*'clips' => array(
+						// Можно указать путь для публикации
+						'basePath' => 'application.components.imperavi.my_plugin',
+						// Можно указать ссылку на ресурсы плагина, в этом случае basePath игнорирутеся.
+						// По умолчанию, путь до папки plugins из ресурсов расширения
+						'baseUrl' => '/js/my_plugin',
+						'css' => array('clips.css',),
+						'js' => array('clips.js',),
+						// Можно также указывать зависимости
+						'depends' => array('imperavi-redactor',),
+					),*/
+				),
+			),
+			$options
+		);
 	}
 }
