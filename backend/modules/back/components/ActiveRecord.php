@@ -390,7 +390,21 @@ abstract class ActiveRecord extends CoreActiveRecord
 		return mergeArray(
 			array(
 				'type' => 'ImperaviRedactorWidget',
-				'options' => array('lang' => 'ru',),
+				'htmlOptions' => array(),
+				'options' => array(
+					'lang' => 'ru',
+					'imageUpload' => nu(array('imperaviImageUpload')),
+					'fileUpload' => nu(array('imperaviFileUpload')),
+					'uploadFields' => array(),
+					'imageUploadErrorCallback' => 'function(response) {parseResponse(response);}',
+					'fileUploadErrorCallback' => 'function(response) {parseResponse(response);}',
+					'fileUploadParam' => 'imperaviFileUpload',
+					'imageUploadParam' => 'imperaviImageUpload',
+					'minHeight' => 200,
+					'observeImages' => true,
+					'fixed' => true,
+					'toolbarFixedBox' => true,
+				),
 				'plugins' => array(
 					'fullscreen' => array(
 						'js' => array('fullscreen.js',),
