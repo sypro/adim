@@ -52,8 +52,8 @@ class Controller extends \CController
 	{
 		return array(
 			'accessControl',
-			'postOnly +imperaviImageUpload +imperaviFileUpload',
-			'jsonHeader +imperaviImageUpload +imperaviFileUpload',
+			//'postOnly +imperaviImageUpload +imperaviFileUpload',
+			//'jsonHeader +imperaviImageUpload +imperaviFileUpload',
 		);
 	}
 
@@ -109,17 +109,18 @@ class Controller extends \CController
 	 */
 	public function actionImperaviImageUpload()
 	{
-		$file = CUploadedFile::getInstanceByName('imperaviImageUpload');
-		if ($file) {
+		$model = new ImperaviImage();
+		$model->upload = CUploadedFile::getInstance($model, 'upload');
+		if ($model->validate()) {
 			$transfer = FPM::transfer();
-			$imageId = $transfer->saveUploadedFile($file);
+			$imageId = $transfer->saveUploadedFile($model->upload);
 			$data = array(
 				'filelink' => FPM::originalSrc($imageId),
-				'filename' => $file->getName(),
+				'filename' => $model->upload->getName(),
 			);
 		} else {
 			$data = array(
-				'error' => t('Error while upload image!'),
+				'error' => t('core', 'Error while upload image: {error}', array('{error}' => $model->getError('upload'), )),
 			);
 		}
 		$this->renderJson($data);
@@ -130,18 +131,18 @@ class Controller extends \CController
 	 */
 	public function actionImperaviFileUpload()
 	{
-		$file = CUploadedFile::getInstanceByName('imperaviFileUpload');
-		if ($file) {
+		$model = new ImperaviFile();
+		$model->upload = CUploadedFile::getInstance($model, 'upload');
+		if ($model->validate()) {
 			$transfer = FPM::transfer();
-			$imageId = $transfer->saveUploadedFile($file);
-
+			$imageId = $transfer->saveUploadedFile($model->upload);
 			$data = array(
 				'filelink' => FPM::originalSrc($imageId),
-				'filename' => $file->getName(),
+				'filename' => $model->upload->getName(),
 			);
 		} else {
 			$data = array(
-				'error' => t('Error while upload image!'),
+				'error' => t('core', 'Error while upload image: {error}', array('{error}' => $model->getError('upload'), )),
 			);
 		}
 		$this->renderJson($data);

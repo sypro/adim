@@ -7,7 +7,10 @@
 namespace back\components;
 
 use back\helpers\GiiHelper;
+use CHtml;
 use core\components\ActiveRecord as CoreActiveRecord;
+use core\components\ImperaviFile;
+use core\components\ImperaviImage;
 use language\helpers\Lang;
 
 /**
@@ -400,8 +403,8 @@ abstract class ActiveRecord extends CoreActiveRecord
 					'fileUploadErrorCallback' => 'js:function(response) {parseResponse(response);}',
 					'imageUploadCallback' => 'js:function(image, json) {}',
 					'fileUploadCallback' => 'js:function(image, json) {}',
-					'fileUploadParam' => 'imperaviFileUpload',
-					'imageUploadParam' => 'imperaviImageUpload',
+					'fileUploadParam' => CHtml::activeName(new ImperaviFile(), 'upload'),
+					'imageUploadParam' => CHtml::activeName(new ImperaviImage(), 'upload'),
 					'minHeight' => 200,
 					'observeImages' => true,
 					'fixed' => true,

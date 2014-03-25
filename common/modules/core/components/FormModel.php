@@ -21,4 +21,19 @@ class FormModel extends \CFormModel
 	{
 		return get_called_class();
 	}
+
+	/**
+	 * @return bool
+	 */
+	public function loadData()
+	{
+		$modelName = \CHtml::modelName($this);
+		if (isset($_POST[$modelName])) {
+			$this->setAttributes($_POST[$modelName]);
+
+			return true;
+		}
+
+		return false;
+	}
 }
