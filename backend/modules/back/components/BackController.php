@@ -29,17 +29,20 @@ class BackController extends Controller
 	 */
 	public function filters()
 	{
-		return array(
-			'accessControl',
-			'postOnly +change +deleteFile',
-			'ajaxOnly +change +deleteFile',
-			'jsonHeader +change +deleteFile',
+		return mergeArray(
+			parent::filters(),
+			array(
+				'postOnly +change +deleteFile',
+				'ajaxOnly +change +deleteFile',
+				'jsonHeader +change +deleteFile',
+			)
 		);
 	}
 
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
+	 *
 	 * @return array access control rules
 	 */
 	public function accessRules()
@@ -47,11 +50,11 @@ class BackController extends Controller
 		return array(
 			array(
 				'allow',
-				'roles' => array(User::ROLE_ADMIN, ),
+				'roles' => array(User::ROLE_ADMIN,),
 			),
 			array(
 				'deny',
-				'users' => array('*', ),
+				'users' => array('*',),
 			),
 		);
 	}
@@ -63,9 +66,12 @@ class BackController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('back.components.adminTemplates.view', array(
-			'model' => $this->loadModel($id),
-		));
+		$this->render(
+			'back.components.adminTemplates.view',
+			array(
+				'model' => $this->loadModel($id),
+			)
+		);
 	}
 
 	/**
@@ -111,10 +117,13 @@ class BackController extends Controller
 			}
 		}
 
-		$this->render('back.components.adminTemplates.update', array(
-			'model' => $model,
-			'form' => $form,
-		));
+		$this->render(
+			'back.components.adminTemplates.update',
+			array(
+				'model' => $model,
+				'form' => $form,
+			)
+		);
 	}
 
 	/**
@@ -158,10 +167,13 @@ class BackController extends Controller
 			}
 		}
 
-		$this->render('back.components.adminTemplates.create', array(
-			'model' => $model,
-			'form' => $form,
-		));
+		$this->render(
+			'back.components.adminTemplates.create',
+			array(
+				'model' => $model,
+				'form' => $form,
+			)
+		);
 	}
 
 	/**
@@ -178,9 +190,12 @@ class BackController extends Controller
 			$model->attributes = $_GET[$modelName];
 		}
 
-		$this->render('back.components.adminTemplates.index', array(
-			'model' => $model,
-		));
+		$this->render(
+			'back.components.adminTemplates.index',
+			array(
+				'model' => $model,
+			)
+		);
 	}
 
 	/**
@@ -210,8 +225,12 @@ class BackController extends Controller
 				throw new \CDbException(\Yii::t('yii', $exception->getMessage()));
 			}
 
-			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if (!isset($_GET['ajax'])) {
+			if (\Yii::app()->request->isAjaxRequest) {
+				$data = array(
+					'redirect' => nu(array('index')),
+				);
+				$this->renderJson($data);
+			} else {
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
 			}
 		} else {
@@ -243,6 +262,8 @@ class BackController extends Controller
 	 *
 	 * @param $id
 	 * @param $attributeName
+	 *
+	 * @throws \CHttpException
 	 */
 	public function actionChange($id, $attributeName)
 	{
@@ -258,7 +279,7 @@ class BackController extends Controller
 
 		$model->setScenario('change');
 		$model->$attributeName = $value;
-		$model->save(true, array($attributeName, ));
+		$model->save(true, array($attributeName,));
 		$model->refresh();
 
 		$element = \CHtml::activeCheckBox(
@@ -268,8 +289,8 @@ class BackController extends Controller
 				'class' => 'do-change-value',
 				'id' => 'element-change-' . $attributeName . '-' . $model->primaryKey,
 				'data-url' => \CHtml::normalizeUrl(
-					array('change', 'id' => $model->primaryKey, 'attributeName' => $attributeName, )
-				),
+						array('change', 'id' => $model->primaryKey, 'attributeName' => $attributeName,)
+					),
 			)
 		);
 		$data = array(
@@ -316,12 +337,24 @@ class BackController extends Controller
 			$attributeConfig['model'] = $model;
 			$attributeConfig['attribute'] = $nextAttribute;
 			$attributeConfig['data'] = \CHtml::listData($dependentModel->getDependent($id), 'id', 'label');
-			$dropDown = app()->controller->widget(DependentDropDownFormInputElement::getClassName(), $attributeConfig, true);
+			$dropDown = app()->controller->widget(
+				DependentDropDownFormInputElement::getClassName(),
+				$attributeConfig,
+				true
+			);
 		} elseif ($class === 'dropdownlist') {
 			unset($attributeConfig['items']);
-			$dropDown = \CHtml::activeDropDownList($model, $nextAttribute, \CHtml::listData($dependentModel->getDependent($id), 'id', 'label'), $attributeConfig);
+			$dropDown = \CHtml::activeDropDownList(
+				$model,
+				$nextAttribute,
+				\CHtml::listData($dependentModel->getDependent($id), 'id', 'label'),
+				$attributeConfig
+			);
 		} else {
-			throw new \CHttpException(400, t('Field type must be "dropdownlist" or "back\components\DependentDropDownFormInputElement"'));
+			throw new \CHttpException(
+				400,
+				t('Field type must be "dropdownlist" or "back\components\DependentDropDownFormInputElement"')
+			);
 		}
 
 		$data = array(
@@ -364,12 +397,12 @@ class BackController extends Controller
 		if ($prepare) {
 			$this->prepare($model);
 		}
+
 		return $model;
 	}
 
 	public function prepare($model)
 	{
-
 	}
 
 	/**

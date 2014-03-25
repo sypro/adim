@@ -1,5 +1,8 @@
 function parseResponse(response)
 {
+	if (response.error) {
+		showError(response.error);
+	}
 	if (response.refresh) {
 		window.location.reload(true);
 	}
@@ -30,52 +33,10 @@ function jsFunctionsAssign()
 {
 
 }
-$(function(){
-	$(document).on('submit', '.ajax-form', function (event) {
-		event.preventDefault();
-		var that = this;
-		jQuery.ajax({'cache': false, 'type': 'POST', 'dataType': 'json', 'data':$(that).serialize(), 'success': function (response) {
-			parseResponse(response);
-		}, 'error': function (response) {
-			alert(response.responseText);
-		}, 'beforeSend': function() {
-
-		}, 'complete': function() {
-
-		}, 'url': this.action});
-		return false;
-	});
-	$(document).on('click', '.submit-form-link', function (event) {
-		var that = this;
-		if(!$(that).data('confirm') || confirm($(that).data('confirm'))) {
-			submitForm(
-				that,
-				that.href,
-				$(that).data('params')
-			);
-			return false;
-		} else {
-			return false;
-		}
-	});
-	$(document).on('click', '.ajax-link', function (event) {
-		event.preventDefault();
-		var that = this;
-		if($(that).data('confirm') && !confirm($(that).data('confirm'))) {
-			return false;
-		}
-		jQuery.ajax({'cache': false, 'type': 'POST', 'dataType': 'json', 'data':$(that).data('params'), 'success': function (response) {
-			parseResponse(response);
-		}, 'error': function (response) {
-			alert(response.responseText);
-		}, 'beforeSend': function() {
-
-		}, 'complete': function() {
-
-		}, 'url': that.href});
-		return false;
-	});
-});
+function showError(error)
+{
+	alert(error);
+}
 // yii submit form
 function submitForm (element, url, params) {
 	var f = $(element).parents('form')[0];
@@ -112,3 +73,49 @@ function submitForm (element, url, params) {
 		f.removeChild(this);
 	});
 }
+$(function(){
+	$(document).on('submit', 'form.ajax-form', function (event) {
+		event.preventDefault();
+		var that = this;
+		jQuery.ajax({'cache': false, 'type': 'POST', 'dataType': 'json', 'data':$(that).serialize(), 'success': function (response) {
+			parseResponse(response);
+		}, 'error': function (response) {
+			alert(response.responseText);
+		}, 'beforeSend': function() {
+
+		}, 'complete': function() {
+
+		}, 'url': this.action});
+		return false;
+	});
+	$(document).on('click', 'a.submit-form-link', function (event) {
+		var that = this;
+		if(!$(that).data('confirm') || confirm($(that).data('confirm'))) {
+			submitForm(
+				that,
+				that.href,
+				$(that).data('params')
+			);
+			return false;
+		} else {
+			return false;
+		}
+	});
+	$(document).on('click', 'a.ajax-link', function (event) {
+		event.preventDefault();
+		var that = this;
+		if($(that).data('confirm') && !confirm($(that).data('confirm'))) {
+			return false;
+		}
+		jQuery.ajax({'cache': false, 'type': 'POST', 'dataType': 'json', 'data':$(that).data('params'), 'success': function (response) {
+			parseResponse(response);
+		}, 'error': function (response) {
+			alert(response.responseText);
+		}, 'beforeSend': function() {
+
+		}, 'complete': function() {
+
+		}, 'url': that.href});
+		return false;
+	});
+});

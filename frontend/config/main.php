@@ -91,6 +91,11 @@ $frontend = array(
 				array('site/index', 'pattern' => '<lang:\w{2}>'),
 				array('site/index', 'pattern' => ''),
 
+				array('site/imperaviImageUpload', 'pattern' => '<lang:\w{2}>/redactor/upload/image', ),
+				array('site/imperaviImageUpload', 'pattern' => 'redactor/upload/image', ),
+				array('site/imperaviFileUpload', 'pattern' => '<lang:\w{2}>/redactor/upload/file', ),
+				array('site/imperaviFileUpload', 'pattern' => 'redactor/upload/file', ),
+
 				array('site/cms', 'pattern' => 'cmsmagazine56dda8314b32734acb0c402354cf7bc9.txt',),
 
 				array(

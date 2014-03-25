@@ -188,6 +188,9 @@ $backend = array(
 			),
 			'scriptMap' => array(),
 		),
+		'messages' => array(
+			'class' => '\core\components\PhpMessageSource',
+		),
 	),
 );
 $localFile = __DIR__ . '/local.php';

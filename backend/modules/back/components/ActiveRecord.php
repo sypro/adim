@@ -7,7 +7,10 @@
 namespace back\components;
 
 use back\helpers\GiiHelper;
+use CHtml;
 use core\components\ActiveRecord as CoreActiveRecord;
+use core\components\ImperaviFile;
+use core\components\ImperaviImage;
 use language\helpers\Lang;
 
 /**
@@ -46,6 +49,7 @@ abstract class ActiveRecord extends CoreActiveRecord
 	public static function getBooleanText($value)
 	{
 		$arr = static::getBooleanStatuses();
+
 		return isset($arr[$value]) ? $arr[$value] : null;
 	}
 
@@ -58,47 +62,54 @@ abstract class ActiveRecord extends CoreActiveRecord
 	 */
 	public function genAdminMenu($page)
 	{
-		$menu = array();
-		switch ($page)
-		{
+		$menu = array(
+			'index' => array('label' => null, 'url' => array('index'), 'icon' => 'icon-list'),
+			'create' => array('label' => null, 'url' => array('create'), 'icon' => 'icon-plus'),
+			'view' => array(
+				'label' => null,
+				'url' => array('view', 'id' => $this->getPrimaryKey()),
+				'icon' => 'icon-eye-open'
+			),
+			'update' => array(
+				'label' => null,
+				'url' => array('update', 'id' => $this->getPrimaryKey()),
+				'icon' => 'icon-pencil'
+			),
+			'delete' => array(
+				'label' => null,
+				'url' => array('delete', 'id' => $this->getPrimaryKey()),
+				'htmlOptions' => array(
+					'data-confirm' => \Yii::t(
+							'core',
+							'Are you sure you want to delete this item?'
+						),
+					'data-params' => je(
+						array(
+							app()->request->csrfTokenName => app()->request->getCsrfToken()
+						)
+					),
+					'class' => 'ajax-link',
+				),
+				'icon' => 'icon-trash'
+			),
+		);
+		switch ($page) {
 			case 'index':
-				$menu = array(
-					'create' => array('label'=>null,'url'=>array('create'), 'icon'=>'icon-plus'),
-				);
+				unset($menu['index'], $menu['update'], $menu['delete'], $menu['view']);
 				break;
 			case 'create':
-				$menu = array(
-					'index' => array('label'=>null,'url'=>array('index'), 'icon'=>'icon-list'),
-				);
+				unset($menu['create'], $menu['update'], $menu['delete'], $menu['view']);
 				break;
 			case 'update':
-				$menu = array(
-					'create' => array('label'=>null,'url'=>array('create'), 'icon'=>'icon-plus'),
-					'update' => array('label'=>null,'url'=>array('view','id'=>$this->getPrimaryKey()), 'icon'=>'icon-eye-open'),
-					'index' => array('label'=>null,'url'=>array('index'), 'icon'=>'icon-list'),
-				);
+				unset($menu['update']);
 				break;
 			case 'view':
-				$menu = array(
-					'create' => array('label'=>null,'url'=>array('create'), 'icon'=>'icon-plus'),
-					'update' => array('label'=>null,'url'=>array('update','id'=>$this->getPrimaryKey()), 'icon'=>'icon-pencil'),
-					'delete' => array('label'=>null,'url'=>array('delete', 'id'=>$this->getPrimaryKey()),
-						'buttonType'=>'ajaxLink',
-						'ajaxOptions'=>array(
-							'type'=>'POST',
-							'data'=>array(
-								app()->request->csrfTokenName => app()->request->getCsrfToken()
-							),
-							'success'=>'js:function(){window.location.href="'.\CHtml::normalizeUrl(array('index')).'"}',
-							'error'=>'js:function(response){alert(response.responseText);}',
-						),
-						'htmlOptions'=>array('confirm'=>\Yii::t('core', 'Are you sure you want to delete this item?')), 'icon'=>'icon-trash'),
-					'index' => array('label'=>null,'url'=>array('index'), 'icon'=>'icon-list'),
-				);
+				unset($menu['view']);
 				break;
 			default:
 				break;
 		}
+
 		return $menu;
 	}
 
@@ -114,8 +125,7 @@ abstract class ActiveRecord extends CoreActiveRecord
 		$pageName = array(
 			'title' => 'Page name not set',
 		);
-		switch ($page)
-		{
+		switch ($page) {
 			case 'index':
 				$pageName = array(
 					'title' => 'Настройка',
@@ -140,8 +150,10 @@ abstract class ActiveRecord extends CoreActiveRecord
 					'headerIcon' => 'icon-eye-open',
 				);
 				break;
-			default: break;
+			default:
+				break;
 		}
+
 		return $pageName;
 	}
 
@@ -158,8 +170,7 @@ abstract class ActiveRecord extends CoreActiveRecord
 		$breadcrumbs = array(
 			$title => array('index'),
 		);
-		switch ($page)
-		{
+		switch ($page) {
 			case 'index':
 				$breadcrumbs[] = 'Управление';
 				break;
@@ -172,8 +183,10 @@ abstract class ActiveRecord extends CoreActiveRecord
 			case 'view':
 				$breadcrumbs[] = 'Просмотр';
 				break;
-			default: break;
+			default:
+				break;
 		}
+
 		return $breadcrumbs;
 	}
 
@@ -210,10 +223,10 @@ abstract class ActiveRecord extends CoreActiveRecord
 				$labels[$key] = (isset($labels[$attribute]) ? $labels[$attribute] : $attribute) . '[' . $language . ']';
 			}
 		}
-		foreach (static::getLocalizedAttributesList() as $attribute) {
-			$key = $attribute;
-			$labels[$key] = (isset($labels[$attribute]) ? $labels[$attribute] : $attribute) . '[' . Lang::getDefault() . ']';
+		foreach (static::getLocalizedAttributesList() as $key) {
+			$labels[$key] = (isset($labels[$key]) ? $labels[$key] : $key) . '[' . Lang::getDefault() . ']';
 		}
+
 		return $labels;
 	}
 
@@ -243,6 +256,7 @@ abstract class ActiveRecord extends CoreActiveRecord
 	 * Prepare view columns
 	 *
 	 * @param array $columns
+	 *
 	 * @return array
 	 */
 	public function prepareViewColumns($columns)
@@ -276,10 +290,10 @@ abstract class ActiveRecord extends CoreActiveRecord
 						}
 					}
 				}
-
 			}
 		}
 		$result = empty($result) ? $columns : $result;
+
 		return $result;
 	}
 
@@ -301,6 +315,7 @@ abstract class ActiveRecord extends CoreActiveRecord
 				$attributes[] = $column . '_' . $language;
 			}
 		}
+
 		return $attributes;
 	}
 
@@ -331,6 +346,7 @@ abstract class ActiveRecord extends CoreActiveRecord
 		}
 		$result = empty($result) ? $elements : $result;
 		$config['elements'] = $result;
+
 		return $config;
 	}
 
@@ -363,6 +379,64 @@ abstract class ActiveRecord extends CoreActiveRecord
 			}
 		}
 		$result = empty($result) ? $behaviors : $result;
+
 		return $result;
+	}
+
+	/**
+	 * @param $options
+	 *
+	 * @return array
+	 */
+	public function getRedactorFormElement($options)
+	{
+		return mergeArray(
+			array(
+				'type' => 'ImperaviRedactorWidget',
+				'htmlOptions' => array(),
+				'options' => array(
+					'lang' => 'ru',
+					'imageUpload' => nu(array('imperaviImageUpload')),
+					'fileUpload' => nu(array('imperaviFileUpload')),
+					'uploadFields' => array(),
+					'imageUploadErrorCallback' => 'js:function(response) {parseResponse(response);}',
+					'fileUploadErrorCallback' => 'js:function(response) {parseResponse(response);}',
+					'imageUploadCallback' => 'js:function(image, json) {}',
+					'fileUploadCallback' => 'js:function(image, json) {}',
+					'fileUploadParam' => CHtml::activeName(new ImperaviFile(), 'upload'),
+					'imageUploadParam' => CHtml::activeName(new ImperaviImage(), 'upload'),
+					'minHeight' => 200,
+					'observeImages' => true,
+					'fixed' => true,
+					'toolbarFixedBox' => true,
+				),
+				'plugins' => array(
+					'fullscreen' => array(
+						'js' => array('fullscreen.js',),
+					),
+					'fontsize' => array(
+						'js' => array('fontsize.js',),
+					),
+					'fontfamily' => array(
+						'js' => array('fontfamily.js',),
+					),
+					'fontcolor' => array(
+						'js' => array('fontcolor.js',),
+					),
+					/*'clips' => array(
+						// Можно указать путь для публикации
+						'basePath' => 'application.components.imperavi.my_plugin',
+						// Можно указать ссылку на ресурсы плагина, в этом случае basePath игнорирутеся.
+						// По умолчанию, путь до папки plugins из ресурсов расширения
+						'baseUrl' => '/js/my_plugin',
+						'css' => array('clips.css',),
+						'js' => array('clips.js',),
+						// Можно также указывать зависимости
+						'depends' => array('imperavi-redactor',),
+					),*/
+				),
+			),
+			$options
+		);
 	}
 }
