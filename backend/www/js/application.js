@@ -1,5 +1,8 @@
 function parseResponse(response)
 {
+	if (response.error) {
+		showError(response.error);
+	}
 	if (response.refresh) {
 		window.location.reload(true);
 	}
@@ -29,6 +32,10 @@ function parseResponse(response)
 function jsFunctionsAssign()
 {
 
+}
+function showError(error)
+{
+	alert(error);
 }
 function fixedFormActions(el, elBottom) {
 	var windowTop = $(window).scrollTop();

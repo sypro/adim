@@ -6,6 +6,9 @@
 
 namespace core\components;
 
+use CUploadedFile;
+use fileProcessor\helpers\FPM;
+
 /**
  * Class Controller
  *
@@ -43,7 +46,47 @@ class Controller extends \CController
 	}
 
 	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'accessControl',
+			'postOnly +imperaviImageUpload +imperaviFileUpload',
+			'jsonHeader +imperaviImageUpload +imperaviFileUpload',
+		);
+	}
+
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
 	 *
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+		return array(
+			array(
+				'deny',
+				'users' => array('?',),
+				'actions' => array('imperaviImageUpload', 'imperaviFileUpload',),
+			),
+			array(
+				'allow',
+				'users' => array('*',),
+			),
+			array(
+				'deny',
+				'users' => array('*',),
+			),
+		);
+	}
+
+	/**
+	 * @param null $data
+	 * @param bool $return
+	 *
+	 * @return null|string
 	 */
 	public function renderJson($data = null, $return = false)
 	{
@@ -59,5 +102,48 @@ class Controller extends \CController
 				echo $output;
 			}
 		}
+	}
+
+	/**
+	 *
+	 */
+	public function actionImperaviImageUpload()
+	{
+		$file = CUploadedFile::getInstanceByName('imperaviImageUpload');
+		if ($file) {
+			$transfer = FPM::transfer();
+			$imageId = $transfer->saveUploadedFile($file);
+			$data = array(
+				'filelink' => FPM::originalSrc($imageId),
+				'filename' => $file->getName(),
+			);
+		} else {
+			$data = array(
+				'error' => t('Error while upload image!'),
+			);
+		}
+		$this->renderJson($data);
+	}
+
+	/**
+	 *
+	 */
+	public function actionImperaviFileUpload()
+	{
+		$file = CUploadedFile::getInstanceByName('imperaviFileUpload');
+		if ($file) {
+			$transfer = FPM::transfer();
+			$imageId = $transfer->saveUploadedFile($file);
+
+			$data = array(
+				'filelink' => FPM::originalSrc($imageId),
+				'filename' => $file->getName(),
+			);
+		} else {
+			$data = array(
+				'error' => t('Error while upload image!'),
+			);
+		}
+		$this->renderJson($data);
 	}
 }

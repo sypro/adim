@@ -11,4 +11,5 @@ return array(
 	'Fix this errors:' => 'Исправьте следующие ошибки:',
 	'Setup list page seo [{language}]' => 'Настройка SEO для списка [{language}]',
 	'Page list SEO configuration' => 'Настройки SEO для списка',
+	'Error while upload image!' => 'При загрузке произошла ошибка!',
 );

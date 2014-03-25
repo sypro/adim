@@ -8,7 +8,6 @@ namespace back\components;
 
 use core\components\Controller;
 use admin\models\User;
-use CUploadedFile;
 use fileProcessor\helpers\FPM;
 
 /**
@@ -30,11 +29,13 @@ class BackController extends Controller
 	 */
 	public function filters()
 	{
-		return array(
-			'accessControl',
-			'postOnly +change +deleteFile +imperaviImageUpload +imperaviFileUpload',
-			'ajaxOnly +change +deleteFile',
-			'jsonHeader +change +deleteFile +imperaviImageUpload +imperaviFileUpload',
+		return mergeArray(
+			parent::filters(),
+			array(
+				'postOnly +change +deleteFile',
+				'ajaxOnly +change +deleteFile',
+				'jsonHeader +change +deleteFile',
+			)
 		);
 	}
 
@@ -413,45 +414,5 @@ class BackController extends Controller
 	public function getModelClass()
 	{
 		throw new \CException('Need to be implemented in child class');
-	}
-
-	public function actionImperaviImageUpload()
-	{
-		$file = CUploadedFile::getInstanceByName('imperaviImageUpload');
-		if ($file) {
-			$transfer = FPM::transfer();
-			$imageId = $transfer->saveUploadedFile($file);
-
-			$data = array(
-				'filelink' => FPM::originalSrc($imageId),
-				'filename' => $file->getName(),
-			);
-
-		} else {
-			$data = array(
-				'error' => 'При загрузке произошла ошибка!'
-			);
-		}
-		$this->renderJson($data);
-	}
-
-	public function actionImperaviFileUpload()
-	{
-		$file = CUploadedFile::getInstanceByName('imperaviFileUpload');
-		if ($file) {
-			$transfer = FPM::transfer();
-			$imageId = $transfer->saveUploadedFile($file);
-
-			$data = array(
-				'filelink' => FPM::originalSrc($imageId),
-				'filename' => $file->getName(),
-			);
-
-		} else {
-			$data = array(
-				'error' => 'При загрузке произошла ошибка!'
-			);
-		}
-		$this->renderJson($data);
 	}
 }
