@@ -129,7 +129,7 @@ class TranslateCommand extends \CConsoleCommand
 		$insertId = $this->getDbConnection()->createCommand()
 			->select('id')
 			->from($this->sourceMessageTable)
-			->where('category = :cat AND message = :mess', array(':cat' => $category, ':mess' => $key,))
+			->where('BINARY category = :cat AND BINARY message = :mess', array(':cat' => $category, ':mess' => $key,))
 			->queryScalar();
 		if ($insertId) {
 			return $insertId;
@@ -160,7 +160,7 @@ class TranslateCommand extends \CConsoleCommand
 		$insertId = $this->getDbConnection()->createCommand()
 			->select('id')
 			->from($this->translatedMessageTable)
-			->where('id = :id AND language = :lang', array(':id' => $id, ':lang' => $language, ))
+			->where('BINARY id = :id AND BINARY language = :lang', array(':id' => $id, ':lang' => $language, ))
 			->queryScalar();
 		if ($insertId) {
 			return true;
