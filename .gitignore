@@ -34,6 +34,7 @@ backend/config/local.php
 frontend/www/uploads
 frontend/config/local.php
 console/config/local.php
+console/config/messages.php
 common/config/local.php
 frontend/www/crossdomain.xml
 
