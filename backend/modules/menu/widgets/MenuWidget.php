@@ -34,6 +34,7 @@ class MenuWidget extends \TbNavbar
 			array('label' => 'Переводы', 'items' => array(
 				array('label' => 'Переводы', 'url' => array('/translate/message/index'), ),
 				array('label' => 'Оригиналы', 'url' => array('/translate/sourceMessage/index'), ),
+				array('label' => 'Не переведенные фразы', 'url' => array('/translate/messageMissing/index'), ),
 			),),
 			array('label' => 'Конфигурация', 'url' => array('/configuration/configuration/index'), ),
 			array('label' => 'Seo', 'url' => array('/seo/seo/index'), ),

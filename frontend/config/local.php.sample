@@ -11,6 +11,9 @@ return array(
 		),
 	),
 	'components' => array(
+		'messages' => array(
+			'onMissingTranslation' => array('\common\modules\core\components\MessageEventHandler', 'handleMissingTranslation'),
+		),
 		'log' => array(
 			'routes' => array(
 				array(
