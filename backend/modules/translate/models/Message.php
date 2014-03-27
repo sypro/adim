@@ -23,6 +23,20 @@ use language\helpers\Lang;
 class Message extends ActiveRecord
 {
 	/**
+	 * Original phrase category
+	 *
+	 * @var
+	 */
+	public $category;
+
+	/**
+	 * Original phrase message
+	 *
+	 * @var
+	 */
+	public $message;
+
+	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
@@ -140,7 +154,7 @@ class Message extends ActiveRecord
 			array('translation', 'safe'),
 			array('id', DoubleUniqueValidator::getClassName(), 'with'=>'language', 'message' => 'Перевод для этой пары язык-фраза уже добавлен', ),
 			// The following rule is used by search().
-			array('id, language, translation', 'safe', 'on'=>'search', ),
+			array('id, language, translation, category, message', 'safe', 'on'=>'search', ),
 		);
 	}
 
@@ -154,6 +168,8 @@ class Message extends ActiveRecord
 			array(
 				'language' => 'Язык',
 				'translation' => 'Перевод',
+				'category' => 'Категория',
+				'message' => 'Оригинал',
 			)
 		);
 	}
@@ -170,9 +186,13 @@ class Message extends ActiveRecord
 	{
 		$criteria = new \CDbCriteria();
 
-		$criteria->compare('id', $this->id);
-		$criteria->compare('language', $this->language, true);
-		$criteria->compare('translation', $this->translation, true);
+		$criteria->compare('t.id', $this->id);
+		$criteria->compare('t.language', $this->language, true);
+		$criteria->compare('t.translation', $this->translation, true);
+		$criteria->compare('source.category', $this->category, true);
+		$criteria->compare('source.message', $this->message, true);
+
+		$criteria->with = array('source',);
 
 		return new \CActiveDataProvider($this, array(
 			'criteria' => $criteria,
@@ -218,7 +238,7 @@ class Message extends ActiveRecord
 						'htmlOptions' => array('class' => 'span1 center', ),
 					),
 					array(
-						'header' => 'Категория',
+						'name' => 'category',
 						'value' => function ($data) {
 							/** @var Message $data */
 							return $data->getValue('source', 'category');
@@ -226,7 +246,7 @@ class Message extends ActiveRecord
 						'htmlOptions' => array('class' => 'span2 center', ),
 					),
 					array(
-						'header' => 'Оригинал',
+						'name' => 'message',
 						'value' => function ($data) {
 							/** @var Message $data */
 							return $data->getValue('source', 'message');
