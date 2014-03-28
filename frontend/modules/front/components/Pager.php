@@ -69,22 +69,22 @@ class Pager extends \CLinkPager
 	/**
 	 * @var string the text label for the next page button. Defaults to 'Next &gt;'.
 	 */
-	public $nextPageLabel = false;
+	public $nextPageLabel = '';
 
 	/**
 	 * @var string the text label for the previous page button. Defaults to '&lt; Previous'.
 	 */
-	public $prevPageLabel = false;
+	public $prevPageLabel = '';
 
 	/**
 	 * @var string the text label for the first page button. Defaults to '&lt;&lt; First'.
 	 */
-	public $firstPageLabel = false;
+	public $firstPageLabel = '';
 
 	/**
 	 * @var string the text label for the last page button. Defaults to 'Last &gt;&gt;'.
 	 */
-	public $lastPageLabel = false;
+	public $lastPageLabel = '';
 
 	/**
 	 * @var string the text shown before page buttons. Defaults to 'Go to page: '.
