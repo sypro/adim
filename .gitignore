@@ -38,5 +38,4 @@ console/config/messages.php
 common/config/local.php
 frontend/www/crossdomain.xml
 
-composer.lock
 composer.phar
