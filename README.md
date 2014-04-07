@@ -28,6 +28,8 @@ mv composer.phar /usr/local/bin/composer
 ```
 [подробнее о composer](https://getcomposer.org)
 
+в composer использовать только для install, update использовать только если добавился какой то дополнительный репозиторий
+
 -------------------
 # Настрофка проекта
 
