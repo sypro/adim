@@ -32,7 +32,7 @@ $frontend = array(
 		),
 	),
 	'theme' => 'melon',
-	'preload' => array('maintenanceMode', ),
+	'preload' => array(),
 	'modules' => array(
 		'front' => array(
 			'class' => '\front\FrontModule',
@@ -113,21 +113,6 @@ $frontend = array(
 				array('gii/<controller>', 'pattern' => 'gii/<controller:\w+>'),
 				array('gii/<controller>/<action>', 'pattern' => 'gii/<controller:\w+>/<action:\w+>'),
 			),
-		),
-		'maintenanceMode' => array(
-			'class' => '\MaintenanceMode',
-			'enabledMode' => false,
-			//'message' => 'Hello!',
-			// or
-			'capUrl' => '/site/maintenance',
-			// allowed users
-			//'users' => array('admin', ),
-			// allowed roles
-			//'roles' => array('Administrator', ),
-			// allowed IP
-			'ips' => array(),
-			// allowed urls
-			//'urls' => array('/site/login', '/login', ),
 		),
 		'user' => array(
 			'class' => '\front\components\WebUser',

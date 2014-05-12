@@ -4,26 +4,11 @@
 			"core": "common/modules"
 		},
 		"classmap": [
-			"vendor/karagodin/MaintenanceMode",
 			"vendor/malyshev/yii-debug-toolbar",
 			"vendor/clevertech/yii-booster/src",
 			"vendor/yiiext/imperavi-redactor-widget"
 		]
 	},
-	"repositories": [
-		{
-			"type":"package",
-			"package": {
-				"name": "karagodin/MaintenanceMode",
-				"version":"master",
-				"source": {
-					"url": "https://github.com/karagodin/MaintenanceMode.git",
-					"type": "git",
-					"reference":"master"
-				}
-			}
-		}
-	],
 	"scripts": {
 		"pre-install-cmd": [
 			"core\\Callback::preInstall"
@@ -50,7 +35,6 @@
 		"clevertech/yii-booster": "1.1.0.*@dev",
 		"malyshev/yii-debug-toolbar": "dev-master",
 		"metalguardian/yii-file-processor": "dev-master",
-		"karagodin/MaintenanceMode": "dev-master",
 		"metalguardian/yii-date-time-picker": "dev-master",
 		"phpmailer/phpmailer": "v5.2.7",
 		"yiiext/imperavi-redactor-widget": "dev-master"
