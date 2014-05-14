@@ -35,6 +35,7 @@ $backend = array(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'emailQueue'
 		),
 	),
+	'theme' => 'melon',
 	'preload' => array('bootstrap',),
 	'import' => array(),
 	'modules' => array(
@@ -108,6 +109,9 @@ $backend = array(
 		),
 	),
 	'components' => array(
+		'themeManager' => array(
+			'basePath' => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'themes'),
+		),
 		'bootstrap' => array(
 			'class' => '\back\components\Bootstrap',
 			'responsiveCss' => true,
@@ -182,6 +186,14 @@ $backend = array(
 					),
 					'css' => array(
 						'css/application.css' => 'screen, projection',
+					),
+					'depends' => array('jquery',),
+				),
+				'theme.melon' => array(
+					'baseUrl' => '/themes/melon/',
+					'js' => array(
+					),
+					'css' => array(
 					),
 					'depends' => array('jquery',),
 				),

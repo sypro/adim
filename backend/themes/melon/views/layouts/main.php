@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<?php /* @var $this \back\components\BackController */ ?>
+<?php
+/**
+ * @var $this \back\components\BackController
+ * @var $content
+ */
+?>
 <html lang="en">
 <head>
 	<meta charset="utf-8">

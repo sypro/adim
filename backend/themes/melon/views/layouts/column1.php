@@ -1,5 +1,5 @@
 <?php /* @var $this \back\components\BackController */ ?>
-<?php $this->beginContent('back.views.layouts.main'); ?>
+<?php $this->beginContent('//layouts/main'); ?>
 <div class="container">
 	<?php if(isset($this->breadcrumbs)): ?>
 		<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(

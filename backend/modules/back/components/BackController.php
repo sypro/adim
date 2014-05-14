@@ -22,7 +22,7 @@ class BackController extends Controller
 	 *
 	 * @var string
 	 */
-	public $layout = 'back.views.layouts.column1';
+	public $layout = '//layouts/column1';
 
 	/**
 	 * @return array action filters
