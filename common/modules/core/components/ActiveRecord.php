@@ -343,7 +343,7 @@ abstract class ActiveRecord extends \CActiveRecord
 	 */
 	public static function model($className = __CLASS__)
 	{
-		return static::model($className);
+		return parent::model($className);
 	}
 
 	/**
