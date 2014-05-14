@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a8e58879ae1ca5894c0d022e40827cb4",
+    "hash": "14471f7235ba6252cdb1b9af93e53f4d",
     "packages": [
         {
             "name": "clevertech/yii-booster",
@@ -59,17 +59,6 @@
                 "yii"
             ],
             "time": "2013-09-17 14:50:26"
-        },
-        {
-            "name": "karagodin/MaintenanceMode",
-            "version": "master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/karagodin/MaintenanceMode.git",
-                "reference": "master"
-            },
-            "type": "library",
-            "time": "2011-10-19 01:46:47"
         },
         {
             "name": "malyshev/yii-debug-toolbar",
@@ -142,12 +131,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MetalGuardian/yii-file-processor.git",
-                "reference": "c21ac067d0366536a3052962beca2deb07984f7e"
+                "reference": "136979f40909a8295d292894451156b9839cdad9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MetalGuardian/yii-file-processor/zipball/c21ac067d0366536a3052962beca2deb07984f7e",
-                "reference": "c21ac067d0366536a3052962beca2deb07984f7e",
+                "url": "https://api.github.com/repos/MetalGuardian/yii-file-processor/zipball/136979f40909a8295d292894451156b9839cdad9",
+                "reference": "136979f40909a8295d292894451156b9839cdad9",
                 "shasum": ""
             },
             "type": "library",
@@ -165,7 +154,7 @@
                     "name": "Ivan Pushkin"
                 }
             ],
-            "time": "2014-03-17 09:46:02"
+            "time": "2014-04-15 09:05:11"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -226,12 +215,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiiext/imperavi-redactor-widget.git",
-                "reference": "653b314d9b5a5ca88ff9d81b6175107627524cd9"
+                "reference": "92868a5cee0a6938427a6421f0f42980c89d3801"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiiext/imperavi-redactor-widget/zipball/653b314d9b5a5ca88ff9d81b6175107627524cd9",
-                "reference": "653b314d9b5a5ca88ff9d81b6175107627524cd9",
+                "url": "https://api.github.com/repos/yiiext/imperavi-redactor-widget/zipball/92868a5cee0a6938427a6421f0f42980c89d3801",
+                "reference": "92868a5cee0a6938427a6421f0f42980c89d3801",
                 "shasum": ""
             },
             "type": "library",
@@ -259,7 +248,7 @@
                 "wysiwyg",
                 "yii"
             ],
-            "time": "2014-03-24 18:26:31"
+            "time": "2014-04-18 10:51:04"
         },
         {
             "name": "yiisoft/yii",
@@ -267,12 +256,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii.git",
-                "reference": "7fc9bc0b4d7f18a1c00ca68477523ab732e04b58"
+                "reference": "f4f38d97fbdc4e8b5464904d98d616896c9fc9cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii/zipball/7fc9bc0b4d7f18a1c00ca68477523ab732e04b58",
-                "reference": "7fc9bc0b4d7f18a1c00ca68477523ab732e04b58",
+                "url": "https://api.github.com/repos/yiisoft/yii/zipball/f4f38d97fbdc4e8b5464904d98d616896c9fc9cd",
+                "reference": "f4f38d97fbdc4e8b5464904d98d616896c9fc9cd",
                 "shasum": ""
             },
             "require": {
@@ -343,7 +332,7 @@
                 "framework",
                 "yii"
             ],
-            "time": "2014-04-05 11:02:58"
+            "time": "2014-05-13 05:57:45"
         }
     ],
     "packages-dev": [
@@ -358,7 +347,6 @@
         "clevertech/yii-booster": 20,
         "malyshev/yii-debug-toolbar": 20,
         "metalguardian/yii-file-processor": 20,
-        "karagodin/maintenancemode": 20,
         "metalguardian/yii-date-time-picker": 20,
         "yiiext/imperavi-redactor-widget": 20
     },
