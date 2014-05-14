@@ -67,7 +67,7 @@ class BackController extends Controller
 	public function actionView($id)
 	{
 		$this->render(
-			'back.components.adminTemplates.view',
+			'//templates/admin/view',
 			array(
 				'model' => $this->loadModel($id),
 			)
@@ -118,7 +118,7 @@ class BackController extends Controller
 		}
 
 		$this->render(
-			'back.components.adminTemplates.update',
+			'//templates/admin/update',
 			array(
 				'model' => $model,
 				'form' => $form,
@@ -168,7 +168,7 @@ class BackController extends Controller
 		}
 
 		$this->render(
-			'back.components.adminTemplates.create',
+			'//templates/admin/create',
 			array(
 				'model' => $model,
 				'form' => $form,
@@ -191,7 +191,7 @@ class BackController extends Controller
 		}
 
 		$this->render(
-			'back.components.adminTemplates.index',
+			'//templates/admin/index',
 			array(
 				'model' => $model,
 			)
