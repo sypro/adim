@@ -82,10 +82,13 @@ class MessageController extends BackController
 			}
 		}
 
-		$this->render('back.components.adminTemplates.update', array(
+		$this->render(
+			'//templates/admin/update',
+			array(
 				'model' => $model,
 				'form' => $form,
-			));
+			)
+		);
 	}
 
 	/**
@@ -131,10 +134,13 @@ class MessageController extends BackController
 			}
 		}
 
-		$this->render('back.components.adminTemplates.update', array(
+		$this->render(
+			'//templates/admin/update',
+			array(
 				'model' => $model,
 				'form' => $form,
-			));
+			)
+		);
 	}
 
 	public function actionMessage()

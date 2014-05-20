@@ -173,7 +173,7 @@ class SeoController extends BackController
 		}
 
 		$this->render(
-			'back.components.adminTemplates.update',
+			'//templates/admin/update',
 			array(
 				'model' => $model,
 				'form' => $form,
