@@ -322,7 +322,7 @@ class Seo extends ActiveRecord
 			'attributes' => array(
 				'enctype' => 'multipart/form-data',
 			),
-			'title' => t('Setup list page seo [{language}]', array('{language}' => $this->lang_id)),
+			'title' => t('core', 'Setup list page seo [{language}]', array('{language}' => $this->lang_id)),
 			'elements' => array(
 				'[' . $this->lang_id . ']model_name' => array(
 					'type' => 'hidden',
