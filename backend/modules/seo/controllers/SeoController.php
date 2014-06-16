@@ -62,6 +62,7 @@ class SeoController extends BackController
 						'alert('
 						. \CJavaScript::encode(
 							t(
+								'core',
 								'Seo for language "{language}" saved.',
 								array(
 									'{language}' => $model->lang_id,
