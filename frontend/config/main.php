@@ -144,7 +144,7 @@ $frontend = array(
 					'css' => array(
 						'css/application.css' => 'screen, projection',
 					),
-					'depends' => array('jquery', ),
+					'depends' => array('jquery', 'theme.melon'),
 				),
 				'theme.melon' => array(
 					'baseUrl' => '/themes/melon/',

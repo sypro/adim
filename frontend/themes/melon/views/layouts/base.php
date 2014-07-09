@@ -8,7 +8,6 @@
 /**
  * @var $this \front\components\FrontController
  */
-cs()->registerPackage('theme.melon');
 cs()->registerPackage('frontend.main');
 ?>
 	<?php echo $content; ?>
