@@ -24,7 +24,13 @@ $console = array(
 				'backConf' => 'backend.modules.configuration.migrations',
 				'backMenu' => 'backend.modules.menu.migrations',
 				'fileProcessor' => 'root.vendor.metalguardian.yii-file-processor.fileProcessor.migrations',
-			),
+                //add
+                'page' => 'backend.modules.page.migrations',
+                'gallery' => 'backend.modules.gallery.migrations',
+                'partners' => 'backend.modules.partners.migrations',
+                'principles' => 'backend.modules.principles.migrations',
+
+            ),
 			'migrationSubPath' => 'migrations',
 			'disabledModules' => array(),
 		),

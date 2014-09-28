@@ -34,11 +34,37 @@ $backend = array(
 		'emailQueue' => realpath(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'emailQueue'
 		),
+        //add
+        'page' => realpath(
+            __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'page'
+        ),
+        'partners' => realpath(
+            __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'page'
+        ),
+        'principles' => realpath(
+            __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'page'
+        ),
+        'gallery' => realpath(
+            __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'page'
+        ),
 	),
 	'theme' => 'melon',
 	'preload' => array('bootstrap',),
 	'import' => array(),
 	'modules' => array(
+        'page' => array(
+            'class' => '\page\PageModule',
+        ),
+        'partners' => array(
+            'class' => '\partners\PartnersModule',
+        ),
+        'principles' => array(
+            'class' => '\principles\PrinciplesModule',
+        ),
+        'gallery' => array(
+            'class' => '\gallery\GalleryModule',
+        ),
+        //add end
 		'back' => array(
 			'class' => '\back\BackModule',
 		),
