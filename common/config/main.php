@@ -20,6 +20,18 @@ $main = array(
 		),
 	),
 	'components' => array(
+        'db' => array(
+            'class' => '\core\components\DbConnection',
+            'connectionString' => 'mysql:host=m2b.mysql.ukraine.com.ua;dbname=m2b_adim',
+            'emulatePrepare' => true,
+            'username' => 'm2b_adim',
+            'password' => 'rn9mlf3s',
+            'charset' => 'utf8',
+            'tablePrefix' => 'tbl_',
+            'schemaCachingDuration' => 0,
+            'enableProfiling' => true,
+            'enableParamLogging' => true,
+        ),
 		'urlManager' => array(
 			'class' => '\core\components\UrlManager',
 			'defaultLanguage' => 'ru',

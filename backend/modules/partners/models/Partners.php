@@ -3,32 +3,32 @@
  *
  */
 
-namespace principles\models;
+namespace partners\models;
 
 use back\components\ActiveRecord;
 
 /**
- * This is the model class for table "{{principles}}".
+ * This is the model class for table "{{partners}}".
  *
- * The followings are the available columns in table '{{principles}}':
+ * The followings are the available columns in table '{{partners}}':
  * @property integer $id
  * @property string $label
- * @property string $announce
+ * @property string $link
  * @property integer $image_id
  * @property integer $visible
  * @property integer $published
  * @property integer $position
  *
  * The followings are the available model relations:
- * @property PrinciplesLang[] $principlesLangs
+ * @property PartnersLang[] $partnersLangs
  */
-class Principles extends ActiveRecord
+class Partners extends ActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Principles the static model class
+	 * @return Partners the static model class
 	 */
 	public static function model($className = __CLASS__)
 	{
@@ -40,7 +40,7 @@ class Principles extends ActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{principles}}';
+		return '{{partners}}';
 	}
 
 	/**
@@ -51,7 +51,7 @@ class Principles extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'principlesLangs' => array(self::HAS_MANY, 'PrinciplesLang', 'model_id'),
+			'partnersLangs' => array(self::HAS_MANY, 'PartnersLang', 'model_id'),
 		);
 	}
 
@@ -63,11 +63,11 @@ class Principles extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('visible, published, position', 'numerical', 'integerOnly' => true),
-			array('label', 'length', 'max' => 200),
-			array('announce', 'safe'),
+            array('label', 'required'),
+            array('visible, published, position', 'numerical', 'integerOnly' => true),
+			array('label, link', 'length', 'max' => 200),
 			// The following rule is used by search().
-			array('id, label, announce, visible, published, position', 'safe', 'on' => 'search', ),
+			array('id, label, link, visible, published, position', 'safe', 'on' => 'search', ),
 		);
 	}
 
@@ -79,7 +79,7 @@ class Principles extends ActiveRecord
 		$labels = \CMap::mergeArray(
 			parent::attributeLabels(),
 			array(
-				'announce' => 'Announce',
+				'link' => 'Link to site',
 			)
 		);
 		$labels = $this->generateLocalizedAttributeLabels($labels);
@@ -100,7 +100,7 @@ class Principles extends ActiveRecord
 
 		$criteria->compare('t.id', $this->id);
 		$criteria->compare('t.label', $this->label, true);
-		$criteria->compare('t.announce', $this->announce, true);
+		$criteria->compare('t.link', $this->link, true);
 		$criteria->compare('t.visible', $this->visible);
 		$criteria->compare('t.published', $this->published);
 		$criteria->compare('t.position', $this->position);
@@ -128,7 +128,7 @@ class Principles extends ActiveRecord
 	 */
 	public function genAdminBreadcrumbs($page, $title = null)
 	{
-		return parent::genAdminBreadcrumbs($page, $title ? $title : 'Principles');
+		return parent::genAdminBreadcrumbs($page, $title ? $title : 'Partners');
 	}
 
 	/**
@@ -148,7 +148,9 @@ class Principles extends ActiveRecord
 						'name' => 'id',
 						'htmlOptions' => array('class' => 'span1 center', ),
 					),
-					array(
+                    'label',
+                    'link',
+                    array(
 						'class' => 'back\components\ImageColumn',
 						'name' => 'image_id',
 					),
@@ -175,7 +177,7 @@ class Principles extends ActiveRecord
 				$columns = array(
 					'id',
 					'label',
-					'announce',
+					'link',
 					'image_id:fpmImage',
 					'visible:boolean',
 					'published:boolean',
@@ -205,10 +207,9 @@ class Principles extends ActiveRecord
 					'type' => 'text',
 					'class' => 'span6',
 				),
-				'announce' => array(
-					'type' => 'textarea',
+				'link' => array(
+					'type' => 'text',
 					'class' => 'span6',
-					'rows' => 5,
 				),
 				'image_id' => array(
 					'type' => '\back\components\FileFormInputElement',
@@ -288,6 +289,6 @@ class Principles extends ActiveRecord
 	 */
 	public static function getLocalizedAttributesList()
 	{
-		return array();
+		return array('label');
 	}
 }

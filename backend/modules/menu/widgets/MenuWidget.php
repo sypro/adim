@@ -28,8 +28,11 @@ class MenuWidget extends \TbNavbar
 	{
 		$items = array();
 
-		$items[] = array('label' => 'Админпанель', 'url' => array('/site/index'));
-		$items[] = array('label' => 'Настройки', 'items' => array(
+        $items[] = array('label' => 'Админпанель', 'url' => array('/site/index'));
+        $items[] = array('label' => 'Partners', 'url' => array('/partners/partners'));
+//        $items[] = array('label' => 'Partners', 'url' => array('/partners/partners'));
+
+        $items[] = array('label' => 'Настройки', 'items' => array(
 			array('label' => 'Языки', 'url' => array('/language/language/index'), ),
 			array('label' => 'Переводы', 'items' => array(
 				array('label' => 'Переводы', 'url' => array('/translate/message/index'), ),
