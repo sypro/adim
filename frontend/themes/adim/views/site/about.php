@@ -7,7 +7,6 @@
  * To change this template use File | Settings | File Templates.
  */
 ?>
-
 <div class="container">
     <h1 class="page-title">About the company: </h1>
     <div class="col-sm-9">

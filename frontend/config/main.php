@@ -44,22 +44,22 @@ $frontend = array(
 			'cachedImagesBaseDir' => 'uploads/thumb',
 			// set path without first and last slashes
 			'imageSections' => array(
-                'admin' => array(
+                'page' => array(
                     'index' => array(
                         'width' => 100,
                         'height' => 100,
                         'quality' => 70,
                         'do' => 'resize', // resize|adaptiveResize
                     ),
-                    'view' => array(
-                        'width' => 300,
-                        'height' => 300,
+                    'principles' => array(
+                        'width' => 200,
+                        'height' => 200,
                         'quality' => 90,
                         'do' => 'resize', // resize|adaptiveResize
                     ),
-                    'form' => array(
-                        'width' => 300,
-                        'height' => 300,
+                    'partners' => array(
+                        'width' => 175,
+                        'height' => 175,
                         'quality' => 90,
                         'do' => 'resize', // resize|adaptiveResize
                     ),
@@ -112,8 +112,19 @@ $frontend = array(
 				),*/
 				array('site/index', 'pattern' => '<lang:\w{2}>'),
 				array('site/index', 'pattern' => ''),
-
-				array('site/imperaviImageUpload', 'pattern' => '<lang:\w{2}>/redactor/upload/image', ),
+//pages
+                array('site/about', 'pattern' => '<lang:\w{2}>/about'),
+                array('site/about', 'pattern' => 'about'),
+                array('site/gallery', 'pattern' => '<lang:\w{2}>/gallery'),
+                array('site/gallery', 'pattern' => 'gallery'),
+                array('site/partners', 'pattern' => '<lang:\w{2}>/partners'),
+                array('site/partners', 'pattern' => 'partners'),
+                array('site/principles', 'pattern' => '<lang:\w{2}>/principles'),
+                array('site/principles', 'pattern' => 'principles'),
+                array('site/contacts', 'pattern' => '<lang:\w{2}>/contacts'),
+                array('site/contacts', 'pattern' => 'contacts'),
+//pages end
+                array('site/imperaviImageUpload', 'pattern' => '<lang:\w{2}>/redactor/upload/image', ),
 				array('site/imperaviImageUpload', 'pattern' => 'redactor/upload/image', ),
 				array('site/imperaviFileUpload', 'pattern' => '<lang:\w{2}>/redactor/upload/file', ),
 				array('site/imperaviFileUpload', 'pattern' => 'redactor/upload/file', ),
@@ -171,19 +182,22 @@ $frontend = array(
 					),
 					'css' => array(
 					),
-					'depends' => array('jquery', ),
+					'depends' => array('jquery'),
 				),
                 'theme.adim' => array(
                     'baseUrl' => '/themes/adim/',
                     'js' => array(
                         'js/jquery.flexslider.js',
+                        'js/bootstrap.min.js',
                         'js/scripts.js',
+
                     ),
                     'css' => array(
+                        'css/bootstrap.min.css',
                         'css/style.css' => 'screen, projection',
                         'css/flexslider.css' => 'screen, projection',
                     ),
-                    'depends' => array('jquery','bootstrap'),
+                    'depends' => array('jquery'),
                 ),
 			),
 			'scriptMap' => array(),

@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>title</title>
+    <title><?= $this->getPageTitle()?></title>
 
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -28,6 +28,7 @@
     ?>
 </head>
 <body>
+
 <?php echo $content; ?>
 <div class="footer">
     <div class="container">
@@ -74,8 +75,6 @@
     </div>
 </div>
 </div>
-
-</body>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -97,4 +96,6 @@
         </div>
     </div>
 </div>
+</body>
+
 </html>

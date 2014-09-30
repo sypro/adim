@@ -8,32 +8,7 @@
 ?>
 
     <div class="page">
-	<div class="header">
-		<div class="container">
-			<div class="logo"><a href="#"><img src="/images/logo.png" alt="" /></a></div>
-			<div class="center-name"><img src="/images/c-name.png" alt="" /></div>
-			<div class="language">
-				<ul>
-					<li><a href="#" class="active">en</a></li>
-					<li><a href="#">ru</a></li>
-					<li><a href="#">uk</a></li>
-				</ul>
-			</div>
-		</div>
-	</div><!-- .header -->
-	<div class="menu">
-	<div class="container">
-		<nav><ul class="nav-top">
-			<li><a href="index.html" class="active" >Home</a></li>
-			<li><a href="about.html">ABOUT COMPANY</a></li>
-			<li><a href="gallery.html">GALLERY</a></li>
-			<li><a href="princ.html">PRINCIPLES</a></li>
-			<li><a href="partners.html">PARTNERS</a></li>
-			<li><a href="contact.html">CONTACTS</a></li>
-		</ul>
-		</nav>
-	</div>
-	</div>
+	<?php echo $this->renderPartial('//layouts/header');  ?>
 	<div class="full-slider">
 		<div class="flexslider">
   <ul class="slides">
