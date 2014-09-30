@@ -31,7 +31,7 @@ $frontend = array(
 			__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'emailQueue'
 		),
 	),
-	'theme' => 'melon',
+	'theme' => 'adim',
 	'preload' => array(),
 	'modules' => array(
 		'front' => array(
@@ -44,7 +44,26 @@ $frontend = array(
 			'cachedImagesBaseDir' => 'uploads/thumb',
 			// set path without first and last slashes
 			'imageSections' => array(
-
+                'admin' => array(
+                    'index' => array(
+                        'width' => 100,
+                        'height' => 100,
+                        'quality' => 70,
+                        'do' => 'resize', // resize|adaptiveResize
+                    ),
+                    'view' => array(
+                        'width' => 300,
+                        'height' => 300,
+                        'quality' => 90,
+                        'do' => 'resize', // resize|adaptiveResize
+                    ),
+                    'form' => array(
+                        'width' => 300,
+                        'height' => 300,
+                        'quality' => 90,
+                        'do' => 'resize', // resize|adaptiveResize
+                    ),
+                ),
 			),
 			'imageHandler' => array(
 				'driver' => '\fileProcessor\extensions\imageHandler\drivers\MDriverGD',
@@ -154,6 +173,18 @@ $frontend = array(
 					),
 					'depends' => array('jquery', ),
 				),
+                'theme.adim' => array(
+                    'baseUrl' => '/themes/adim/',
+                    'js' => array(
+                        'js/jquery.flexslider.js',
+                        'js/scripts.js',
+                    ),
+                    'css' => array(
+                        'css/style.css' => 'screen, projection',
+                        'css/flexslider.css' => 'screen, projection',
+                    ),
+                    'depends' => array('jquery','bootstrap'),
+                ),
 			),
 			'scriptMap' => array(),
 		),

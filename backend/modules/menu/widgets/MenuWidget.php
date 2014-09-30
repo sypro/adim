@@ -29,8 +29,23 @@ class MenuWidget extends \TbNavbar
 		$items = array();
 
         $items[] = array('label' => 'Админпанель', 'url' => array('/site/index'));
+        $items[] = array('label' => 'Pages', 'items' => array(
+            array('label' => 'Home', 'url' => array('/admin/user/index'), ),
+            array('label' => 'About', 'url' => array('/admin/user/index'), ),
+            array('label' => 'Gallery', 'url' => array('/admin/user/index'), ),
+            array('label' => 'Principles', 'url' => array('/admin/user/index'), ),
+            array('label' => 'Partners', 'url' => array('/admin/user/index'), ),
+            array('label' => 'Contacts', 'url' => array('/admin/user/index'), ),
+        ), );
+
         $items[] = array('label' => 'Partners', 'url' => array('/partners/partners'));
-//        $items[] = array('label' => 'Partners', 'url' => array('/partners/partners'));
+        $items[] = array('label' => 'Principles', 'url' => array('/principles/principles'));
+
+        $items[] = array('label' => 'Gallery', 'items' => array(
+            array('label' => 'Categories', 'url' => array('/gallery/gallery'), ),
+            array('label' => 'Images', 'url' => array('/gallery/image'), ),
+        ), );
+
 
         $items[] = array('label' => 'Настройки', 'items' => array(
 			array('label' => 'Языки', 'url' => array('/language/language/index'), ),
