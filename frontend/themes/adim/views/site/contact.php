@@ -29,14 +29,7 @@
 
         </div>
     </div>
-    <div class="col-sm-3">
-        <div class="t-order">
-            <h1>BELIEVE </h1>
-            <h3>professionals </h3>
-            <h4>and immediately </h4>
-            <a href="#" class="btn btn-order" data-toggle="modal" data-target="#myModal">MAKE AN ORDER</a>
-        </div>
-    </div>
+    <?php echo $this->renderPartial('_order');  ?>
 </div>
 <div class="row">
     <div class="c-image"><img src="images/contact-img.jpg" /></div>

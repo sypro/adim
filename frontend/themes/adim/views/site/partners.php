@@ -19,37 +19,8 @@
                 </div>
             </div>
             <?php endforeach ?>
-
-            <div class="col-sm-4">
-                <div class="princ-w">
-                    <div class="circle-w"><img src="images/sergo.png" /></div>
-                    <div class="c-w-name"><p>SERGO, <br />Everything for your house</p></div>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="princ-w">
-                    <div class="circle-w"><img src="images/flats.png" /></div>
-                    <div class="c-w-name"><p>Flats & Doors</p></div>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="princ-w">
-                    <div class="circle-w"><img src="images/friends.png" /></div>
-                    <div class="c-w-name"><p>ARMONI</p></div>
-                </div>
-            </div>
-
-
         </div>
     </div>
-    <div class="col-sm-3">
-        <div class="t-order">
-            <h1>BELIEVE </h1>
-            <h3>professionals </h3>
-            <h4>and immediately </h4>
-            <a href="#" class="btn btn-order" data-toggle="modal" data-target="#myModal">MAKE AN ORDER</a>
-        </div>
-    </div>
+    <?php echo $this->renderPartial('_order');  ?>
+
 </div>
