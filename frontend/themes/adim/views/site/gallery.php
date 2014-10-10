@@ -9,17 +9,18 @@
 ?>
 <div class="container">
     <h1 class="page-title"><?=t('Gallery')?></h1>
+    <?php
+//    var_dump($model);
+    foreach(array_chunk($model,4) as $row){
+        echo '<div class="row">';
+        foreach($row as $gallery){
+            echo '<div class="col-sm-3"><a href="gallery_one.html">';
+            echo \fileProcessor\helpers\FPM::image($gallery->image_id,'page','gallery');
+            echo '</a><div class="gal-name">'.$gallery->label.'</div></div>';
 
-    <div class="row">
-        <div class="col-sm-3"><a href="gallery_one.html"><img src="images/img1.png" /></a><div class="gal-name">Cassic style</div></div>
-        <div class="col-sm-3"><a href="gallery_one.html"><img src="images/img2.png" /></a><div class="gal-name">Provence</div></div>
-        <div class="col-sm-3"><a href="gallery_one.html"><img src="images/img3.png" /></a><div class="gal-name">Private apartments in a classic</div></div>
-        <div class="col-sm-3"><a href="gallery_one.html"><img src="images/img4.png" /></a><div class="gal-name">Private mansion</div></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3"><a href="gallery_one.html"><img src="images/img5.png" /></a><div class="gal-name">Apartments in the style of minimalism</div></div>
-        <div class="col-sm-3"><a href="gallery_one.html"><img src="images/img6.png" /></a><div class="gal-name">Apartments in the style of fusion</div></div>
-        <div class="col-sm-3"><a href="gallery_one.html"><img src="images/img7.png" /></a><div class="gal-name">Private apartments in a classic</div></div>
-        <div class="col-sm-3"><a href="gallery_one.html"><img src="images/img8.png" /></a><div class="gal-name">Private mansion</div></div>
-    </div>
+        }
+
+        echo '</div>';
+    }
+    ?>
 </div>

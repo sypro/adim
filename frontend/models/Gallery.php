@@ -6,6 +6,7 @@
 namespace frontend\models;
 
 use front\components\ActiveRecord;
+use frontend\models\Image;
 
 /**
  * This is the model class for table "{{gallery}}".
@@ -52,7 +53,8 @@ class Gallery extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'galleryLangs' => array(self::HAS_MANY, 'GalleryLang', 'model_id'),
+            'galleryLangs' => array(self::HAS_MANY, 'GalleryLang', 'model_id'),
+            'images' => array(self::HAS_MANY, Image::getClassName(), 'gallery_id'),
 		);
 	}
 

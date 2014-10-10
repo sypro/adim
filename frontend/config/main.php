@@ -57,6 +57,12 @@ $frontend = array(
                         'quality' => 90,
                         'do' => 'resize', // resize|adaptiveResize
                     ),
+                    'gallery' => array(
+                        'width' => 250,
+                        'height' => 250,
+                        'quality' => 90,
+                        'do' => 'adaptiveResize', // resize|adaptiveResize
+                    ),
                     'partners' => array(
                         'width' => 175,
                         'height' => 175,

@@ -278,6 +278,6 @@ class Gallery extends ActiveRecord
 	 */
 	public static function getLocalizedAttributesList()
 	{
-		return array();
+		return array('label');
 	}
 }
