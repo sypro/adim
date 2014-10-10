@@ -33,7 +33,7 @@
 <div class="footer">
     <div class="container">
         <div class="column-first">
-            <h3>Do you have a question for us?</h3>
+            <h3><?=t('Do you have a question for us?')?></h3>
             <div class="f-f-group">
                 <form class="form-inline" role="form">
                     <div class="form-group">
@@ -49,12 +49,12 @@
 
                         <textarea placeholder="Your message"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-send">Sign in</button>
+                    <button type="submit" class="btn btn-send"><?=t('Send')?></button>
                 </form>
             </div>
         </div>
         <div class="column">
-            <h3>Follow us:</h3>
+            <h3><?=t('Follow us')?>:</h3>
             <div class="social">
                 <ul>
                     <li class="fb"><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -64,9 +64,9 @@
             </div>
         </div>
         <div class="column">
-            <h3>Contact us:</h3>
-            <p>T: +971 50 100 6810</p>
-            <p>E: sales@macondevillas.com</p>
+            <h3><?=t('Contact us')?>:</h3>
+            <p>T: <?=config('PHONE')?></p>
+            <p>E: <?=config("EMAIL")?></p>
         </div>
         <div class="column">
             <div class="copy">© ADIMENSION <br />

@@ -8,7 +8,7 @@
  */
 ?>
 <div class="container">
-    <h1 class="page-title">Principles of operation</h1>
+    <h1 class="page-title"><?=t('Principles of operation')?></h1>
     <div class="col-sm-9">
         <div class="row">
             <div class="princ">

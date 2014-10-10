@@ -8,7 +8,7 @@
  */
 ?>
 <div class="container">
-    <h1 class="page-title">Principles of operation</h1>
+    <h1 class="page-title"><?=t('Keep the good relationship with the client')?></h1>
     <div class="col-sm-9">
         <div class="row">
             <?php foreach($model as $row):?>

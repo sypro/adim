@@ -8,7 +8,8 @@
  */
 ?>
 <div class="container">
-    <h1 class="page-title">Gallery</h1>
+    <h1 class="page-title"><?=t('Gallery')?></h1>
+
     <div class="row">
         <div class="col-sm-3"><a href="gallery_one.html"><img src="images/img1.png" /></a><div class="gal-name">Cassic style</div></div>
         <div class="col-sm-3"><a href="gallery_one.html"><img src="images/img2.png" /></a><div class="gal-name">Provence</div></div>
