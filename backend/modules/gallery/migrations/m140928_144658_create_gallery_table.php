@@ -20,7 +20,8 @@ class m140928_144658_create_gallery_table extends \CDbMigration
 			array(
 				'id' => 'INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
 
-				'label' => 'VARCHAR(200) NULL DEFAULT NULL COMMENT "Заголовок"',
+                'label' => 'VARCHAR(200) NULL DEFAULT NULL COMMENT "Заголовок"',
+                'alias' => 'VARCHAR(200) NULL DEFAULT NULL',
                 'image_id' => 'INT UNSIGNED NULL',
 
 

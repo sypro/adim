@@ -34,9 +34,16 @@ class SiteController extends FrontController
     {
         $this->render('about');
     }
-    public function actionGallery()
+    public function actionGallery($alias=null)
     {
-        $this->render('gallery',array('model'=> Gallery::getItems()));
+        if($alias === null)
+            $this->render('gallery',array('model'=> Gallery::getItems()));
+        else{
+            $model = $this->loadModel(array('alias' => $alias), Gallery::getClassName(), true);
+            $this->render('gallery_one', array(
+                'model' => $model,
+            ));
+        }
     }
     public function actionPartners()
     {

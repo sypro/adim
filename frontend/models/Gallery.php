@@ -104,7 +104,11 @@ class Gallery extends ActiveRecord
 	 */
 	public function getPageUrl($params = array())
 	{
-		return self::createUrl(array(), $params);
+        if(!$params)
+            $params = array('alias'=>$this->alias);
+//        $this->pageUrl = self::createUrl(array('/catalog/default/category'), $params);
+        return self::createUrl(array('/site/gallery'), $params);
+//		return self::createUrl(array(), $params);
 	}
 
 	/**

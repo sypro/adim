@@ -63,6 +63,12 @@ $frontend = array(
                         'quality' => 90,
                         'do' => 'adaptiveResize', // resize|adaptiveResize
                     ),
+                    'image' => array(
+                        'width' => 250,
+                        'height' => 250,
+                        'quality' => 90,
+                        'do' => 'adaptiveResize', // resize|adaptiveResize
+                    ),
                     'partners' => array(
                         'width' => 175,
                         'height' => 175,
@@ -121,7 +127,9 @@ $frontend = array(
 //pages
                 array('site/about', 'pattern' => '<lang:\w{2}>/about'),
                 array('site/about', 'pattern' => 'about'),
+                array('site/gallery', 'pattern' => 'gallery/<alias>'),
                 array('site/gallery', 'pattern' => '<lang:\w{2}>/gallery'),
+                array('site/gallery', 'pattern' => '<lang:\w{2}>/gallery/<alias>'),
                 array('site/gallery', 'pattern' => 'gallery'),
                 array('site/partners', 'pattern' => '<lang:\w{2}>/partners'),
                 array('site/partners', 'pattern' => 'partners'),

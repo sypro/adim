@@ -13,6 +13,7 @@ use back\components\ActiveRecord;
  * The followings are the available columns in table '{{gallery}}':
  * @property integer $id
  * @property string $label
+ * @property string $alias
  * @property integer $image_id
  * @property integer $visible
  * @property integer $published
@@ -63,9 +64,9 @@ class Gallery extends ActiveRecord
 		// will receive user inputs.
 		return array(
 			array('visible, published, position', 'numerical', 'integerOnly' => true),
-			array('label', 'length', 'max' => 200),
+			array('label, alias', 'length', 'max' => 200),
 			// The following rule is used by search().
-			array('id, label, visible, published, position', 'safe', 'on' => 'search', ),
+			array('id, label, alias, visible, published, position', 'safe', 'on' => 'search', ),
 		);
 	}
 
@@ -96,7 +97,8 @@ class Gallery extends ActiveRecord
 		$criteria = new \CDbCriteria();
 
 		$criteria->compare('t.id', $this->id);
-		$criteria->compare('t.label', $this->label, true);
+        $criteria->compare('t.label', $this->label, true);
+        $criteria->compare('t.label', $this->alias, true);
 		$criteria->compare('t.visible', $this->visible);
 		$criteria->compare('t.published', $this->published);
 		$criteria->compare('t.position', $this->position);
@@ -171,6 +173,7 @@ class Gallery extends ActiveRecord
 				$columns = array(
 					'id',
 					'label',
+                    'alias',
 					'image_id:fpmImage',
 					'visible:boolean',
 					'published:boolean',
@@ -198,8 +201,12 @@ class Gallery extends ActiveRecord
 			'elements' => array(
 				'label' => array(
 					'type' => 'text',
-					'class' => 'span6',
+					'class' => 'for_translation span6',
 				),
+                'alias' => array(
+                    'type' => 'text',
+                    'class' => 'alias span6',
+                ),
 				'image_id' => array(
 					'type' => '\back\components\FileFormInputElement',
 					'content' => 'image',
