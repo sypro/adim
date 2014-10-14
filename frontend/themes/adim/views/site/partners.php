@@ -14,8 +14,8 @@
             <?php foreach($model as $row):?>
             <div class="col-sm-4">
                 <div class="princ-w">
-                    <div class="circle-w"><?=\fileProcessor\helpers\FPM::image($row->image_id,'page','partners')?></div>
-                    <div class="c-w-name"><p><?=$row->label?></p></div>
+                    <div><?=\fileProcessor\helpers\FPM::image($row->image_id,'page','partners',$row->label,array('class'=>'img-circle'))?></div>
+                    <div class="c-w-name"><p>«<?=CHtml::link( $row->label,$row->link,array('target'=>'_blank'))?>»</p></div>
                 </div>
             </div>
             <?php endforeach ?>

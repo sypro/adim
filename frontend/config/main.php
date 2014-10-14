@@ -70,8 +70,8 @@ $frontend = array(
                         'do' => 'adaptiveResize', // resize|adaptiveResize
                     ),
                     'partners' => array(
-                        'width' => 175,
-                        'height' => 175,
+                        'width' => 210,
+                        'height' => 210,
                         'quality' => 90,
                         'do' => 'resize', // resize|adaptiveResize
                     ),
