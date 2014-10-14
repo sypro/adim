@@ -37,17 +37,17 @@
             <div class="f-f-group">
                 <form class="form-inline" role="form">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="name" placeholder="Name">
+                        <input type="text" class="form-control" id="name" placeholder="<?=t('Name')?>">
                     </div>
                     <div class="form-group">
                         <div class="input-group">
 
-                            <input class="form-control" type="text" placeholder="Your email">
+                            <input class="form-control" type="text" placeholder="<?=t('Your email')?>">
                         </div>
                     </div>
                     <div class="form-group">
 
-                        <textarea placeholder="Your message"></textarea>
+                        <textarea placeholder="<?=t('Your message')?>"></textarea>
                     </div>
                     <button type="submit" class="btn btn-send"><?=t('Send')?></button>
                 </form>
@@ -80,18 +80,18 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?=t('Close')?></span></button>
 
             </div>
             <div class="modal-body">
                 <div class="form-wrap">
-                    <input type="text" class="form-control" placeholder="Your name">
-                    <input type="text" class="form-control" placeholder="Your mail">
-                    <textarea class="form-control" rows="3" placeholder="Your message"></textarea>
+                    <input type="text" class="form-control" placeholder="<?=t('Your name')?>">
+                    <input type="text" class="form-control" placeholder="<?=t('Your mail')?>">
+                    <textarea class="form-control" rows="3" placeholder="<?=t('Your message')?>"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-modal">MAKE AN ORDER</button>
+                <button type="submit" class="btn btn-modal"><?=t('MAKE AN ORDER')?></button>
             </div>
         </div>
     </div>
