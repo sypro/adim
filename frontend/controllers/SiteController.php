@@ -7,8 +7,10 @@ namespace frontend\controllers;
 
 use front\components\FrontController;
 use frontend\models\Gallery;
+use frontend\models\Order;
 use frontend\models\Partners;
 use frontend\models\Principles;
+use frontend\widgets\OrderForm;
 
 /**
  * Class SiteController
@@ -44,6 +46,81 @@ class SiteController extends FrontController
                 'model' => $model,
             ));
         }
+    }
+
+    public function actionOrder()
+    {
+        $model = new Order();
+        $modelName = \CHtml::modelName($model);
+        $data = null;
+        $sucsess_html = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">'.t('close').'</span></button><h3>'.t('Thanks').', '.t('we will contact with you').'</h3></div>';
+        if (isset($_POST[$modelName])) {
+            //use ajax and funcybox so we must upload js again
+            cs()->registerScriptFile('/js/application.js');
+            $model->setAttributes($_POST[$modelName]);
+            if ($model->validate()) {
+                $data = array(
+                    'replaces' => array(
+                        array(
+                            'what' => '#claims-form',
+                            'data' => $sucsess_html,
+                        ),
+                    ),
+                );
+//                $model->save();
+            } else {
+                $form = $this->widget(OrderForm::getClassName(), array('model' => $model, ), true);
+                $data = array(
+                    'replaces' => array(
+                        array(
+                            'what' => '#claims-form',
+                            'data' => $form,
+                        ),
+                    ),
+                );
+            }
+        } else {
+            throw new \CHttpException(400, t('No data received'));
+        }
+        $this->renderJson($data);
+
+    }
+    public function actionQuestion()
+    {
+        $model = new Order();
+        $modelName = \CHtml::modelName($model);
+        $data = null;
+        $sucsess_html = '<h3>'.t('Thanks').', '.t('we will contact with you').'</h3>';
+        if (isset($_POST[$modelName])) {
+            //use ajax and funcybox so we must upload js again
+            cs()->registerScriptFile('/js/application.js');
+            $model->setAttributes($_POST[$modelName]);
+            if ($model->validate()) {
+                $data = array(
+                    'replaces' => array(
+                        array(
+                            'what' => '#claims-form',
+                            'data' => $sucsess_html,
+                        ),
+                    ),
+                );
+//                $model->save();
+            } else {
+                $form = $this->widget(OrderForm::getClassName(), array('model' => $model, ), true);
+                $data = array(
+                    'replaces' => array(
+                        array(
+                            'what' => '#claims-form',
+                            'data' => $form,
+                        ),
+                    ),
+                );
+            }
+        } else {
+            throw new \CHttpException(400, t('No data received'));
+        }
+        $this->renderJson($data);
+
     }
     public function actionPartners()
     {

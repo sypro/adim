@@ -57,16 +57,16 @@
             <h3><?=t('Follow us')?>:</h3>
             <div class="social">
                 <ul>
-                    <li class="fb"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li class="tw"><a href="#"><i class="fa fa-twitter"></i></i></a></li>
-                    <li class="vk"><a href="#"><i class="fa fa-vk"></i></a></li>
+                    <li class="fb"><a href="<?=config('fb')?>"><i class="fa fa-facebook"></i></a></li>
+                    <li class="tw"><a href="<?=config('tw')?>"><i class="fa fa-twitter"></i></i></a></li>
+                    <li class="vk"><a href="<?=config('vk')?>"><i class="fa fa-vk"></i></a></li>
                 </ul>
             </div>
         </div>
         <div class="column">
             <h3><?=t('Contact us')?>:</h3>
             <p>T: <?=config('PHONE')?></p>
-            <p>E: <?=config("EMAIL")?></p>
+            <p>E: <?=CHtml::mailto( config("EMAIL"), config("EMAIL"))?></p>
         </div>
         <div class="column">
             <div class="copy">© ADIMENSION <br />
@@ -79,20 +79,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?=t('Close')?></span></button>
-
-            </div>
-            <div class="modal-body">
-                <div class="form-wrap">
-                    <input type="text" class="form-control" placeholder="<?=t('Your name')?>">
-                    <input type="text" class="form-control" placeholder="<?=t('Your mail')?>">
-                    <textarea class="form-control" rows="3" placeholder="<?=t('Your message')?>"></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-modal"><?=t('MAKE AN ORDER')?></button>
-            </div>
+            <?php $this->widget(\frontend\widgets\OrderForm::getClassName()); ?>
         </div>
     </div>
 </div>

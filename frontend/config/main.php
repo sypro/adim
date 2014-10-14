@@ -123,7 +123,8 @@ $frontend = array(
 					'parsingOnly' => false | true,
 				),*/
 				array('site/index', 'pattern' => '<lang:\w{2}>'),
-				array('site/index', 'pattern' => ''),
+                array('site/index', 'pattern' => ''),
+                array('site/order', 'pattern' => 'site/order'),
 //pages
                 array('site/about', 'pattern' => '<lang:\w{2}>/about'),
                 array('site/about', 'pattern' => 'about'),

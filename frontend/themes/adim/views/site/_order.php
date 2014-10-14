@@ -10,9 +10,9 @@
 
 <div class="col-sm-3">
     <div class="t-order">
-        <h1>BELIEVE </h1>
-        <h3>professionals </h3>
-        <h4>and immediately </h4>
-        <a href="#" class="btn btn-order" data-toggle="modal" data-target="#myModal">MAKE AN ORDER</a>
+        <h1><?=t('BELIEVE')?> </h1>
+        <h3><?=t('professionals')?> </h3>
+        <h4><?=t('and immediately')?> </h4>
+        <a href="#" class="btn btn-order" data-toggle="modal" data-target="#myModal"><?=t('MAKE AN ORDER')?></a>
     </div>
 </div>

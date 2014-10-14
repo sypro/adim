@@ -61,10 +61,11 @@ class Order extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('created, modified', 'required'),
+			array('name, email, message, created, modified', 'required'),
 			array('visible, published, position, created, modified', 'numerical', 'integerOnly'=>true),
 			array('name, email', 'length', 'max'=>200),
-			array('message', 'safe'),
+            array('message', 'safe'),
+            array('email', 'email'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, email, message, visible, published, position, created, modified', 'safe', 'on'=>'search', ),
@@ -80,9 +81,9 @@ class Order extends ActiveRecord
 			parent::attributeLabels(),
 			array(
 				'id' => 'ID',
-				'name' => 'Name',
-				'email' => 'Email',
-				'message' => 'Message',
+				'name' => 'You Name',
+				'email' => 'You Email',
+				'message' => 'You Message',
 				'visible' => 'Visible',
 				'published' => 'Published',
 				'position' => 'Position',

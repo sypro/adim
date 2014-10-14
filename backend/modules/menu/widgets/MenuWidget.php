@@ -29,17 +29,19 @@ class MenuWidget extends \TbNavbar
 		$items = array();
 
         $items[] = array('label' => 'Админпанель', 'url' => array('/site/index'));
-        $items[] = array('label' => 'Pages', 'items' => array(
-            array('label' => 'Home', 'url' => array('/admin/user/index'), ),
-            array('label' => 'About', 'url' => array('/admin/user/index'), ),
-            array('label' => 'Gallery', 'url' => array('/admin/user/index'), ),
-            array('label' => 'Principles', 'url' => array('/admin/user/index'), ),
-            array('label' => 'Partners', 'url' => array('/admin/user/index'), ),
-            array('label' => 'Contacts', 'url' => array('/admin/user/index'), ),
-        ), );
+//        $items[] = array('label' => 'Pages', 'items' => array(
+//            array('label' => 'Home', 'url' => array('/admin/user/index'), ),
+//            array('label' => 'About', 'url' => array('/admin/user/index'), ),
+//            array('label' => 'Gallery', 'url' => array('/admin/user/index'), ),
+//            array('label' => 'Principles', 'url' => array('/admin/user/index'), ),
+//            array('label' => 'Partners', 'url' => array('/admin/user/index'), ),
+//            array('label' => 'Contacts', 'url' => array('/admin/user/index'), ),
+//        ), );
+        $items[] = array('label' => 'Slider', 'url' => array('/partners/partners'));
 
         $items[] = array('label' => 'Partners', 'url' => array('/partners/partners'));
         $items[] = array('label' => 'Principles', 'url' => array('/principles/principles'));
+        $items[] = array('label' => 'Orders', 'url' => array('/page/orders'));
 
         $items[] = array('label' => 'Gallery', 'items' => array(
             array('label' => 'Categories', 'url' => array('/gallery/gallery'), ),
