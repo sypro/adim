@@ -150,7 +150,7 @@ class Partners extends ActiveRecord
 	 */
 	public static function getLocalizedAttributesList()
 	{
-		return array();
+		return array('label');
 	}
 
 	/**

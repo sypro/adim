@@ -15,7 +15,7 @@
         echo '<div class="row">';
         foreach($row as $gallery){
             echo '<div class="col-sm-3">';
-            echo CHtml::link(\fileProcessor\helpers\FPM::image($gallery->image_id,'page','gallery'),$gallery->getPageUrl());
+            echo CHtml::link(\fileProcessor\helpers\FPM::image($gallery->image_id,'page','gallery',$gallery->label,array('class'=>'img-circle')),$gallery->getPageUrl());
 //            echo  \fileProcessor\helpers\FPM::image($gallery->image_id,'page','gallery');
             echo '<div class="gal-name">'.$gallery->label.'</div></div>';
 
