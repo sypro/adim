@@ -19,6 +19,15 @@ use frontend\widgets\OrderForm;
  */
 class SiteController extends FrontController
 {
+    public function actions()
+    {
+        return array(
+            'captcha'=>array(
+                'class'=>'CCaptchaAction',
+                'backColor'=>0xFFFFFF,
+            ),
+        );
+    }
 	/**
 	 * @var string
 	 */

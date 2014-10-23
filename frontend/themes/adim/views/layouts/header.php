@@ -20,7 +20,7 @@
 </div><!-- .header -->
 <div class="menu">
     <div class="container">
-        <nav><ul class="nav-top inner cl-effect-21">
+        <nav class="cl-effect-1"><ul class="nav-top inner">
                 <li><a href="/"><?=t('HOME')?></a></li>
                 <?php //CHtml::tag('li',array(), CHtml::link(t('Home222'),array(Yii::app()->request->baseUrl)))?>
                 <?=CHtml::tag('li',array(), CHtml::link(t('ABOUT COMPANY'),array('site/about')))?>

@@ -33,23 +33,22 @@
 <div class="footer">
     <div class="container">
         <div class="column-first">
-            <h3><?=t('Do you have a question for us?')?></h3>
+            <h3><?=t('Do you want site like this?')?></h3>
+
             <div class="f-f-group">
-                <form class="form-inline" role="form">
+                <form class="form-inline site-builders" role="form">
                     <div class="form-group">
                         <input type="text" class="form-control" id="name" placeholder="<?=t('Name')?>">
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-
-                            <input class="form-control" type="text" placeholder="<?=t('Your email')?>">
+                            <input class="form-control" type="text" placeholder="<?=t('Email')?>">
                         </div>
                     </div>
                     <div class="form-group">
-
-                        <textarea placeholder="<?=t('Your message')?>"></textarea>
+                        <textarea placeholder="<?=t('Message')?>"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-send"><?=t('Send')?></button>
+                    <button type="submit" class="btn btn-send" onclick="document.getElementById('form-id').submit();"><?=t('Send')?></button>
                 </form>
             </div>
         </div>
@@ -79,7 +78,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <?php $this->widget(\frontend\widgets\OrderForm::getClassName()); ?>
+            <?php $this->widget(\frontend\widgets\OrderForm::getClassName())?>
         </div>
     </div>
 </div>
