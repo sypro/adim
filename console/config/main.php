@@ -29,6 +29,7 @@ $console = array(
                 'gallery' => 'backend.modules.gallery.migrations',
                 'partners' => 'backend.modules.partners.migrations',
                 'principles' => 'backend.modules.principles.migrations',
+                'slider' => 'backend.modules.slider.migrations',
 
             ),
 			'migrationSubPath' => 'migrations',

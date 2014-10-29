@@ -1,1 +1,1 @@
-Index page
+<?php header('Location: /page/orders'); ?>

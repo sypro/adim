@@ -47,11 +47,17 @@ $backend = array(
         'gallery' => realpath(
             __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'gallery'
         ),
+        'slider' => realpath(
+            __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'slider'
+        ),
 	),
 	'theme' => 'melon',
 	'preload' => array('bootstrap',),
 	'import' => array(),
 	'modules' => array(
+        'slider' => array(
+            'class' => '\slider\SliderModule',
+        ),
         'page' => array(
             'class' => '\page\PageModule',
         ),
