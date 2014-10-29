@@ -11,6 +11,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $this->getPageTitle()?></title>
@@ -36,7 +37,7 @@
             <h3><?=t('Do you want site like this?')?></h3>
 
             <div class="f-f-group">
-                <form class="form-inline site-builders" role="form">
+                <form action="/site/newsite" method="get" class="form-inline site-builders" role="form">
                     <div class="form-group">
                         <input type="text" class="form-control" id="name" placeholder="<?=t('Name')?>">
                     </div>
@@ -45,10 +46,7 @@
                             <input class="form-control" type="text" placeholder="<?=t('Email')?>">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <textarea placeholder="<?=t('Message')?>"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-send" onclick="document.getElementById('form-id').submit();"><?=t('Send')?></button>
+                    <button type="submit" class="btn btn-send"><?=t('Send')?></button>
                 </form>
             </div>
         </div>

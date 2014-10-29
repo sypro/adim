@@ -143,6 +143,10 @@ class SiteController extends FrontController
     {
         $this->render('contact');
     }
+    public function actionNewsite()
+    {
+        var_dump($_GET);
+    }
 
 	public function actionMaintenance()
 	{

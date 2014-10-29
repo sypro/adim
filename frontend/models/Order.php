@@ -81,9 +81,9 @@ class Order extends ActiveRecord
 			parent::attributeLabels(),
 			array(
 				'id' => 'ID',
-				'name' => 'You Name',
-				'email' => 'You Email',
-				'message' => 'You Message',
+				'name' => t('You Name'),
+				'email' => t('You Email'),
+				'message' => t('You Message'),
 				'visible' => 'Visible',
 				'published' => 'Published',
 				'position' => 'Position',

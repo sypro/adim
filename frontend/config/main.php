@@ -49,13 +49,13 @@ $frontend = array(
                         'width' => 100,
                         'height' => 100,
                         'quality' => 70,
-                        'do' => 'resize', // resize|adaptiveResize
+                        'do' => 'adaptiveResize', // resize|adaptiveResize
                     ),
                     'principles' => array(
                         'width' => 200,
                         'height' => 200,
                         'quality' => 90,
-                        'do' => 'resize', // resize|adaptiveResize
+                        'do' => 'adaptiveResize', // resize|adaptiveResize
                     ),
                     'gallery' => array(
                         'width' => 250,
@@ -73,10 +73,26 @@ $frontend = array(
                         'width' => 210,
                         'height' => 210,
                         'quality' => 90,
-                        'do' => 'resize', // resize|adaptiveResize
+                        'do' => 'adaptiveResize', // resize|adaptiveResize
                     ),
                 ),
-			),
+                'gallery' => array(
+                    'big' => array(
+                        'width' => 1110,
+                        'height' => 708,
+                        'quality' => 99,
+                        'do' => 'adaptiveResize', // resize|adaptiveResize
+                    ),
+                    'thumbs' => array(
+                        'width' => 177,
+                        'height' => 125,
+                        'quality' => 70,
+                        'do' => 'adaptiveResize', // resize|adaptiveResize
+                    ),
+                ),
+
+
+            ),
 			'imageHandler' => array(
 				'driver' => '\fileProcessor\extensions\imageHandler\drivers\MDriverGD',
 				// '\fileProcessor\extensions\imageHandler\drivers\MDriverImageMagic'
@@ -128,6 +144,8 @@ $frontend = array(
 //pages
                 array('site/about', 'pattern' => '<lang:\w{2}>/about'),
                 array('site/about', 'pattern' => 'about'),
+                array('site/newsite', 'pattern' => '<lang:\w{2}>/newsite'),
+                array('site/newsite', 'pattern' => 'newsite'),
                 array('site/gallery', 'pattern' => 'gallery/<alias>'),
                 array('site/gallery', 'pattern' => '<lang:\w{2}>/gallery'),
                 array('site/gallery', 'pattern' => '<lang:\w{2}>/gallery/<alias>'),
