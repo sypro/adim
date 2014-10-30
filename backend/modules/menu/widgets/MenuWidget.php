@@ -37,7 +37,7 @@ class MenuWidget extends \TbNavbar
 //            array('label' => 'Partners', 'url' => array('/admin/user/index'), ),
 //            array('label' => 'Contacts', 'url' => array('/admin/user/index'), ),
 //        ), );
-        $items[] = array('label' => 'Slider', 'url' => array('/partners/partners'));
+        $items[] = array('label' => 'Slider', 'url' => array('/slider/slider'));
 
         $items[] = array('label' => 'Partners', 'url' => array('/partners/partners'));
         $items[] = array('label' => 'Principles', 'url' => array('/principles/principles'));

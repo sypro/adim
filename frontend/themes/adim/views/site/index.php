@@ -14,9 +14,11 @@
 		<div class="flexslider">
           <ul class="slides">
 
-            <li><img src="/images/slide-1.jpg" /></li>
-            <li><img src="/images/slide-2.jpg" /></li>
-
+            <?php
+                $slider = frontend\models\Slider::getItems();
+                foreach($slider as $slide)
+                    echo CHtml::tag('li',array(),'<img src='.\fileProcessor\helpers\FPM::originalSrc($slide->image_id).'/>');
+                ?>
           </ul>
         </div>
         <div class="caption"><h1><?=t('BELIEVE')?> <span class="cap-sm"><?=t('professionals')?></span><br /> <span class="cap-red" ><?=t('and immediately')?> </span></h1>
