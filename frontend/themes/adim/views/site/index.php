@@ -15,10 +15,10 @@
           <ul class="slides">
 
             <?php
-                $slider = frontend\models\Slider::getItems();
-                foreach($slider as $slide)
-                    echo CHtml::tag('li',array(),'<img src='.\fileProcessor\helpers\FPM::originalSrc($slide->image_id).'/>');
-                ?>
+               $slider = frontend\models\Slider::getItems();
+               foreach($slider as $slide)
+                   echo CHtml::tag('li',array(),\fileProcessor\helpers\FPM::image($slide->image_id,'page','slider'));
+               ?>
           </ul>
         </div>
         <div class="caption"><h1><?=t('BELIEVE')?> <span class="cap-sm"><?=t('professionals')?></span><br /> <span class="cap-red" ><?=t('and immediately')?> </span></h1>

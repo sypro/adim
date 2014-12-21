@@ -51,6 +51,12 @@ $frontend = array(
                         'quality' => 70,
                         'do' => 'adaptiveResize', // resize|adaptiveResize
                     ),
+                    'slider' => array(
+                        'width' => 1200,
+                        'height' => 400,
+                        'quality' => 90,
+                        'do' => 'adaptiveResize', // resize|adaptiveResize
+                    ),
                     'principles' => array(
                         'width' => 200,
                         'height' => 200,
