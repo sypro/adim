@@ -6,6 +6,10 @@
 namespace gallery\models;
 
 use back\components\ActiveRecord;
+use gallery\models\Images;
+use fileProcessor\helpers\FPM;
+use back\components\FileFormInputElement;
+use back\components\MultiFileFormInputElement;
 
 /**
  * This is the model class for table "{{gallery}}".
@@ -30,6 +34,9 @@ class Gallery extends ActiveRecord
 	 * @param string $className active record class name.
 	 * @return Gallery the static model class
 	 */
+
+	// public $images = array();
+
 	public static function model($className = __CLASS__)
 	{
 		return parent::model($className);
@@ -52,9 +59,9 @@ class Gallery extends ActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'galleryLangs' => array(self::HAS_MANY, 'GalleryLang', 'model_id'),
+			'images' => array(self::HAS_MANY, 'id', 'gallery_id'),
 		);
 	}
-
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -78,6 +85,7 @@ class Gallery extends ActiveRecord
 		$labels = \CMap::mergeArray(
 			parent::attributeLabels(),
 			array(
+				'uploadImages[]'=> 'Картинки',
 			)
 		);
 		$labels = $this->generateLocalizedAttributeLabels($labels);
@@ -146,6 +154,7 @@ class Gallery extends ActiveRecord
 						'name' => 'id',
 						'htmlOptions' => array('class' => 'span1 center', ),
 					),
+					'label',
 					array(
 						'class' => 'back\components\ImageColumn',
 						'name' => 'image_id',
@@ -211,6 +220,18 @@ class Gallery extends ActiveRecord
 					'type' => '\back\components\FileFormInputElement',
 					'content' => 'image',
 				),
+				// 'images' => array(
+				// 	'type' => '\back\components\MultiFileFormInputElement',
+				// 	'content' => 'image',
+				// ),
+				'uploadImages[]' => array(
+                    'type' => MultiFileFormInputElement::getClassName(),
+                    'content'=> 'image',
+                    // 'link'=> '/gallery/image/delete',
+                   // 'model'=> Image::getClassName(),
+                   // 'attribute'=>'image_id',
+
+                ),
 				'visible' => array(
 					'type' => 'checkbox',
 				),
@@ -287,4 +308,52 @@ class Gallery extends ActiveRecord
 	{
 		return array('label');
 	}
+
+
+	protected $relatedItem;
+
+	public function setRelatedItem($relatedItem)
+    {
+        $this->relatedItem = $relatedItem;
+    }
+
+    protected function afterSave()
+    {
+        $images = \CUploadedFile::getInstances($this, 'uploadImages');
+        foreach ($images as $image) {
+            $imageId = FPM::transfer()->saveUploadedFile($image);
+            $model = new Image;
+            $model->image_id = $imageId;
+            // $model->model_name = $this->getClassName();
+            // $model->model_id = $this->id;
+            $model->gallery_id = $this->id;
+            $model->save();
+        }
+
+        // if ($this->scenario !== 'change') {
+        //     // CoachStyle::model()->deleteAllByAttributes(array('style_id' => $this->id, ));
+        //     if (is_array($this->relatedItem)) {
+        //         foreach ($this->relatedItem as $relatedId) {
+        //             $assign = new CoachStyle();
+        //             $assign->coach_id = $relatedId;
+        //             $assign->style_id = $this->id;
+        //             $assign->save();
+        //         }
+        //     }
+        // }
+        parent::afterSave();
+    }
+
+
+    public function getRelatedFiles(){
+        $items = array();
+        $iamges = Image::model()->findAll(array('condition'=>'gallery_id=:gallery_id','params'=>array(':gallery_id'=>$this->id)));
+        foreach($iamges as $image){
+            $items[]=$image->image_id;
+        }
+        return $items;
+    }
+
+
+
 }

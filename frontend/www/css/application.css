@@ -34,3 +34,19 @@
     -moz-transform: translateX(0px);
     transform: translateX(0px);
 }
+
+
+.main .menu .nav-top.inner li a{
+    color:#fff;
+}
+.main .menu .nav-top.inner li a:hover{
+    color:#fff;
+    border-bottom:1px solid #272727;
+}
+.main .menu .nav-top li a:hover{
+    color:#ccc;
+    border-bottom:1px solid #fff;
+}
+.main .menu .nav-top li a.active{
+    color:#9d9d9d;
+}

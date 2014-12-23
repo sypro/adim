@@ -12,40 +12,39 @@
     <div class="col-sm-9">
         <div class="row">
             <div class="princ">
-                <div class="circle-grey"><img src="images/meet.png" /><div class="c-overlay"><p>A Project Architect is a term used to define a specific role in an Architect's office. The Project Architect (PA) role usually indicates the individual who is responsible for overseeing the Architectural.</p></div></div>
+                <div class="circle-grey"><img src="images/meet.png" /><div class="c-overlay"><p><?=config('PRINCIPLES_TEXT_1')?></p></div></div>
 
-                <p>Meeting the client</p>
+                <p><?=t('Meeting the client')?></p>
             </div>
             <div class="arrow"><img src="images/arrow.png" /></div>
             <div class="princ">
-                <div class="circle-grey"><img src="images/design.png" /><div class="c-overlay"><p>A Project Architect is a term used to define a specific role in an Architect's office. The Project Architect (PA) role usually indicates the individual who is responsible for overseeing the Architectural.</p></div></div>
+                <div class="circle-grey"><img src="images/design.png" /><div class="c-overlay"><p><?=config('PRINCIPLES_TEXT_2')?></p></div></div>
 
-                <p>Design assignment (formed on the basis of the customer's wishes) </p>
+                <p><?=t('Design assignment (formed on the basis of the customer\'s wishes')?> </p>
             </div>
             <div class="arrow"><img src="images/arrow.png" /></div>
             <div class="princ">
-                <div class="circle-grey"><img src="images/project.png" /><div class="c-overlay"><p>A Project Architect is a term used to define a specific role in an Architect's office. The Project Architect (PA) role usually indicates the individual who is responsible for overseeing the Architectural.</p></div></div>
+                <div class="circle-grey"><img src="images/project.png" /><div class="c-overlay"><p><?=config('PRINCIPLES_TEXT_3')?></p></div></div>
 
-                <p>Project </p>
+                <p><?=t('Project')?> </p>
                 <div class="arrow-down"><img src="images/arrow.png" /></div>
             </div>
 
             <div class="princ">
-                <div class="circle-grey"><img src="images/friends.png" /><div class="c-overlay"><p>A Project Architect is a term used to define a specific role in an Architect's office. The Project Architect (PA) role usually indicates the individual who is responsible for overseeing the Architectural.</p></div></div>
+                <div class="circle-grey"><img src="images/friends.png" /><div class="c-overlay"><p><?=config('PRINCIPLES_TEXT_4')?></p></div></div>
 
-                <p>Remain good friends with the customer</p>
+                <p><?=t('Remain good friends with the customer')?></p>
             </div>
             <div class="arrow left"><img src="images/arrow.png" /></div>
             <div class="princ">
-                <div class="circle-grey"><img src="images/date.png" /><div class="c-overlay"><p>A Project Architect is a term used to define a specific role in an Architect's office. The Project Architect (PA) role usually indicates the individual who is responsible for overseeing the Architectural.</p></div></div>
+                <div class="circle-grey"><img src="images/date.png" /><div class="c-overlay"><p><?=config('PRINCIPLES_TEXT_5')?></p></div></div>
 
-                <p>Release Date </p>
+                <p><?=t('Release Date')?> </p>
             </div>
             <div class="arrow left"><img src="images/arrow.png" /></div>
             <div class="princ">
-                <div class="circle-grey"><img src="images/tools.png" /><div class="c-overlay"><p>A Project Architect is a term used to define a specific role in an Architect's office. The Project Architect (PA) role usually indicates the individual who is responsible for overseeing the Architectural.</p></div></div>
-                <p>Author's support of the project
-                    and the client </p>
+                <div class="circle-grey"><img src="images/tools.png" /><div class="c-overlay"><p><?=config('PRINCIPLES_TEXT_6')?></p></div></div>
+                <p><?=t('Author\'s support of the project and the client')?> </p>
 
             </div>
         </div>

@@ -19,11 +19,21 @@
                         <div id="myCarousel" class="carousel slide">
                             <!-- main slider carousel items -->
                             <div class="carousel-inner">
-                                <?php foreach($model->images as $image):?>
-                                    <div class="item" data-slide-number="<?=$image->image_id?>">
-                                        <?=\fileProcessor\helpers\FPM::image($image->image_id,'gallery','big',$model->label,array('class'=>'img-responsive'))?>
-                                    </div>
-                                <?php endforeach ?>
+                                <!-- 1. Link to jQuery (1.8 or later), -->
+
+                                <!-- fotorama.css & fotorama.js. -->
+                                <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.2/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+                                <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.2/fotorama.js"></script> <!-- 16 KB -->
+
+                                <!-- 2. Add images to <div class="fotorama"></div>. -->
+                                <div class="fotorama" data-nav="thumbs">
+                                    <?php foreach($model->images as $image):?>
+                                        <a href="<?=\fileProcessor\helpers\FPM::originalSrc($image->image_id)?>"><?=\fileProcessor\helpers\FPM::image($image->image_id,'gallery','thumbs',$model->label,array('class'=>'img-responsive'))?></a>
+                                    <?php endforeach ?>
+                                </div>
+
+                                <!-- 3. Enjoy! -->
+
                             </div>
                             <!-- main slider carousel nav controls --><!-- <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
                         <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>-->
@@ -31,47 +41,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 hidden-sm hidden-xs" id="slider-thumbs">
-                <!-- thumb navigation carousel items -->
-                <ul class="list-inline">
-                    <?php foreach($model->images as $image):?>
-                    <li>
-                        <a id="carousel-selector-<?=$image->image_id?>">
-                            <?=\fileProcessor\helpers\FPM::image($image->image_id,'gallery','thumbs',$model->label,array('class'=>'img-responsive'))?>
-                        </a>
-                    </li>
-                    <?php endforeach ?>
-                </ul>
 
-            </div>
             <!--/main slider carousel-->
         </div>
     </div>
 </div>
-
-<script>
-    $('#myCarousel .item').first().addClass('active');
-    $('.list-inline a').first().addClass('selected');
-
-    $('#myCarousel').carousel({
-        interval: 4000
-    });
-
-    // handles the carousel thumbnails
-    $('[id^=carousel-selector-]').click( function(){
-        var id_selector = $(this).attr("id");
-        var id = id_selector.substr(id_selector.length -1);
-        id = parseInt(id);
-        $('#myCarousel').carousel(id);
-        $('[id^=carousel-selector-]').removeClass('selected');
-        $(this).addClass('selected');
-    });
-
-    // when the carousel slides, auto update
-    $('#myCarousel').on('slid', function (e) {
-        var id = $('.item.active').data('slide-number');
-        id = parseInt(id);
-        $('[id^=carousel-selector-]').removeClass('selected');
-        $('[id=carousel-selector-'+id+']').addClass('selected');
-    });
-</script>

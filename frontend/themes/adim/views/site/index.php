@@ -7,18 +7,14 @@
  */
 ?>
 
-    <div class="page">
+    <div class="page main">
 	<?php echo $this->renderPartial('//layouts/header');  ?>
 
 	<div class="full-slider">
 		<div class="flexslider">
           <ul class="slides">
-
-            <?php
-               $slider = frontend\models\Slider::getItems();
-               foreach($slider as $slide)
-                   echo CHtml::tag('li',array(),\fileProcessor\helpers\FPM::image($slide->image_id,'page','slider'));
-               ?>
+<li><img src="/images/slide-1.jpg" /></li>
+            <li><img src="/images/slide-2.jpg" /></li>
           </ul>
         </div>
         <div class="caption"><h1><?=t('BELIEVE')?> <span class="cap-sm"><?=t('professionals')?></span><br /> <span class="cap-red" ><?=t('and immediately')?> </span></h1>

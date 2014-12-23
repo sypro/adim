@@ -6,6 +6,10 @@
 namespace gallery\models;
 
 use back\components\ActiveRecord;
+use gallery\models\Gallery;
+use fileProcessor\helpers\FPM;
+use back\components\FileFormInputElement;
+use back\components\MultiFileFormInputElement;
 
 /**
  * This is the model class for table "{{image}}".
@@ -21,6 +25,9 @@ use back\components\ActiveRecord;
  */
 class Image extends ActiveRecord
 {
+
+	public $images;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
@@ -48,9 +55,20 @@ class Image extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'gallery'    => array(self::BELONGS_TO, Gallery::getClassName(), 'gallery_id'),
 		);
 	}
 
+	public function getRelatedFiles(){
+			if($this->gallery_id){
+				$images = Image::model()->findAllByAttributes(array('gallery_id'=>$this->gallery_id));
+			}else{
+				$images = new Image();
+			}
+		    return $images;
+		    //foreach ($images as $image)
+	        //	$this->images[] =  $image->image_id ;
+	}
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -145,6 +163,17 @@ class Image extends ActiveRecord
 						'htmlOptions' => array('class' => 'span1 center', ),
 					),
 					array(
+                        'name' => 'gallery_id',
+                        'value' => function($data){
+                            echo $data->gallery->label;
+                        },
+                        'filter' => \CHtml::listData(Gallery::getItems(), 'id', 'label'),
+                    ),
+					// 'gallery.label',
+					// array(
+					// 	'name' => 'gallery'
+					// 	),
+					array(
 						'class' => 'back\components\ImageColumn',
 						'name' => 'image_id',
 					),
@@ -207,6 +236,10 @@ class Image extends ActiveRecord
 					'type' => '\back\components\FileFormInputElement',
 					'content' => 'image',
 				),
+				// 'relatedFiles' => array(
+				// 	'type' => '\back\components\MultiFileFormInputElement',
+				// 	// 'content' => 'image',
+				// ),
 				'gallery_id' => array(
                     'type' => 'dropdownlist',
                     'items' => \CHtml::listData(Gallery::getItems(), 'id', 'label'),
@@ -238,7 +271,28 @@ class Image extends ActiveRecord
 			),
 		);
 	}
+/*
+	public function beforeSave(){
+		if(is_array($this->image_id))
+			foreach ($this->image_id as $key => $value) {
+				$new_image = new Image();
+				$new_image->image_id = $value;
+				$new_image->label = $this->label;
+				$new_image->gallery_id = $this->gallery_id;
+				$new_image->save();
+				
+				//'image_id:fpmImage',label
+					// 'gallery_id',
+					// 'visible:boolean',
+					// 'published:boolean',
+					// 'position',
+				// $this->image_id = $value;
+				// $this->save();
+				# code...
+			}
+	}
 
+	*/
 	/**
 	 * Returns a list of behaviors that this model should behave as.
 	 *
@@ -261,8 +315,8 @@ class Image extends ActiveRecord
 				$behaviors,
 				array(
 					'b_image_id' => array(
-						'class' => '\fileProcessor\components\FileUploadBehavior',
-						'attributeName' => 'image_id',
+						'class' => '\fileProcessor\components\FileMultiUploadBehavior',
+						// 'attributeName' => 'image_id',
 						'fileTypes' => 'png, gif, jpeg, jpg',
 					),
 					'seo' => array(
