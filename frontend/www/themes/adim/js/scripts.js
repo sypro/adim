@@ -12,7 +12,16 @@ $(window).load(function() {
 });
 // DOM ready
 	 $(function() {
-	   
+
+//     wmark.init({
+//     /* config goes here */
+//         "position": "top-right", // default "bottom-right"
+//         "opacity": 50, // default 50
+//         "className": "fotorama__img", // default "watermark
+//         "path": "/images/logo.png"
+//     });
+
+
       // Create the dropdown base
       $("<select />").appendTo("nav");
       
@@ -37,5 +46,8 @@ $(window).load(function() {
       $("nav select").change(function() {
         window.location = $(this).find("option:selected").val();
       });
-	 
+
+
+
 	 });
+

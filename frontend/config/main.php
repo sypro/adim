@@ -84,15 +84,15 @@ $frontend = array(
                 ),
                 'gallery' => array(
                     'big' => array(
-                        'width' => 1110,
-                        'height' => 708,
-                        'quality' => 99,
+                        'width' => 800,//1110,
+                        'height' => 600,//708,
+                        'quality' => 80,
                         'do' => 'adaptiveResize', // resize|adaptiveResize
                     ),
                     'thumbs' => array(
                         'width' => 177,
                         'height' => 125,
-                        'quality' => 70,
+                        'quality' => 40,
                         'do' => 'adaptiveResize', // resize|adaptiveResize
                     ),
                 ),
@@ -229,12 +229,15 @@ $frontend = array(
                         'js/jquery.flexslider.js',
                         'js/bootstrap.min.js',
                         'js/scripts.js',
+                        'js/watermark.min.js',
+                        'js/fotorama.js',
 
                     ),
                     'css' => array(
                         'css/bootstrap.min.css',
                         'css/style.css' => 'screen, projection',
                         'css/flexslider.css' => 'screen, projection',
+                        'css/fotorama.css',
                     ),
                     'depends' => array('jquery'),
                 ),

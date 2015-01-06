@@ -100,7 +100,7 @@ $backend = array(
 						'width' => 300,
 						'height' => 300,
 						'quality' => 90,
-						'do' => 'resize', // resize|adaptiveResize
+						'do' => 'adaptiveResize', // resize|adaptiveResize
 					),
 					'form' => array(
 						'width' => 300,

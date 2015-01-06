@@ -19,29 +19,16 @@
                         <div id="myCarousel" class="carousel slide">
                             <!-- main slider carousel items -->
                             <div class="carousel-inner">
-                                <!-- 1. Link to jQuery (1.8 or later), -->
-
-                                <!-- fotorama.css & fotorama.js. -->
-                                <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.2/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
-                                <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.2/fotorama.js"></script> <!-- 16 KB -->
-
-                                <!-- 2. Add images to <div class="fotorama"></div>. -->
-                                <div class="fotorama" data-nav="thumbs">
+                                <div class="fotorama" data-width="100%" data-nav="thumbs">
                                     <?php foreach($model->images as $image):?>
-                                        <a href="<?=\fileProcessor\helpers\FPM::originalSrc($image->image_id)?>"><?=\fileProcessor\helpers\FPM::image($image->image_id,'gallery','thumbs',$model->label,array('class'=>'img-responsive'))?></a>
+                                        <a href="<?=\fileProcessor\helpers\FPM::src($image->image_id,'gallery','big')?>"><?=\fileProcessor\helpers\FPM::image($image->image_id,'gallery','thumbs',$model->label,array('class'=>'img-responsive'))?></a>
                                     <?php endforeach ?>
                                 </div>
-
-                                <!-- 3. Enjoy! -->
-
                             </div>
-                            <!-- main slider carousel nav controls --><!-- <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
-                        <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>-->
                         </div>
                     </div>
                 </div>
             </div>
-
             <!--/main slider carousel-->
         </div>
     </div>

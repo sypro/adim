@@ -18,6 +18,12 @@
  */
 
 return array (
+    'Remain good friends with the customer'=>'',
+    'Release Date'=>'',
+    'Author\'s support of the project and the client'=>'',
+    'Project'=>'',
+    'Design assignment (formed on the basis of the customer\'s wishes'=>'',
+    'Meeting the client'=>'',
 	'ABOUT COMPANY' => '',
 	'About the company' => '',
 	'Address' => '',
