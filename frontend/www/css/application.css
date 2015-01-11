@@ -50,3 +50,6 @@
 .main .menu .nav-top li a.active{
     color:#9d9d9d;
 }
+.c-overlay{
+    opacity: 0.3;
+}
