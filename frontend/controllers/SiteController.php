@@ -11,6 +11,7 @@ use frontend\models\Order;
 use frontend\models\Partners;
 use frontend\models\Principles;
 use frontend\widgets\OrderForm;
+use frontend\widgets\QuestionForm;
 
 /**
  * Class SiteController
@@ -108,18 +109,18 @@ class SiteController extends FrontController
                 $data = array(
                     'replaces' => array(
                         array(
-                            'what' => '#claims-form',
+                            'what' => '#question-form',
                             'data' => $sucsess_html,
                         ),
                     ),
                 );
 //                $model->save();
             } else {
-                $form = $this->widget(OrderForm::getClassName(), array('model' => $model, ), true);
+                $form = $this->widget(QuestionForm::getClassName(), array('model' => $model, ), true);
                 $data = array(
                     'replaces' => array(
                         array(
-                            'what' => '#claims-form',
+                            'what' => '#question-form',
                             'data' => $form,
                         ),
                     ),
@@ -145,7 +146,8 @@ class SiteController extends FrontController
     }
     public function actionNewsite()
     {
-        var_dump($_GET);
+        echo 'OK';
+//        var_dump($_GET);
     }
 
 	public function actionMaintenance()

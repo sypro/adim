@@ -34,21 +34,8 @@
 <div class="footer">
     <div class="container">
         <div class="column-first">
-            <h3><?=t('Do you want site like this?')?></h3>
-
-            <div class="f-f-group">
-                <form action="/site/newsite" method="get" class="form-inline site-builders" role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="name" placeholder="<?=t('Name')?>">
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="<?=t('Email')?>">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-send"><?=t('Send')?></button>
-                </form>
-            </div>
+            <h3><?=t('Ask a question')?></h3>
+            <?php $this->widget(\frontend\widgets\QuestionForm::getClassName())?>
         </div>
         <div class="column">
             <h3><?=t('Follow us')?>:</h3>
@@ -67,7 +54,7 @@
         </div>
         <div class="column">
             <div class="copy">© ADIMENSION <br />
-                DESIGN GROUP 2014</div>
+                DESIGN GROUP <?=date("Y")?></div>
         </div>
     </div>
 </div>

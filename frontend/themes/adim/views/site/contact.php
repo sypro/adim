@@ -15,7 +15,7 @@
                 <div class="contact-in">
                     <div class="info">
                         <p><?=t('Tel.')?>: <?=config('PHONE')?></p>
-                        <p><?=t('Email')?>: <?=config('EMAIL')?></p>
+                        <p><?=t('Email')?>: <?=CHtml::mailto( config("EMAIL"), config("EMAIL"))?></p>
                         <p><?=t('Address')?>:  <?=config('ADDRESS')?></p>
                     </div>
                     <div class="info">
@@ -25,7 +25,9 @@
         </div>
     </div>
     <?php echo $this->renderPartial('_order');  ?>
-</div>
-<div class="row">
-    <div class="c-image"><img src="/images/contact-img.jpg" /></div>
+
+    <div class="row">
+        <div class="c-image"><img src="/images/contact-img.jpg" /></div>
+    </div>
+
 </div>

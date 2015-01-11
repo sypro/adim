@@ -20,8 +20,7 @@
         </div>
     </div>
     <?php echo $this->renderPartial('_order');  ?>
-
-</div>
-<div class="row">
-    <div class="c-image"><img src="/images/contact-img.jpg" /></div>
+    <div class="row">
+        <div class="c-image"><img src="/images/contact-img.jpg" /></div>
+    </div>
 </div>
