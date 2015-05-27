@@ -122,6 +122,36 @@ class FrontController extends Controller
 	}
 
 	/**
+	 * @param bool $class
+	 *
+	 * @return \CActiveRecord
+	 * @throws \CHttpException
+	 */
+	public function loadAllModel($class = false)
+	{
+		if ($class === false) {
+			$class = $this->getModelClass();
+		}
+		/** @var ActiveRecord $finder */
+		$finder = ActiveRecord::model($class)->published();
+		// if (is_array($id) && $attributes) {
+			// $model = $finder->findByAttributes($id, $condition, $params);
+		// } else {
+			$model = $finder->findAll();
+		// }
+		if ($model === null) {
+			throw new \CHttpException(404, t('The requested page does not exist.'));
+		}
+		// if ($prepare) {
+			// $this->prepare($model);
+		// }
+		if ($model->asa('seo') && $this->asa('seo')) {
+			$this->registerSEO($model);
+		}
+		return $model;
+	}
+
+	/**
 	 * @param $model
 	 */
 	public function prepare($model)

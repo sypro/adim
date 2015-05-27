@@ -58,10 +58,10 @@ $frontend = array(
                         'do' => 'adaptiveResize', // resize|adaptiveResize
                     ),
                     'principles' => array(
-                        'width' => 200,
-                        'height' => 200,
+                        'width' => 150,
+                        'height' => 150,
                         'quality' => 90,
-                        'do' => 'adaptiveResize', // resize|adaptiveResize
+                        'do' => 'resize', // resize|adaptiveResize
                     ),
                     'gallery' => array(
                         'width' => 250,
@@ -151,8 +151,8 @@ $frontend = array(
 //pages
                 array('site/about', 'pattern' => '<lang:\w{2}>/about'),
                 array('site/about', 'pattern' => 'about'),
-//                array('site/newsite', 'pattern' => '<lang:\w{2}>/newsite'),
-//                array('site/newsite', 'pattern' => 'newsite'),
+               array('site/newsite', 'pattern' => '<lang:\w{2}>/newsite'),
+               array('site/newsite', 'pattern' => 'newsite'),
                 array('site/gallery', 'pattern' => 'gallery/<alias>'),
                 array('site/gallery', 'pattern' => '<lang:\w{2}>/gallery'),
                 array('site/gallery', 'pattern' => '<lang:\w{2}>/gallery/<alias>'),

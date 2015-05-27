@@ -10,3 +10,4 @@
 .thumbnails .remove { position: absolute; top: 1px; right: 1px; }
 .thumbnail.fpm-form-file {margin-left: 0;}
 li.height200 {height: 200px;}
+table.items.table.table-striped.table-bordered { background: cornsilk;}

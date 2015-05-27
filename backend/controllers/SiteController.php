@@ -6,6 +6,9 @@
 namespace backend\controllers;
 
 use back\components\BackController;
+use page\models\Order;
+use configuration\models\Configuration;
+use \slider\models\Slider;
 
 /**
  * Class SiteController
@@ -19,6 +22,16 @@ class SiteController extends BackController
 	 */
 	public function actionIndex()
 	{
-		$this->render('index');
+		// $model = Order::model();
+		$this->render('index',array('orders' =>  Order::model(),'configurations' =>  Configuration::model(),'sliders' =>  Slider::model() ));
 	}
+	/**
+	 * @return string
+	 */
+	// public function getModelClass()
+	// {
+	// 	return '\page\models\Order';
+	// }
+
+
 }

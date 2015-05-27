@@ -9,7 +9,7 @@
 ?>
 <div class="content">
     <div class="container">
-        <h1 class="page-title"><?=$model->label.' '.t('style')?><span><a href="/gallery"><?=t('back to gallery')?></a></span></h1>
+        <h1 class="page-title"><?=$model->label//.' '.t('style')?><span><a href="/gallery"><?=t('back to gallery')?></a></span></h1>
         <div class="gal-one">
             <!-- main slider carousel -->
             <div class="row">

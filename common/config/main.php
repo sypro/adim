@@ -3,7 +3,7 @@
 $main = array(
 	'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'timeZone' => 'Europe/Kiev',
-	'name' => 'Application',
+	'name' => 'Adim Design Group',
 	'preload' => array('log'),
 	'aliases' => array(
 		'vendor'  => realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor'),

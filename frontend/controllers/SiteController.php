@@ -8,11 +8,14 @@ namespace frontend\controllers;
 use front\components\FrontController;
 use frontend\models\Gallery;
 use frontend\models\Order;
+use frontend\models\Slider;
 use frontend\models\Partners;
 use frontend\models\Principles;
 use frontend\widgets\OrderForm;
 use frontend\widgets\QuestionForm;
 
+// use front\modules\emailQueue\models;
+// use emailQueue\models;
 /**
  * Class SiteController
  *
@@ -40,7 +43,7 @@ class SiteController extends FrontController
 	public function actionIndex()
 	{
         $this->layout = '//layouts/main';
-        $this->render('index');
+        $this->render('index',array('model' => Slider::getItems()));
 	}
     public function actionAbout()
     {
@@ -77,7 +80,7 @@ class SiteController extends FrontController
                         ),
                     ),
                 );
-//                $model->save();
+               $model->save();
             } else {
                 $form = $this->widget(OrderForm::getClassName(), array('model' => $model, ), true);
                 $data = array(
@@ -114,7 +117,7 @@ class SiteController extends FrontController
                         ),
                     ),
                 );
-//                $model->save();
+               $model->save();
             } else {
                 $form = $this->widget(QuestionForm::getClassName(), array('model' => $model, ), true);
                 $data = array(
@@ -146,6 +149,97 @@ class SiteController extends FrontController
     }
     public function actionNewsite()
     {
+   $this->layout = '//layouts/main';
+
+   $model = Slider::getItems();
+            $model = $this->loadAllModel(Slider::getClassName());
+
+            // $this->getPageTitle($model);
+        $this->render('index',array('model' =>$model));
+
+// public function loadModel($id, $class = false, $attributes = false, $prepare = true, $seo = true, $condition = '', $params = array())
+    // {
+        // if ($class === false) {
+        //     $class = $this->getModelClass();
+        // }
+        // /** @var ActiveRecord $finder */
+        // $finder = ActiveRecord::model($class)->published();
+        // if (is_array($id) && $attributes) {
+        //     $model = $finder->findByAttributes($id, $condition, $params);
+        // } else {
+        //     $model = $finder->findByPk($id, $condition, $params);
+        // }
+        // if ($model === null) {
+        //     throw new \CHttpException(404, t('The requested page does not exist.'));
+        // }
+        // if ($prepare) {
+        //     $this->prepare($model);
+        // }
+        // if ($seo && $model->asa('seo') && $this->asa('seo')) {
+        //     $this->registerSEO($model);
+        // }
+        // return $model;
+    // }
+
+
+
+
+
+            // $this->registerSEO(Slider::getClassName());
+
+        // $this->render('index',array('model' => Slider::getItems()));
+
+            // $model = $this->loadModel(array('id'=>'1'),Slider::getClassName(), true);
+            // $this->render('index',array('model' =>$model));
+
+
+// if ($seo && $model->asa('seo') && $this->asa('seo')) {
+//             $this->registerSEO($model);
+//         }
+
+        // $this->render('index',array('model' =>$model));
+
+
+
+// if ($seo && $model->asa('seo') && $this->asa('seo')) {
+//             $this->registerSEO($model);
+//         }
+
+            // echo "<pre>";
+            // var_dump($model);
+        // $this->render('contact');
+            // $this->metaKeywords = 'these, are, my, sample, page, meta, keywords';
+    // $this->metaDescription = 'This is a sample page description';
+
+
+// $this->layout = '//layouts/main';
+//         $this->render('index',array('model' => Slider::getItems()));
+
+
+
+
+//         $message = \Yii::app()->controller->renderPartial('mail/client', array( ), true); // Make sure to return true since we want to capture the output
+//         $messagetwo = \Yii::app()->controller->renderPartial('mail/manager', array( ), true); // Make sure to return true since we want to capture the output
+// echo $message;
+// echo "<hr>";
+// echo $messagetwo;
+
+
+
+        // $queue = new \emailQueue\models\EmailQueue();
+        // $queue->add('test', 'itdep24@gmail.com', 'message');
+        // $queue->to_email = 'itdep24@gmail.com';
+        // $queue->subject = "Mall Kids Are People Too, Damnit!";
+        // // $queue->from_email = Yii::app()->params['adminEmail'];
+        // // $queue->from_name = Yii::app()->name;
+        // $queue->from_email = 'admin@adim-design.com';
+        // $queue->from_name = Yii::app()->name;
+        // $queue->date_published = new CDbExpression('NOW()');
+        // $queue->message = 'allalla'; // Make sure to return true since we want to capture the output
+        // // $queue->message = $this->message;
+        // $queue->save();
+     
+
         echo 'OK';
 //        var_dump($_GET);
     }

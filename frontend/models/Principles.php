@@ -151,7 +151,7 @@ class Principles extends ActiveRecord
 	 */
 	public static function getLocalizedAttributesList()
 	{
-		return array();
+		return array('label','announce');
 	}
 
 	/**

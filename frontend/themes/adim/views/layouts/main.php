@@ -41,9 +41,9 @@
             <h3><?=t('Follow us')?>:</h3>
             <div class="social">
                 <ul>
-                    <li class="fb"><a href="<?=config('fb')?>"><i class="fa fa-facebook"></i></a></li>
-                    <li class="tw"><a href="<?=config('tw')?>"><i class="fa fa-twitter"></i></i></a></li>
-                    <li class="vk"><a href="<?=config('vk')?>"><i class="fa fa-vk"></i></a></li>
+                    <li class="fb"><a href="<?=config('fb')?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                    <li class="tw"><a href="<?=config('tw')?>" target="_blank"><i class="fa fa-instagram"></i></i></a></li>
+                    <li class="vk"><a href="<?=config('in')?>" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                 </ul>
             </div>
         </div>

@@ -28,7 +28,7 @@ class MenuWidget extends \TbNavbar
 	{
 		$items = array();
 
-        $items[] = array('label' => 'Админпанель', 'url' => array('/site/index'));
+        // $items[] = array('label' => 'Админпанель', 'url' => array('/site/index'));
 //        $items[] = array('label' => 'Pages', 'items' => array(
 //            array('label' => 'Home', 'url' => array('/admin/user/index'), ),
 //            array('label' => 'About', 'url' => array('/admin/user/index'), ),
@@ -37,15 +37,15 @@ class MenuWidget extends \TbNavbar
 //            array('label' => 'Partners', 'url' => array('/admin/user/index'), ),
 //            array('label' => 'Contacts', 'url' => array('/admin/user/index'), ),
 //        ), );
-        $items[] = array('label' => 'Slider', 'url' => array('/slider/slider'));
+        $items[] = array('label' => 'Слайдер', 'url' => array('/slider/default'));
 
-        $items[] = array('label' => 'Partners', 'url' => array('/partners/partners'));
-        $items[] = array('label' => 'Principles', 'url' => array('/principles/principles'));
-        $items[] = array('label' => 'Orders', 'url' => array('/page/orders'));
+        $items[] = array('label' => 'Партнеры', 'url' => array('/partners/partners'));
+        $items[] = array('label' => 'Принципы', 'url' => array('/principles/principles'));
+        $items[] = array('label' => 'Заказы', 'url' => array('/page/orders'));
 
-        $items[] = array('label' => 'Gallery', 'items' => array(
-            array('label' => 'Categories', 'url' => array('/gallery/gallery'), ),
-            array('label' => 'Images', 'url' => array('/gallery/image'), ),
+        $items[] = array('label' => 'Галерея', 'items' => array(
+            array('label' => 'Категории', 'url' => array('/gallery/gallery'), ),
+            array('label' => 'Изображения', 'url' => array('/gallery/image'), ),
         ), );
 
 

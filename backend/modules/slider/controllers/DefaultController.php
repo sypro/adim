@@ -12,8 +12,13 @@ use back\components\BackController;
  */
 class DefaultController extends BackController
 {
-	public function actionIndex()
+	/**
+	 * @return string
+	 */
+	public function getModelClass()
 	{
-		$this->render('index');
+		return '\slider\models\Slider';
 	}
 }
+
+

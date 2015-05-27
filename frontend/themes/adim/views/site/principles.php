@@ -11,44 +11,55 @@
     <h1 class="page-title"><?=t('Principles of operation')?></h1>
     <div class="col-sm-9">
         <div class="row">
-            <div class="princ">
-                <div class="circle-grey"><img src="images/meet.png" /><div class="c-overlay"><p><?=config('PRINCIPLES_TEXT_1')?></p></div></div>
 
-                <p><?=t('Meeting the client')?></p>
-            </div>
-            <div class="arrow"><img src="images/arrow.png" /></div>
-            <div class="princ">
-                <div class="circle-grey"><img src="images/design.png" /><div class="c-overlay"><p><?=config('PRINCIPLES_TEXT_2')?></p></div></div>
+            <?php
 
-                <p><?=t('Design assignment (formed on the basis of the customer\'s wishes')?> </p>
-            </div>
-            <div class="arrow"><img src="images/arrow.png" /></div>
-            <div class="princ">
-                <div class="circle-grey"><img src="images/project.png" /><div class="c-overlay"><p><?=config('PRINCIPLES_TEXT_3')?></p></div></div>
+            $i=1;
+            $j=1;
+            $a = array_chunk($model,3);
+            
+            foreach($a as $b){
+                foreach($b as $row){
+                     ?>
+                        <div class="princ">
+                            <div class="circle-grey"><?=\fileProcessor\helpers\FPM::image($row->image_id,'page','principles',$row->label)?>
+                                <div class="c-overlay">
+                                    <p><?=$row->announce ?></p>
+                                </div>
+                        </div>
 
-                <p><?=t('Project')?> </p>
-                <div class="arrow-down"><img src="images/arrow.png" /></div>
-            </div>
+                        <p><?=$row->label ?></p>
+                        <?php
+                        // echo ' <div class="arrow-down"><img src="/images/arrow.png" /></div>';
+                        // if($j%3 == 0 && count($b)%3==0) echo ' <div class="arrow-down"><img src="/images/arrow.png" /></div>';
+                        ?>
+                    </div>
 
-            <div class="princ">
-                <div class="circle-grey"><img src="images/friends.png" /><div class="c-overlay"><p><?=config('PRINCIPLES_TEXT_4')?></p></div></div>
+                    <?php
+                    // if($i%3 == 0 && $i<count($model)) echo ' <div class="arrow-down"><img src="/images/arrow.png" /></div>';
+                    
+                    if($i%3!=0 && $j<3){
+                        if($i%2 != 0 ){
+                                echo '<div class="arrow"><img src="/images/arrow.png" /></div>'; 
+                            }
+                            else{ 
+                                echo '<div class="arrow left"><img src="/images/arrow.png" /></div>';
+                            }
+                        }
+                    $j++;
+                }
+                $j=0;
+                $i++;
+            }
 
-                <p><?=t('Remain good friends with the customer')?></p>
-            </div>
-            <div class="arrow left"><img src="images/arrow.png" /></div>
-            <div class="princ">
-                <div class="circle-grey"><img src="images/date.png" /><div class="c-overlay"><p><?=config('PRINCIPLES_TEXT_5')?></p></div></div>
 
-                <p><?=t('Release Date')?> </p>
-            </div>
-            <div class="arrow left"><img src="images/arrow.png" /></div>
-            <div class="princ">
-                <div class="circle-grey"><img src="images/tools.png" /><div class="c-overlay"><p><?=config('PRINCIPLES_TEXT_6')?></p></div></div>
-                <p><?=t('Author\'s support of the project and the client')?> </p>
 
-            </div>
+            ?>
+
         </div>
     </div>
     <?php echo $this->renderPartial('_order');  ?>
 
 </div>
+
+

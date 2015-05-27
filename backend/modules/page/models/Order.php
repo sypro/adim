@@ -111,7 +111,7 @@ class Order extends ActiveRecord
 			),
 			'sort' => array(
 				'defaultOrder' => array(
-					'position' => \CSort::SORT_DESC,
+					'id' => \CSort::SORT_DESC,
 				),
 			),
 		));
@@ -178,6 +178,18 @@ class Order extends ActiveRecord
 					'visible:boolean',
 					'published:boolean',
 					'position',
+				);
+				break;
+			case 'main':
+				$columns = array(
+					array(
+						'name' => 'id',
+						'htmlOptions' => array('class' => 'span1 center', ),
+					),
+                    'name',
+                    'email',
+                    'message',
+					
 				);
 				break;
 			default:

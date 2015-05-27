@@ -13,8 +13,13 @@
 	<div class="full-slider">
 		<div class="flexslider">
           <ul class="slides">
-<li><img src="/images/slide-1.jpg" /></li>
-            <li><img src="/images/slide-2.jpg" /></li>
+          	<?php
+          	foreach ($model as $row) {
+          		echo "<li>";
+          		echo \fileProcessor\helpers\FPM::image($row->image_id,'page','slider',"");
+          		echo "</li>";
+          	}
+          	?>
           </ul>
         </div>
         <div class="caption"><h1><?=t('BELIEVE')?> <span class="cap-sm"><?=t('professionals')?></span><br /> <span class="cap-red" ><?=t('and immediately')?> </span></h1>

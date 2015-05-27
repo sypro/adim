@@ -6,7 +6,6 @@
 namespace frontend\models;
 
 use front\components\ActiveRecord;
-
 /**
  * This is the model class for table "{{order}}".
  *
@@ -132,5 +131,16 @@ class Order extends ActiveRecord
 				),
 			)
 		);
+	}
+	// Typical usage in a controller or model
+	public function afterSave()
+	{
+        $client_message = \Yii::app()->controller->renderPartial('mail/client', array('model'=>$this), true);
+        $manager_message = \Yii::app()->controller->renderPartial('mail/manager', array('model'=>$this), true);
+		$queue = new \emailQueue\models\EmailQueue();
+        $queue->add('Adim Design Group',$this->email, $client_message);
+        $queue->add('Adim Design Group',"itdep24@gmail.com", $manager_message);
+
+	    parent::afterSave();
 	}
 }

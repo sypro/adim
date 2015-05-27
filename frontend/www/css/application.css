@@ -53,3 +53,44 @@
 .c-overlay{
     opacity: 0.3;
 }
+.arrow.left:last-child {
+  display: none;
+}
+
+/* .btn-cap */
+.btn-cap{
+    background:#292929;
+    color:#fff;
+    text-transform:uppercase;
+    border-radius:0px;
+    font-size:25px;
+    font-family:'Book Antiqua';
+}
+.btn-cap:hover{
+    text-decoration:none;
+    color:#fff;
+}
+
+/* unvisited link */
+.btn-cap:link {
+    text-decoration:none;
+    color:#fff;
+}
+
+/* visited link */
+.btn-cap:visited {
+    text-decoration:none;
+    color:#fff;
+}
+
+/* mouse over link */
+.btn-cap:hover {
+    text-decoration:none;
+    color:#fff;
+}
+
+/* selected link */
+.btn-cap:active {
+    text-decoration:none;
+    color:#fff;
+}
